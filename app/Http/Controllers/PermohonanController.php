@@ -2,105 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perizinan;
+use App\Models\Permohonan;
 use Illuminate\Http\Request;
 
 class PermohonanController extends Controller
 {
     public function index()
     {
-        $Divisi = Divisi::all();
-        return view('admin.divisi.index', compact('Divisi'))
+        $Permohonan = Permohonan::all();
+        return view('admin.Permohonan.index', compact('Permohonan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
-        // $kategori = Kategori::all();
-        return view('admin.divisi.tambah');
+        $Perizinan = Perizinan::all();
+        return view('admin.Permohonan.tambah',compact('Perizinan'));
     }
 
     public function store(Request $request)
     {
         // dd($request);
         $request->validate([
-            'nama_divisi' => 'required',
-            'detail' => 'required', 
+            'perizinan_id' => 'required',
+            'tanggal' => 'required', 
+            'jumlah' => 'required', 
         ]);
 
-        // $date = date("his");
-        // $extension = $request->file('gambar1')->extension();
-        // $file_name = "Divisi_$date.$extension";
-        // $path = $request->file('gambar1')->storeAs('public/Divisi', $file_name);
-        // if($request->status == NULL){
-        //     $status = false;
-        // }else{
-        //     $status = true;
-        // }
-        Divisi::create([
-            'nama_divisi' => $request->nama_divisi,
-            'detail' => $request->detail,
-            'status' => $request->status,
-            'program_id' => $request->program_id,
+        Permohonan::create([
+            'perizinan_id' => $request->perizinan_id,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
         ]);
         return back();
     }
-    public function show($program,$divisi)
+    public function show($program,$Permohonan)
     {
-        $akses_program = Akses_program::where('program_id', 'id')->get();
-        // $program = Program::where('divisi_id', 'id')->first();
-        $Akses_divisi = Akses_divisi::where('divisi_id',$divisi)->get();
-        $Divisi = Divisi::find($divisi);
-        $Laporan = Laporan::where('divisi_id',$divisi)->get();
-        $Laporanselect = Laporan::find($divisi);
-        return view('admin.divisi.show', compact('Divisi','Laporan','Akses_divisi', 'akses_program', 'Laporanselect'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
     public function edit($id)
     {
-        $Divisi = Divisi::find($id);
+        $Permohonan = Permohonan::find($id);
         // $kategori = Kategori::all();
-        return view('admin.divisi.edit',compact('Divisi'));
+        return view('admin.Permohonan.edit',compact('Permohonan'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_divisi' => 'required',
-            'detail' => 'required',
-            // 'gambar1' => 'file|mimes:jpg,png,jpeg,gif,svg,jfif|max:2048',
-            // 'periode_mulai' => 'required',
-            // 'periode_berakhir' => 'required',
-            // 'status' => 'required',
+            'perizinan_id' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
         ]);
 
-        $Divisi = Divisi::findOrFail($id);
+        $Permohonan = Permohonan::findOrFail($id);
 
-        // if($request->status == NULL){
-        //     $status = false;
-        // }else{
-        //     $status = true;
-        // }
-
-        $Divisi->nama_divisi = $request->nama_divisi;
-        $Divisi->detail = $request->detail;
-        // $Divisi->periode_mulai = $request->periode_mulai;
-        $Divisi->status = $request->status;
-        $Divisi->program_id = $request->program_id;
-        // $Divisi->periode_berakhir = $request->periode_berakhir;
-        $Divisi->save();
+        $Permohonan->perizinan_id = $request->perizinan_id;
+        $Permohonan->tanggal = $request->tanggal;
+        $Permohonan->jumlah = $request->jumlah;
+        $Permohonan->save();
 
         return redirect()->route('Program.index')
-        ->with('edit', 'Divisi Berhasil Diedit');
+        ->with('edit', 'Permohonan Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        Divisi::where('id',$id)->delete();
-        // Storage::delete("public/Divisi/$Divisi->gambar");
-        // $Divisi->delete();
+        Permohonan::where('id',$id)->delete();
         return back()
-            ->with('delete', 'Divisi Berhasil Dihapus');
+            ->with('delete', 'Permohonan Berhasil Dihapus');
     }
 }

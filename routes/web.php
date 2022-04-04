@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PerizinanController;
+use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\TerbitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Program/{program}/Divisi/{id}', [GuestController::class, 'show'])->name('');
+// Route::get('/Program/{program}/Divisi/{id}', [GuestController::class, 'show'])->name('');
 Route::resource('Perizinan', PerizinanController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::resource('Permohonan', PermohonanController::class);
+Route::resource('Terbit', TerbitController::class);
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
