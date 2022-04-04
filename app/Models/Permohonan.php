@@ -8,28 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Permohonan extends Model
 {
     use HasFactory;
-    protected $table = 'akses_divisi';
+    protected $table = 'Permohonan';
     protected $fillable = [
-        'user_id',
-        'divisi_id',
-        'akses_proggram_id'
+        'perizinan_id',
+        'jumlah',
+        'tanggal',
     ];
 
     protected $casts = [ 
-        'user_id' => 'integer', 
-        'divisi_id' => 'integer',
-        'akses_program_id' => 'integer'];
+        'perizinan_id' => 'integer', 
+        'jumlah' => 'integer',
+        'tanggal' => 'date'];
 
     protected $primaryKey = 'id';
 
 
-    public function user()
+    public function Perizinan()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Perizinan::class, 'perizinan_id', 'id');
     }
 
-    public function divisi()
-    {
-        return $this->belongsTo(Divisi::class, 'divisi_id', 'id');
-    }
 }

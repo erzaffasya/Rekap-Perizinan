@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('perizinan', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_izin');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perizinans');
+        Schema::dropIfExists('perizinan');
     }
 };

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerizinanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/Program/{program}/Divisi/{id}', [GuestController::class, 'show'])->name('');
+Route::resource('Perizinan', PerizinanController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
