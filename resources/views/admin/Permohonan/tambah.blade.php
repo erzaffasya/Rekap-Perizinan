@@ -2,7 +2,7 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12 col-lg-8 mx-auto text-center ">
-                <h1>Tambah Terbit</h1>
+                <h1>Tambah Permohonan</h1>
             </div>
         </div>
     </div>
@@ -18,14 +18,14 @@
                                     <span>Informasi</span>
                                 </button>
                                 <button class="multisteps-form__progress-btn" type="button" title="Media">
-                                    Waktu</button>
+                                    Validasi</button>
                             </div>
                         </div>
                     </div>
                     <!--form panels-->
                     <div class="row">
                         <div class="col-12 col-lg-5 m-auto">
-                            <form class="multisteps-form__form mb-8" method="post" action="{{ route('Terbit.store') }}">
+                            <form class="multisteps-form__form mb-8" method="post" action="{{ route('Permohonan.store') }}">
                                 @csrf
                                 <!--single form panel-->
                                 <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active"
@@ -36,7 +36,7 @@
                                             <div class="col-12 col-sm-12">
                                                 <label>Nama Izin </label>
                                                 <select name="perizinan_id" class="multisteps-form__select form-control">
-                                                    <option selected="selected">-- PILIH --</option>
+                                                    <option selected="selected" disabled>-- PILIH --</option>
                                                   @foreach ($Perizinan as $item)
                                                   <option value="{{$item->id}}">{{$item->nama_izin}}</option>
                                                   @endforeach

@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard', function () {
+    return view('admin.index');
 });
-
-// Route::get('/Program/{program}/Divisi/{id}', [GuestController::class, 'show'])->name('');
+Route::get('exportPermohonan', [PermohonanController::class, 'exportPermohonan'])->name('exportPermohonan');
+Route::get('exportTerbit', [TerbitController::class, 'exportTerbit'])->name('exportTerbit');
+Route::post('cariTahunTerbit', [TerbitController::class, 'cariTahunTerbit'])->name('cariTahunTerbit');
+Route::post('cariTahunPermohonan', [PermohonanController::class, 'cariTahunPermohonan'])->name('cariTahunPermohonan');
 Route::resource('Perizinan', PerizinanController::class);
 Route::resource('Permohonan', PermohonanController::class);
 Route::resource('Terbit', TerbitController::class);
@@ -28,4 +30,4 @@ Route::resource('Terbit', TerbitController::class);
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

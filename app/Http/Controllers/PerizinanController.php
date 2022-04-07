@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PermohonanExport;
 use App\Models\Perizinan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PerizinanController extends Controller
 {
     public function index()
     {
+       
         $Perizinan = Perizinan::all();
         return view('admin.Perizinan.index', compact('Perizinan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
 
     public function create()
     {

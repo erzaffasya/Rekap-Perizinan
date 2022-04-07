@@ -2,7 +2,7 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-12 col-lg-8 mx-auto text-center ">
-                <h1>Tambah Terbit</h1>
+                <h1>Ubah Permohonan</h1>
             </div>
         </div>
     </div>
@@ -26,8 +26,9 @@
                     <div class="row">
                         <div class="col-12 col-lg-5 m-auto">
                             <form class="multisteps-form__form mb-8" method="post"
-                                action="{{ route('Terbit.store') }}">
+                                action="{{ route('Permohonan.update',$Permohonan->id) }}">
                                 @csrf
+                                @method("PUT")
                                 <!--single form panel-->
                                 <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active"
                                     data-animation="FadeIn">
@@ -40,8 +41,8 @@
                                                     class="multisteps-form__select form-control">
                                                     <option selected="selected" disabled>-- PILIH --</option>
                                                     @foreach ($Perizinan as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->nama_izin }}
-                                                        </option>
+                                                        <option @selected($Permohonan->perizinan_id == $item->id)
+                                                            value="{{ $item->id }}">{{ $item->nama_izin }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -49,7 +50,7 @@
                                         <div class="row mt-3">
                                             <div class="col-12 col-sm-12">
                                                 <label>Jumlah Izin </label>
-                                                <input class="form-control" name="jumlah" type="number"
+                                                <input class="form-control" value="{{$Permohonan->jumlah}}" name="jumlah" type="number"
                                                     onfocus="focused(this)" onfocusout="defocused(this)">
                                             </div>
                                         </div>
@@ -57,7 +58,7 @@
                                             <div class="col-12 col-sm-12">
                                                 <label>Tanggal Izin </label>
                                                 <input class="form-control" name="tanggal" type="date"
-                                                    value="2018-11-23T10:30:00" id="example-datetime-local-input"
+                                                value="{{$Permohonan->tanggal->format('Y-m-d')}}" id="example-datetime-local-input"
                                                     onfocus="focused(this)" onfocusout="defocused(this)">
                                             </div>
                                         </div>

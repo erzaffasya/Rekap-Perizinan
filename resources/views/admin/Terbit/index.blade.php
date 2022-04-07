@@ -1,5 +1,45 @@
 <x-app-layout>
     <div class="container-fluid py-4">
+        <div class="row col-lg-6 pb-4">
+            <form action="{{ route('cariTahunTerbit') }}" method="post">
+                @csrf
+                <div class="card mt-4" id="password">
+                    <div class="card-header">
+                        <h5>Laporan Terbit Izin</h5>
+                        <hr>
+                    </div>
+                    <div class="card-body pt-0">
+                        <label class="form-label">Tahun</label>
+                        <div class="form-group">
+                            <select class="form-control" name="tahun" id="choices-gender">
+                                {{-- @foreach ($User as $item) --}}
+                                <option value="" disabled selected>--PILIH--</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                {{-- @endforeach --}}
+                            </select>
+                        </div>
+                        <h5 class="mt-5">Pastikan data sudah benar</h5>
+                        <p class="text-muted mb-2">
+                            Sarat pencarian ada dibawah ini:
+                        </p>
+                        <ul class="text-muted ps-4 mb-0 float-start">
+                            <li>
+                                <span class="text-sm">Input Tahun Laporan</span>
+                            </li>
+                            {{-- <li>
+                                <span class="text-sm">Input Divisi Mahasiswa</span>
+                            </li> --}}
+                        </ul>
+                        <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Cek
+                            Laporan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -49,8 +89,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
-                                        data-type="csv" type="button" name="button">Export</button>
+                                    <a href="{{route('exportTerbit')}}" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
+                                        data-type="csv" type="button" name="button">Export</a>
                                 </div>
                             </div>
                         </div>
@@ -60,38 +100,64 @@
                             <table class="table table-flush" id="products-list">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama Izin</th>
-                                        <th>Jumlah</th>
-                                        <th>Tanggal</th>
+                                        <th>Januari</th>
+                                        <th>Februari</th>
+                                        <th>Maret</th>
+                                        <th>April</th>
+                                        <th>Mei</th>
+                                        <th>Juni</th>
+                                        <th>Juli</th>
+                                        <th>Agustus</th>
+                                        <th>September</th>
+                                        <th>Oktober</th>
+                                        <th>November</th>
+                                        <th>Desember</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($Terbit as $item)
-                                        <tr>
-                                            <td class="text-sm">{{$item->Perizinan->nama_izin}}</td>
-                                            <td class="text-sm">{{$item->jumlah}}</td>
-                                            <td class="text-sm">{{$item->tanggal}}</td>
-                                            <td class="text-sm">
-                                                <a href="javascript:;" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Preview product">
-                                                    <i class="fas fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Edit product">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="javascript:;" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Delete product">
-                                                    <i class="fas fa-trash text-secondary"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    @if (!empty($data))
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td class="text-sm">{{ $loop->iteration }}</td>
+                                                <td class="text-sm">{{ $item['nama_izin'] }}</td>
+                                                <td class="text-sm">{{ $item['January'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['February'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['March'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['April'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['May'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['June'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['July'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['August'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['September'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['October'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['November'] ?? 0 }}</td>
+                                                <td class="text-sm">{{ $item['December'] ?? 0 }}</td>
+
+                                                <td class="text-sm">
+                                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Preview product">
+                                                        <i class="fas fa-eye text-secondary"></i>
+                                                    </a>
+                                                    {{-- <a href="{{ route('Terbit.edit', $item['nama_izin']) }}"
+                                                        class="mx-3" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Edit product">
+                                                        <i class="fas fa-user-edit text-secondary"></i>
+                                                    </a>
+                                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Delete product">
+                                                        <i class="fas fa-trash text-secondary"></i>
+                                                    </a> --}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                     
 
                                 </tbody>
-                                <tfoot>
+                                {{-- <tfoot>
                                     <tr>
                                         <th>Product</th>
                                         <th>Category</th>
@@ -101,51 +167,14 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                </tfoot>
+                                </tfoot> --}}
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="footer pt-3  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
-                            for a better web.
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                    target="_blank">Creative Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                    target="_blank">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                    target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                    target="_blank">License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
     </div>
 
     @push('scripts')
@@ -157,22 +186,22 @@
                     perPage: 7
                 });
 
-                document.querySelectorAll(".export").forEach(function(el) {
-                    el.addEventListener("click", function(e) {
-                        var type = el.dataset.type;
+                // document.querySelectorAll(".export").forEach(function(el) {
+                //     el.addEventListener("click", function(e) {
+                //         var type = el.dataset.type;
 
-                        var data = {
-                            type: type,
-                            filename: "soft-ui-" + type,
-                        };
+                //         var data = {
+                //             type: type,
+                //             filename: "soft-ui-" + type,
+                //         };
 
-                        if (type === "csv") {
-                            data.columnDelimiter = "|";
-                        }
+                //         if (type === "csv") {
+                //             data.columnDelimiter = "|";
+                //         }
 
-                        dataTableSearch.export(data);
-                    });
-                });
+                //         dataTableSearch.export(data);
+                //     });
+                // });
             };
         </script>
     @endpush
