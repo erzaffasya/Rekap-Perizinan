@@ -27,6 +27,22 @@ class TerbitController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function showterbit($id)
+    {
+        // $query = Terbit::select('perizinan_id', DB::raw("(SUM(jumlah)) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+        //     ->whereYear('tanggal', date('Y'))
+        //     ->groupBy('bulan')->groupBy('perizinan_id')
+        //     ->with('Perizinan')->get();
+        // dd($query);     
+        
+    
+        // dd($data);
+
+        $Terbit = Terbit::all();
+        return view('admin.Terbit.index', compact('Terbit'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     public function cariTahunTerbit(Request $request)
     {
         $query = Terbit::select('perizinan_id',DB::raw("(SUM(jumlah)) as jumlah"),DB::raw("MONTHNAME(tanggal) as bulan"))
@@ -35,6 +51,7 @@ class TerbitController extends Controller
         ->with('Perizinan')->get();
 
         foreach ($query as $item) {           
+            $data[$item->perizinan_id]['id'] = $item->Perizinan->id;
             $data[$item->perizinan_id]['nama_izin'] = $item->Perizinan->nama_izin;
             if ($item->bulan == 'January') {
                 $data[$item->perizinan_id]['January'] = $item->jumlah;
@@ -106,8 +123,11 @@ class TerbitController extends Controller
         ]);
         return redirect()->route('Terbit.index');
     }
-    public function show($program, $Terbit)
+    public function show($id)
     {
+        $Terbit = Terbit::where('perizinan_id',$id)->whereYear('tanggal',request()->tahun)->get();
+        // dd($Terbit);
+        return view('admin.Terbit.detail', compact('Terbit'));
     }
 
 

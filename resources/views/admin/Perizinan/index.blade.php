@@ -4,11 +4,11 @@
             <div class="card-header pb-0 p-3">
                 <div class="row">
                     <div class="col-6 d-flex align-items-center">
-                        <h6 class="mb-0">User</h6>
+                        <h6 class="mb-0">Perizinan</h6>
                     </div>
                     <div class="col-6 text-end">
                         <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
-                            data-bs-target="#tambahUser"><i class="fas fa-plus"></i>&nbsp; User</button>
+                            data-bs-target="#tambahPerizinan"><i class="fas fa-plus"></i>&nbsp; Perizinan</button>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@
                                 <td>
                                     <div class="col-12 text-end">
                                         <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
-                                            data-bs-toggle="modal" data-bs-target="#editUser-{{ $i->id }}"
-                                            style="padding: 10px 24px"><i class="fas fa-user"></i>&nbsp;
+                                            data-bs-toggle="modal" data-bs-target="#editPerizinan-{{ $i->id }}"
+                                            style="padding: 10px 24px"><i class="fas fa-Perizinan"></i>&nbsp;
                                             Edit</button>
                                         <form id="form-delete" action="{{ route('Perizinan.destroy', $i->id) }}" method="POST"
                                             style="display: inline">
@@ -64,7 +64,7 @@
     </div>
 
     <div class="col-md-4">
-        <div class="modal fade" id="tambahUser" tabindex="-1" role="dialog" aria-labelledby="tambahUserTitle"
+        <div class="modal fade" id="tambahPerizinan" tabindex="-1" role="dialog" aria-labelledby="tambahPerizinanTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -95,12 +95,12 @@
 
     @foreach ($Perizinan as $i)
         <div class="col-md-4">
-            <div class="modal fade" id="editUser-{{ $i->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="tambahUserTitle" aria-hidden="true">
+            <div class="modal fade" id="editPerizinan-{{ $i->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="tambahPerizinanTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Perizinan</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>

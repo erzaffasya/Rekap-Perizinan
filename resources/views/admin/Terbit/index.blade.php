@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="container-fluid py-4">
         <div class="row col-lg-6 pb-4">
-            <form action="{{ route('cariTahunTerbit') }}" method="post">
-                @csrf
+            <form action="{{ route('cariTahunTerbit') }}" method="get">
+                {{-- @csrf --}}
                 <div class="card mt-4" id="password">
                     <div class="card-header">
                         <h5>Laporan Terbit Izin</h5>
@@ -47,7 +47,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">Data Terbit</h5>
+                                <h5 class="mb-0">Data Terbit </h5>
                                 <p class="text-sm mb-0">
                                     Kumpulan data terbit.
                                 </p>
@@ -137,7 +137,7 @@
                                                 <td class="text-sm">{{ $item['December'] ?? 0 }}</td>
 
                                                 <td class="text-sm">
-                                                    <a href="javascript:;" data-bs-toggle="tooltip"
+                                                    <a href="{{route('Terbit.show',$item['id'].'?tahun='.request()->tahun)}}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Preview product">
                                                         <i class="fas fa-eye text-secondary"></i>
                                                     </a>

@@ -1,44 +1,5 @@
 <x-app-layout>
     <div class="container-fluid py-4">
-        <div class="row col-lg-6 pb-4">
-            <form action="{{ route('cariTahunPermohonan') }}" method="get">
-                {{-- @csrf --}}
-                <div class="card mt-4" id="password">
-                    <div class="card-header">
-                        <h5>Laporan Permohonan Izin</h5>
-                        <hr>
-                    </div>
-                    <div class="card-body pt-0">
-                        <label class="form-label">Tahun</label>
-                        <div class="form-group">
-                            <select class="form-control" name="tahun" id="choices-gender">
-                                {{-- @foreach ($User as $item) --}}
-                                <option value="" disabled selected>--PILIH--</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                {{-- @endforeach --}}
-                            </select>
-                        </div>
-                        <h5 class="mt-5">Pastikan data sudah benar</h5>
-                        <p class="text-muted mb-2">
-                            Sarat pencarian ada dibawah ini:
-                        </p>
-                        <ul class="text-muted ps-4 mb-0 float-start">
-                            <li>
-                                <span class="text-sm">Input Tahun Laporan</span>
-                            </li>
-                            {{-- <li>
-                                <span class="text-sm">Input Divisi Mahasiswa</span>
-                            </li> --}}
-                        </ul>
-                        <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Cek
-                            Laporan</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -46,20 +7,19 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">Data Permohonan</h5>
+                                <h5 class="mb-0">Data Permohonan </h5>
                                 <p class="text-sm mb-0">
-                                    Kumpulan data permohonan.
+                                    Kumpulan data Permohonan tahun {{request()->tahun}}.
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="{{ route('Permohonan.create') }}"
-                                        class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
-                                        Data</a>
-                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                    <a href="{{ route('Permohonan.create') }}" class="btn bg-gradient-primary btn-sm mb-0"
+                                        target="_blank">+&nbsp; Tambah Data</a>
+                                    {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0"
                                         data-bs-toggle="modal" data-bs-target="#import">
                                         Import
-                                    </button>
+                                    </button> --}}
                                     <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog mt-lg-10">
                                             <div class="modal-content">
@@ -89,9 +49,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('exportPermohonan') }}"
+                                    {{-- <a href="{{ route('exportPermohonan') }}"
                                         class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv"
-                                        type="button" name="button">Export</a>
+                                        type="button" name="button">Export</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -103,46 +63,25 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Izin</th>
-                                        <th>Januari</th>
-                                        <th>Februari</th>
-                                        <th>Maret</th>
-                                        <th>April</th>
-                                        <th>Mei</th>
-                                        <th>Juni</th>
-                                        <th>Juli</th>
-                                        <th>Agustus</th>
-                                        <th>September</th>
-                                        <th>Oktober</th>
-                                        <th>November</th>
-                                        <th>Desember</th>
+                                        <th>Jumlah</th>
+                                        <th>Tanggal</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($data))
-                                        @foreach ($data as $item)
-                                            <tr>
-                                                <td class="text-sm">{{ $loop->iteration }}</td>
-                                                <td class="text-sm">{{ $item['nama_izin'] }}</td>
-                                                <td class="text-sm">{{ $item['January'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['February'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['March'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['April'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['May'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['June'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['July'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['August'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['September'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['October'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['November'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $item['December'] ?? 0 }}</td>
+                                    @foreach ($Permohonan as $item)
+                                        <tr>
+                                            <td class="text-sm">{{ $loop->iteration }}</td>
+                                            <td class="text-sm">{{ $item->Perizinan->nama_izin }}</td>
+                                            <td class="text-sm">{{ $item->jumlah }}</td>
+                                            <td class="text-sm">{{ $item->tanggal }}</td>
 
-                                                <td class="text-sm">
-                                                    <a href="{{route('Permohonan.show',$item['id'].'?tahun='.request()->tahun)}}" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Preview product">
-                                                        <i class="fas fa-eye text-secondary"></i>
-                                                    </a>
-                                                    {{-- <a href="{{ route('Permohonan.edit', $item['nama_izin']) }}"
+                                            <td class="text-sm">
+                                                <a href="{{ url('detail-Permohonan',$item->id) }}"
+                                                    data-bs-toggle="tooltip" data-bs-original-title="Preview product">
+                                                    <i class="fas fa-eye text-secondary"></i>
+                                                </a>
+                                                {{-- <a href="{{ route('Permohonan.edit', $item['nama_izin']) }}"
                                                         class="mx-3" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit product">
                                                         <i class="fas fa-user-edit text-secondary"></i>
@@ -151,12 +90,9 @@
                                                         data-bs-original-title="Delete product">
                                                         <i class="fas fa-trash text-secondary"></i>
                                                     </a> --}}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 {{-- <tfoot>
                                     <tr>

@@ -21,8 +21,9 @@ Route::get('/dashboard', function () {
 });
 Route::get('exportPermohonan', [PermohonanController::class, 'exportPermohonan'])->name('exportPermohonan');
 Route::get('exportTerbit', [TerbitController::class, 'exportTerbit'])->name('exportTerbit');
-Route::post('cariTahunTerbit', [TerbitController::class, 'cariTahunTerbit'])->name('cariTahunTerbit');
-Route::post('cariTahunPermohonan', [PermohonanController::class, 'cariTahunPermohonan'])->name('cariTahunPermohonan');
+Route::get('cariTahunTerbit', [TerbitController::class, 'cariTahunTerbit'])->name('cariTahunTerbit');
+Route::get('cariTahunPermohonan', [PermohonanController::class, 'cariTahunPermohonan'])->name('cariTahunPermohonan');
+Route::get('detail-terbit/{id}', [TerbitController::class, 'showterbit'])->name('showterbit');
 Route::resource('Perizinan', PerizinanController::class);
 Route::resource('Permohonan', PermohonanController::class);
 Route::resource('Terbit', TerbitController::class);

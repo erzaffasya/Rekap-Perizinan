@@ -26,6 +26,7 @@ class PermohonanController extends Controller
         ->with('Perizinan')->get();
 
         foreach ($query as $item) {           
+            $data[$item->perizinan_id]['id'] = $item->Perizinan->id;
             $data[$item->perizinan_id]['nama_izin'] = $item->Perizinan->nama_izin;
             if ($item->bulan == 'January') {
                 $data[$item->perizinan_id]['January'] = $item->jumlah;
@@ -97,8 +98,11 @@ class PermohonanController extends Controller
         ]);
         return redirect()->route('Permohonan.index');
     }
-    public function show($program,$Permohonan)
+    public function show($id)
     {
+        $Permohonan = Permohonan::where('perizinan_id',$id)->whereYear('tanggal',request()->tahun)->get();
+        // dd($Permohonan);
+        return view('admin.Permohonan.detail', compact('Permohonan'));
     }
 
 
