@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PerizinanController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\TerbitController;
@@ -15,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/dashboard', function () {
-    return view('admin.index');
+Route::get('/', function () {
+    return view('auth.login');
 });
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// });
+Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('dashboard');
+
 Route::get('exportPermohonan', [PermohonanController::class, 'exportPermohonan'])->name('exportPermohonan');
 Route::get('exportTerbit', [TerbitController::class, 'exportTerbit'])->name('exportTerbit');
 Route::get('cariTahunTerbit', [TerbitController::class, 'cariTahunTerbit'])->name('cariTahunTerbit');

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container-fluid py-4">
+    <div class="container-fluid">
         <div class="row col-lg-6 pb-4">
             <form action="{{ route('cariTahunTerbit') }}" method="get">
                 {{-- @csrf --}}
