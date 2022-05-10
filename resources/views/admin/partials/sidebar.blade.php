@@ -70,7 +70,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Perizinan</span>
+                    <span class="nav-link-text ms-1">Setting Jenis Izin</span>
                 </a>
             </li>
 
@@ -99,7 +99,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Permohonan</span>
+                    <span class="nav-link-text ms-1">Data Izin</span>
                 </a>
                 <div class="collapse  {{ Route::is('Permohonan.*') ? 'show' : '' }} " id="dashboardsExamples">
                     <ul class="nav ms-4 ps-3">
@@ -146,7 +146,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Terbit</span>
+                    <span class="nav-link-text ms-1">Data Terbit</span>
                 </a>
                 <div class="collapse  {{ Route::is('Terbit.*') ? 'show' : '' }} " id="dashboardsExamples1">
                     <ul class="nav ms-4 ps-3">

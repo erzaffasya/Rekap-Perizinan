@@ -6,6 +6,7 @@ use App\Exports\TerbitExport;
 use App\Models\Perizinan;
 use App\Models\Terbit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -103,7 +104,11 @@ class TerbitController extends Controller
 
     public function create()
     {
-        $Perizinan = Perizinan::all();
+        if(Auth::user()->role_id == 1){
+            $Perizinan = Perizinan::all();
+        }else{
+            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        }
         return view('admin.Terbit.tambah', compact('Perizinan'));
     }
 
@@ -134,7 +139,11 @@ class TerbitController extends Controller
     public function edit($id)
     {
         $Terbit = Terbit::find($id);
-        $Perizinan = Perizinan::all();
+        if(Auth::user()->role_id == 1){
+            $Perizinan = Perizinan::all();
+        }else{
+            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        }
         // dd($Terbit->tanggal->format('d/m/Y'));
         return view('admin.Terbit.edit', compact('Terbit','Perizinan'));
     }

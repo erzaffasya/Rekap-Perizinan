@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('perizinan', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_izin');
-            $table->foreignId("role_id")->nullable()->constrained("roles")->onDelete("cascade")->onUpdate("cascade");
+            $table->string('nama_role');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perizinan');
+        Schema::dropIfExists('roles');
     }
 };

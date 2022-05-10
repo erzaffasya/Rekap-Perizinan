@@ -6,6 +6,7 @@ use App\Exports\PermohonanExport;
 use App\Models\Perizinan;
 use App\Models\Permohonan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -78,7 +79,12 @@ class PermohonanController extends Controller
 
     public function create()
     {
-        $Perizinan = Perizinan::all();
+        if(Auth::user()->role_id == 1){
+            $Perizinan = Perizinan::all();
+        }else{
+            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        }
+    //   dd($Perizinan);
         return view('admin.Permohonan.tambah',compact('Perizinan'));
     }
 
@@ -109,7 +115,11 @@ class PermohonanController extends Controller
     public function edit($id)
     {
         $Permohonan = Permohonan::find($id);
-        $Perizinan = Perizinan::all();
+        if(Auth::user()->role_id == 1){
+            $Perizinan = Perizinan::all();
+        }else{
+            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        }
         return view('admin.Permohonan.edit',compact('Permohonan','Perizinan'));
     }
 
