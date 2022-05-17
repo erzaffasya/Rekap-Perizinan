@@ -55,7 +55,7 @@
                   </a>
                 </li>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+                    <li><a class="dropdown-item" href="{{route('logout')}}">Sign Out</a></li>
                   </ul>
               </div>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

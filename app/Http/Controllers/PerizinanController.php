@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\PermohonanExport;
 use App\Models\Perizinan;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -11,17 +12,17 @@ class PerizinanController extends Controller
 {
     public function index()
     {
-       
+        $Seksi = Role::all();
         $Perizinan = Perizinan::all();
-        return view('admin.Perizinan.index', compact('Perizinan'))
+        return view('admin.Perizinan.index', compact('Perizinan','Seksi'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
     public function create()
     {
-        // $kategori = Kategori::all();
-        return view('admin.Perizinan.tambah');
+        $Seksi = Role::all();
+        return view('admin.Perizinan.tambah',compact('Seksi'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,7 @@ class PerizinanController extends Controller
         // dd($request);
         $request->validate([
             'nama_izin' => 'required',
+            'role_id' => 'required',
         ]);
 
         // $date = date("his");
@@ -42,6 +44,7 @@ class PerizinanController extends Controller
         // }
         Perizinan::create([
             'nama_izin' => $request->nama_izin,
+            'role_id' => $request->role_id,
         ]);
         return back();
     }
@@ -62,10 +65,12 @@ class PerizinanController extends Controller
     {
         $request->validate([
             'nama_izin' => 'required',
+            'role_id' => 'required',
         ]);
 
         $Perizinan = Perizinan::findOrFail($id);
         $Perizinan->nama_izin = $request->nama_izin;
+        $Perizinan->role_id = $request->role_id;
         $Perizinan->save();
 
         return redirect()->route('Perizinan.index')

@@ -9,9 +9,9 @@ class RoleController extends Controller
 {
     public function index()
     {
-       
-        $Role = Role::all();
-        return view('admin.Role.index', compact('Role'))
+
+        $Seksi = Role::all();
+        return view('admin.Seksi.index', compact('Seksi'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -19,61 +19,50 @@ class RoleController extends Controller
     public function create()
     {
         // $kategori = Kategori::all();
-        return view('admin.Role.tambah');
+        return view('admin.Seksi.tambah');
     }
 
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         $request->validate([
-            'nama_izin' => 'required',
+            'nama_role' => 'required',
         ]);
 
-        // $date = date("his");
-        // $extension = $request->file('gambar1')->extension();
-        // $file_name = "Role_$date.$extension";
-        // $path = $request->file('gambar1')->storeAs('public/Role', $file_name);
-        // if($request->status == NULL){
-        //     $status = false;
-        // }else{
-        //     $status = true;
-        // }
-        Role::create([
-            'nama_izin' => $request->nama_izin,
-        ]);
+        Role::create($request->all());
         return back();
     }
     public function show($Role)
     {
-      
     }
 
 
     public function edit($id)
     {
-        $Role = Role::find($id);
+        $Seksi = Role::find($id);
         // $kategori = Kategori::all();
-        return view('admin.Role.edit',compact('Role'));
+        return view('admin.Seksi.edit', compact('Seksi'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_izin' => 'required',
+            'nama_role' => 'required',
         ]);
 
         $Role = Role::findOrFail($id);
-        $Role->nama_izin = $request->nama_izin;
+        $Role->nama_role = $request->nama_role;
+        $Role->deskripsi = $request->deskripsi;
         $Role->save();
 
-        return redirect()->route('Role.index')
-        ->with('edit', 'Role Berhasil Diedit');
+        return redirect()->route('Seksi.index')
+            ->with('edit', 'Role Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        Role::where('id',$id)->delete();
+        Role::where('id', $id)->delete();
         return back()
-            ->with('delete', 'Role Berhasil Dihapus');
+            ->with('delete', 'Seksi Berhasil Dihapus');
     }
 }

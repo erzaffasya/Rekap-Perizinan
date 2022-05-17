@@ -23,7 +23,7 @@ class Perizinan extends Model
     }
     public function Role()
     {
-        return $this->hasMany(Role::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
     public function Perizinan()
     {
