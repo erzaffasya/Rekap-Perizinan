@@ -50,7 +50,7 @@ class TerbitController extends Controller
         ->whereYear('tanggal', $request->tahun)
         ->groupBy('bulan')->groupBy('perizinan_id')
         ->with('Perizinan')->get();
-
+        $data = null;
         foreach ($query as $item) {           
             $data[$item->perizinan_id]['id'] = $item->Perizinan->id;
             $data[$item->perizinan_id]['nama_izin'] = $item->Perizinan->nama_izin;

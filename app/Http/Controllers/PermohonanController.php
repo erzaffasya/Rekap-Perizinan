@@ -21,12 +21,12 @@ class PermohonanController extends Controller
 
     public function cariTahunPermohonan(Request $request)
     {
-        $query = Permohonan::select('perizinan_id',DB::raw("(SUM(jumlah)) as jumlah"),DB::raw("MONTHNAME(tanggal) as bulan"))
-        ->whereYear('tanggal', $request->tahun)
-        ->groupBy('bulan')->groupBy('perizinan_id')
-        ->with('Perizinan')->get();
-
-        foreach ($query as $item) {           
+        $query = Permohonan::select('perizinan_id', DB::raw("(SUM(jumlah)) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereYear('tanggal', $request->tahun)
+            ->groupBy('bulan')->groupBy('perizinan_id')
+            ->with('Perizinan')->get();
+        $data = null;
+        foreach ($query as $item) {
             $data[$item->perizinan_id]['id'] = $item->Perizinan->id;
             $data[$item->perizinan_id]['nama_izin'] = $item->Perizinan->nama_izin;
             if ($item->bulan == 'January') {
@@ -64,11 +64,11 @@ class PermohonanController extends Controller
             }
             if ($item->bulan == 'December') {
                 $data[$item->perizinan_id]['December'] = $item->jumlah;
-            }                    
+            }
         }
         // dd($data);
         $Permohonan = Permohonan::all();
-        return view('admin.Permohonan.index', compact('Permohonan','data'))
+        return view('admin.Permohonan.index', compact('Permohonan', 'data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -79,13 +79,13 @@ class PermohonanController extends Controller
 
     public function create()
     {
-        if(Auth::user()->role_id == 1){
+        if (Auth::user()->role_id == 1) {
             $Perizinan = Perizinan::all();
-        }else{
-            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        } else {
+            $Perizinan = Perizinan::where('role_id', Auth::user()->role_id)->get();
         }
-    //   dd($Perizinan);
-        return view('admin.Permohonan.tambah',compact('Perizinan'));
+        //   dd($Perizinan);
+        return view('admin.Permohonan.tambah', compact('Perizinan'));
     }
 
     public function store(Request $request)
@@ -93,8 +93,8 @@ class PermohonanController extends Controller
         // dd($request);
         $request->validate([
             'perizinan_id' => 'required',
-            'tanggal' => 'required', 
-            'jumlah' => 'required', 
+            'tanggal' => 'required',
+            'jumlah' => 'required',
         ]);
 
         Permohonan::create([
@@ -106,7 +106,7 @@ class PermohonanController extends Controller
     }
     public function show($id)
     {
-        $Permohonan = Permohonan::where('perizinan_id',$id)->whereYear('tanggal',request()->tahun)->get();
+        $Permohonan = Permohonan::where('perizinan_id', $id)->whereYear('tanggal', request()->tahun)->get();
         // dd($Permohonan);
         return view('admin.Permohonan.detail', compact('Permohonan'));
     }
@@ -115,12 +115,12 @@ class PermohonanController extends Controller
     public function edit($id)
     {
         $Permohonan = Permohonan::find($id);
-        if(Auth::user()->role_id == 1){
+        if (Auth::user()->role_id == 1) {
             $Perizinan = Perizinan::all();
-        }else{
-            $Perizinan = Perizinan::where('role_id',Auth::user()->role_id)->get();
+        } else {
+            $Perizinan = Perizinan::where('role_id', Auth::user()->role_id)->get();
         }
-        return view('admin.Permohonan.edit',compact('Permohonan','Perizinan'));
+        return view('admin.Permohonan.edit', compact('Permohonan', 'Perizinan'));
     }
 
     public function update(Request $request, $id)
@@ -139,12 +139,12 @@ class PermohonanController extends Controller
         $Permohonan->save();
 
         return redirect()->route('Permohonan.index')
-        ->with('edit', 'Permohonan Berhasil Diedit');
+            ->with('edit', 'Permohonan Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        Permohonan::where('id',$id)->delete();
+        Permohonan::where('id', $id)->delete();
         return back()
             ->with('delete', 'Permohonan Berhasil Dihapus');
     }
