@@ -3,33 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     public function index()
     {
-
-        $Seksi = Role::all();
-        return view('admin.Seksi.index', compact('Seksi'))
+        $User = User::all();
+        $Role = Role::all();
+        return view('admin.Role.index', compact('Role', 'User'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
     public function create()
     {
-        // $kategori = Kategori::all();
-        return view('admin.Seksi.tambah');
+        $User = User::all();
+        return view('admin.Role.tambah', compact('User'));
     }
 
     public function store(Request $request)
     {
         // dd($request->all());
         $request->validate([
-            'nama_role' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role_id' => 'required',
         ]);
 
-        Role::create($request->all());
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
+        ]);
         return back();
     }
     public function show($Role)
@@ -39,30 +48,32 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $Seksi = Role::find($id);
-        // $kategori = Kategori::all();
-        return view('admin.Seksi.edit', compact('Seksi'));
+        $Role = Role::find($id);
+        $User = User::all();
+        return view('admin.Role.edit', compact('Role', 'User'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_role' => 'required',
-        ]);
 
-        $Role = Role::findOrFail($id);
-        $Role->nama_role = $request->nama_role;
-        $Role->deskripsi = $request->deskripsi;
+        // dd($request->password);
+        $Role = User::findOrFail($id);
+        $Role->name = $request->name;
+        $Role->email = $request->email;
+        if ($request->password != null) {
+            $Role->password = bcrypt($request->password);
+        }
+        $Role->role_id = $request->role_id;
         $Role->save();
 
-        return redirect()->route('Seksi.index')
+        return redirect()->route('Role.index')
             ->with('edit', 'Role Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        Role::where('id', $id)->delete();
+        User::where('id', $id)->delete();
         return back()
-            ->with('delete', 'Seksi Berhasil Dihapus');
+            ->with('delete', 'User Berhasil Dihapus');
     }
 }

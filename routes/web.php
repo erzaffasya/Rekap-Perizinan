@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Permohonan', PermohonanController::class);
     Route::resource('Terbit', TerbitController::class);
     Route::resource('Seksi', RoleController::class);
+    Route::resource('Role', RoleController::class);
 });
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
