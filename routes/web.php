@@ -26,7 +26,7 @@ Route::get('/', function () {
 // });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('dashboard');
-
+    Route::post('importPermohonan', [PermohonanController::class, 'importPermohonan'])->name('importPermohonan');
     Route::get('exportPermohonan', [PermohonanController::class, 'exportPermohonan'])->name('exportPermohonan');
     Route::get('exportTerbit', [TerbitController::class, 'exportTerbit'])->name('exportTerbit');
     Route::get('cariTahunTerbit', [TerbitController::class, 'cariTahunTerbit'])->name('cariTahunTerbit');

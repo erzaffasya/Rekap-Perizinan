@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PermohonanExport;
+use App\Imports\PermohonanImport;
 use App\Models\Perizinan;
 use App\Models\Permohonan;
 use Illuminate\Http\Request;
@@ -76,7 +77,12 @@ class PermohonanController extends Controller
     {
         return Excel::download(new PermohonanExport(), 'Permohonan.xlsx');
     }
-
+    public function importPermohonan(Request $request)
+    {
+        // dd($request->file('file'));
+        Excel::import(new PermohonanImport, $request->file('file'));
+        return back();
+    }
     public function create()
     {
         if (Auth::user()->role_id == 1) {
