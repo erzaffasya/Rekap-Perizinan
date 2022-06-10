@@ -137,7 +137,10 @@
                                                 <td class="text-sm">{{ $item['October'] ?? 0 }}</td>
                                                 <td class="text-sm">{{ $item['November'] ?? 0 }}</td>
                                                 <td class="text-sm">{{ $item['December'] ?? 0 }}</td>
-                                                <td class="text-sm">{{ $query->sum('jumlah') }}</td>
+                                                <td class="text-sm">{{ ($item['January'] ?? 0) + ($item['February'] ?? 0) + ($item['March'] ?? 0) 
+                                                    + ($item['April'] ?? 0) + ($item['May'] ?? 0) + ($item['June'] ?? 0) 
+                                                    + ($item['July'] ?? 0 )+ ($item['August'] ?? 0) + ($item['September'] ?? 0)
+                                                    + ($item['October'] ?? 0) + ($item['November'] ?? 0) + ($item['December'] ?? 0) }}</td>
                                                 <td class="text-sm">
                                                     <a href="{{ route('Terbit.show', $item['id'] . '?tahun=' . request()->tahun) }}"
                                                         data-bs-toggle="tooltip"
