@@ -16,6 +16,7 @@ class PermohonanController extends Controller
     public function index()
     {
         $Permohonan = Permohonan::all();
+
         return view('admin.Permohonan.index', compact('Permohonan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -96,18 +97,57 @@ class PermohonanController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'perizinan_id' => 'required',
             'tanggal' => 'required',
             'jumlah' => 'required',
         ]);
 
-        Permohonan::create([
-            'perizinan_id' => $request->perizinan_id,
-            'tanggal' => $request->tanggal,
-            'jumlah' => $request->jumlah,
-        ]);
+        $tanggal = explode('-', $request->tanggal);
+        dd($tanggal);
+        if ($tanggal[1] == '1') {
+            $data = ['januari' => $request->jumlah];
+        }
+        if ($tanggal[1] == '2') {
+            $data = ['februari' => $request->jumlah];
+        }
+        if ($tanggal[1] == '3') {
+            $data = ['maret' => $request->jumlah];
+        }
+        if ($tanggal[1] == '4') {
+            $data = ['april' => $request->jumlah];
+        }
+        if ($tanggal[1] == '5') {
+            $data = ['mei' => $request->jumlah];
+        }
+        if ($tanggal[1] == '6') {
+            $data = ['juni' => $request->jumlah];
+        }
+        if ($tanggal[1] == '7') {
+            $data = ['juli' => $request->jumlah];
+        }
+        if ($tanggal[1] == '8') {
+            $data = ['agustus' => $request->jumlah];
+        }
+        if ($tanggal[1] == '9') {
+            $data = ['september' => $request->jumlah];
+        }
+        if ($tanggal[1] == '10') {
+            $data = ['oktober' => $request->jumlah];
+        }
+        if ($tanggal[1] == '11') {
+            $data = ['november' => $request->jumlah];
+        }
+        if ($tanggal[1] == '12') {
+            $data = ['desember' => $request->jumlah];
+        }
+        dd($data);
+        Permohonan::create(
+            [
+                'perizinan_id' => $request->perizinan_id,
+                'tahun' => $tanggal[0]
+            ] + $data
+        );
         return redirect()->route('Permohonan.index');
     }
     public function show($id)

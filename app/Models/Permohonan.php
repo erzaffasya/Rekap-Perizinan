@@ -9,16 +9,11 @@ class Permohonan extends Model
 {
     use HasFactory;
     protected $table = 'Permohonan';
-    protected $fillable = [
-        'perizinan_id',
-        'jumlah',
-        'tanggal',
-    ];
+    protected $guarded  = [];
 
-    protected $casts = [ 
-        'perizinan_id' => 'integer', 
-        'jumlah' => 'integer',
-        'tanggal' => 'date'];
+    protected $casts = [
+        'perizinan_id' => 'integer',
+    ];
 
     protected $primaryKey = 'id';
 
@@ -27,5 +22,4 @@ class Permohonan extends Model
     {
         return $this->belongsTo(Perizinan::class, 'perizinan_id', 'id');
     }
-
 }

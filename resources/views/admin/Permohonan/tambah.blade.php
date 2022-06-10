@@ -51,11 +51,10 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-12 col-sm-12">
-                                                <label>Tanggal Izin </label>
-                                                <input class="form-control" name="tanggal" type="date" value="2018-11-23T10:30:00" id="example-datetime-local-input" onfocus="focused(this)" onfocusout="defocused(this)">
+                                                <label>Waktu Izin </label>
+                                                <input class="form-control" name="tanggal" type="month"  id="example-datetime-local-input" onfocus="focused(this)" onfocusout="defocused(this)">
                                             </div>
                                         </div>
-                                       
                                         <div class="button-row d-flex mt-4">
                                             <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button"
                                                 title="Next">Next</button>

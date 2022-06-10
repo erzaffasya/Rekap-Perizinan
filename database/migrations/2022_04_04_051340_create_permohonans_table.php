@@ -15,9 +15,20 @@ return new class extends Migration
     {
         Schema::create('permohonan', function (Blueprint $table) {
             $table->id();
-            $table->integer('jumlah');
-            $table->date('tanggal');
             $table->foreignId("perizinan_id")->constrained("perizinan")->onDelete("cascade")->onUpdate("cascade");
+            $table->integer('januari')->nullable();
+            $table->integer('februari')->nullable();
+            $table->integer('maret')->nullable();
+            $table->integer('april')->nullable();
+            $table->integer('mei')->nullable();
+            $table->integer('juni')->nullable();
+            $table->integer('juli')->nullable();
+            $table->integer('agustus')->nullable();
+            $table->integer('september')->nullable();
+            $table->integer('oktober')->nullable();
+            $table->integer('november')->nullable();
+            $table->integer('desember')->nullable();
+            $table->integer('tahun')->nullable();
             $table->timestamps();
         });
     }

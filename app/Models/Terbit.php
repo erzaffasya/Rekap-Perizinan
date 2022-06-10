@@ -9,16 +9,10 @@ class Terbit extends Model
 {
     use HasFactory;
     protected $table = 'Terbit';
-    protected $fillable = [
-        'perizinan_id',
-        'jumlah',
-        'tanggal',
-    ];
+    protected $guarded  = [];
 
     protected $casts = [ 
-        'perizinan_id' => 'integer', 
-        'jumlah' => 'integer',
-        'tanggal' => 'date'];
+        'perizinan_id' => 'integer', ];
 
     protected $primaryKey = 'id';
 
