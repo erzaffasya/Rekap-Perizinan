@@ -56,7 +56,7 @@
                                         <div class="row mt-3">
                                             <div class="col-12 col-sm-12">
                                                 <label>Tanggal Izin </label>
-                                                <input class="form-control" name="tanggal" type="date"
+                                                <input class="form-control" name="tanggal" type="month"
                                                     value="2018-11-23T10:30:00" id="example-datetime-local-input"
                                                     onfocus="focused(this)" onfocusout="defocused(this)">
                                             </div>

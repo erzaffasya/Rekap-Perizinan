@@ -57,8 +57,8 @@
                                         <div class="row mt-3">
                                             <div class="col-12 col-sm-12">
                                                 <label>Tanggal Izin </label>
-                                                <input class="form-control" name="tanggal" type="date"
-                                                value="{{$Terbit->tanggal->format('Y-m-d')}}" id="example-datetime-local-input"
+                                                <input class="form-control" name="tanggal" type="month"
+                                                value="{{$Terbit->tanggal->format('Y-m')}}" id="example-datetime-local-input"
                                                     onfocus="focused(this)" onfocusout="defocused(this)">
                                             </div>
                                         </div>

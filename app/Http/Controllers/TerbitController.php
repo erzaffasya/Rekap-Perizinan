@@ -22,9 +22,9 @@ class TerbitController extends Controller
         
     
         // dd($data);
-
+        $Tahun = Terbit::select(DB::raw('year(tanggal) as year'))->groupBy('year')->get();
         $Terbit = Terbit::all();
-        return view('admin.Terbit.index', compact('Terbit'))
+        return view('admin.Terbit.index', compact('Terbit','Tahun'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -46,6 +46,7 @@ class TerbitController extends Controller
 
     public function cariTahunTerbit(Request $request)
     {
+        $Tahun = Terbit::select(DB::raw('year(tanggal) as year'))->groupBy('year')->get();
         $query = Terbit::select('perizinan_id',DB::raw("(SUM(jumlah)) as jumlah"),DB::raw("MONTHNAME(tanggal) as bulan"))
         ->whereYear('tanggal', $request->tahun)
         ->groupBy('bulan')->groupBy('perizinan_id')
@@ -93,7 +94,7 @@ class TerbitController extends Controller
         }
 
         $Terbit = Terbit::all();
-        return view('admin.Terbit.index', compact('Terbit','data'))
+        return view('admin.Terbit.index', compact('Terbit','data','Tahun','query'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -126,7 +127,8 @@ class TerbitController extends Controller
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,
         ]);
-        return redirect()->route('Terbit.index');
+        $tanggal = explode('-',$request->tanggal);
+        return redirect('cariTahunTerbit?tahun='.$tanggal[0]);
     }
     public function show($id)
     {

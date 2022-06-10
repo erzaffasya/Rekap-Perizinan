@@ -14,9 +14,9 @@
                             <select class="form-control" name="tahun" id="choices-gender">
                                 {{-- @foreach ($User as $item) --}}
                                 <option value="" disabled selected>--PILIH--</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
+                                @foreach ($Tahun as $item)
+                                    <option value="{{ $item->year }}">{{ $item->year }}</option>
+                                @endforeach
                                 {{-- @endforeach --}}
                             </select>
                         </div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="{{route('Terbit.create')}}" class="btn bg-gradient-primary btn-sm mb-0"
+                                    <a href="{{ route('Terbit.create') }}" class="btn bg-gradient-primary btn-sm mb-0"
                                         target="_blank">+&nbsp; Tambah Data</a>
                                     <button type="button" class="btn btn-outline-primary btn-sm mb-0"
                                         data-bs-toggle="modal" data-bs-target="#import">
@@ -89,8 +89,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{route('exportTerbit')}}" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
-                                        data-type="csv" type="button" name="button">Export</a>
+                                    <a href="{{ route('exportTerbit') }}"
+                                        class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv"
+                                        type="button" name="button">Export</a>
                                 </div>
                             </div>
                         </div>
@@ -114,6 +115,7 @@
                                         <th>Oktober</th>
                                         <th>November</th>
                                         <th>Desember</th>
+                                        <th>Total</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -135,9 +137,10 @@
                                                 <td class="text-sm">{{ $item['October'] ?? 0 }}</td>
                                                 <td class="text-sm">{{ $item['November'] ?? 0 }}</td>
                                                 <td class="text-sm">{{ $item['December'] ?? 0 }}</td>
-
+                                                <td class="text-sm">{{ $query->sum('jumlah') }}</td>
                                                 <td class="text-sm">
-                                                    <a href="{{route('Terbit.show',$item['id'].'?tahun='.request()->tahun)}}" data-bs-toggle="tooltip"
+                                                    <a href="{{ route('Terbit.show', $item['id'] . '?tahun=' . request()->tahun) }}"
+                                                        data-bs-toggle="tooltip"
                                                         data-bs-original-title="Preview product">
                                                         <i class="fas fa-eye text-secondary"></i>
                                                     </a>
@@ -154,7 +157,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                    
+
 
                                 </tbody>
                                 {{-- <tfoot>
@@ -174,7 +177,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     @push('scripts')

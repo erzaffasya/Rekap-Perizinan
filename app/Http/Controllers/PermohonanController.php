@@ -15,13 +15,16 @@ class PermohonanController extends Controller
 {
     public function index()
     {
+        $Tahun = Permohonan::select(DB::raw('year(tanggal) as year'))->groupBy('year')->get();
+        // dd($tahun);
         $Permohonan = Permohonan::all();
-        return view('admin.Permohonan.index', compact('Permohonan'))
+        return view('admin.Permohonan.index', compact('Permohonan','Tahun'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function cariTahunPermohonan(Request $request)
     {
+        $Tahun = Permohonan::select(DB::raw('year(tanggal) as year'))->groupBy('year')->get();
         $query = Permohonan::select('perizinan_id', DB::raw("(SUM(jumlah)) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
             ->whereYear('tanggal', $request->tahun)
             ->groupBy('bulan')->groupBy('perizinan_id')
@@ -69,7 +72,7 @@ class PermohonanController extends Controller
         }
         // dd($data);
         $Permohonan = Permohonan::all();
-        return view('admin.Permohonan.index', compact('Permohonan', 'data'))
+        return view('admin.Permohonan.index', compact('Permohonan', 'data','Tahun','query'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -108,7 +111,9 @@ class PermohonanController extends Controller
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,
         ]);
-        return redirect()->route('Permohonan.index');
+        $tanggal = explode('-',$request->tanggal);
+
+        return redirect('cariTahunPermohonan?tahun='.$tanggal[0]);
     }
     public function show($id)
     {
