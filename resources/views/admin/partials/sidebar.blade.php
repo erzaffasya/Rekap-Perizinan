@@ -166,7 +166,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Data Izin</span>
                 </a>
-                <div class="collapse  {{ Route::is('Permohonan.*') ? 'show' : '' }} " id="dashboardsExamples">
+                <div class="collapse  {{ Route::is('Permohonan.*','cariTahunPermohonan*') ? 'show' : '' }} " id="dashboardsExamples">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item active">
                             <a class="nav-link {{ Route::is('Permohonan.create') ? 'active' : '' }}"
@@ -176,8 +176,8 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link {{ Route::is('Permohonan.index') ? 'active' : '' }}"
-                                href="{{ route('Permohonan.index') }}">
+                            <a class="nav-link {{ Route::is('Permohonan.index','cariTahunPermohonan*') ? 'active' : '' }}"
+                                href="{{ url('cariTahunPermohonan?tahun='.\Carbon\Carbon::now()->year) }}">
                                 <span class="sidenav-mini-icon"> D </span>
                                 <span class="sidenav-normal"> Data Permohonan </span>
                             </a>
@@ -213,7 +213,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Data Terbit</span>
                 </a>
-                <div class="collapse  {{ Route::is('Terbit.*') ? 'show' : '' }} " id="dashboardsExamples1">
+                <div class="collapse  {{ Route::is('Terbit.*','cariTahunTerbit*') ? 'show' : '' }} " id="dashboardsExamples1">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item active">
                             <a class="nav-link {{ Route::is('Terbit.create') ? 'active' : '' }}"
@@ -223,8 +223,8 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link {{ Route::is('Terbit.index') ? 'active' : '' }}"
-                                href="{{ route('Terbit.index') }}">
+                            <a class="nav-link {{ Route::is('Terbit.index','cariTahunTerbit*') ? 'active' : '' }}"
+                                href="{{ url('cariTahunTerbit?tahun='.\Carbon\Carbon::now()->year) }}">
                                 <span class="sidenav-mini-icon"> D </span>
                                 <span class="sidenav-normal"> Data Terbit </span>
                             </a>

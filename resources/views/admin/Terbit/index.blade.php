@@ -47,7 +47,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">Data Terbit </h5>
+                                <h5 class="mb-0">Data Terbit Tahun {{request()->tahun}}</h5>
                                 <p class="text-sm mb-0">
                                     Kumpulan data terbit.
                                 </p>
