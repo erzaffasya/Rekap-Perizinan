@@ -11,15 +11,19 @@
 <script src="{{ asset('tadmin/assets/js/plugins/flatpickr.min.js') }}"></script>
 
 <!-- Kanban scripts -->
-<script src="{{ asset('tadmin/assets/js/plugins/round-slider.min.js') }}"></script>
-<script src="{{ asset('tadmin/assets/js/plugins/dragula/dragula.min.js') }}"></script>
+
+{{-- <script src="{{ asset('tadmin/assets/js/plugins/round-slider.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('tadmin/assets/js/plugins/dragula/dragula.min.js') }}"></script> --}}
 <script src="{{ asset('tadmin/assets/js/plugins/jkanban/jkanban.js') }}"></script>
 <script src="{{ asset('tadmin/assets/js/plugins/chartjs.min.js') }}"></script>
 <script src="{{ asset('tadmin/assets/js/plugins/countup.min.js') }}"></script>
 <script src="{{ asset('tadmin/assets/js/plugins/threejs.js') }}"></script>
-{{-- <script src="{{asset('tadmin/assets/js/plugins/orbit-controls.js')}}"></script> --}}
+<script src="{{asset('tadmin/assets/js/plugins/orbit-controls.js')}}"></script>
 <!-- Js conf delete-->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
+{{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> --}}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -34,22 +34,21 @@ class HelpdeskController extends Controller
         //     'ttd' => 'required',
         // ]);
 
-        // $date = date("his");
-        // $extension = $request->file('gambar1')->extension();
-        // $file_name = "Helpdesk_$date.$extension";
-        // $path = $request->file('gambar1')->storeAs('public/Helpdesk', $file_name);
-        // if($request->status == NULL){
-        //     $status = false;
-        // }else{
-        //     $status = true;
-        // }
+        $folderPath = public_path('storage/ttd/'); // create signatures folder in public directory
+        $image_parts = explode(";base64,", $request->signed);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $file = $folderPath . uniqid() . '.' . $image_type;
+        file_put_contents($file, $image_base64);
+
         Helpdesk::create([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,
             'kategori_helpdesk_id' => $request->kategori_helpdesk_id,
             'nama' => $request->nama,
             'keterangan' => $request->keterangan,
-            // 'ttd' => $ttd,
+            'ttd' => uniqid() . '.' . $image_type,
         ]);
         return back()->with('success','Data Berhasil Ditambah');
     }

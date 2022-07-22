@@ -33,15 +33,16 @@ class PerizinanController extends Controller
             'role_id' => 'required',
         ]);
 
-        // $date = date("his");
-        // $extension = $request->file('gambar1')->extension();
-        // $file_name = "Perizinan_$date.$extension";
-        // $path = $request->file('gambar1')->storeAs('public/Perizinan', $file_name);
-        // if($request->status == NULL){
-        //     $status = false;
-        // }else{
-        //     $status = true;
-        // }
+        $date = date("his");
+        $extension = $request->file('gambar1')->extension();
+        $file_name = "Perizinan_$date.$extension";
+        $path = $request->file('gambar1')->storeAs('public/Perizinan', $file_name);
+        if($request->status == NULL){
+            $status = false;
+        }else{
+            $status = true;
+        }
+        
         Perizinan::create([
             'nama_izin' => $request->nama_izin,
             'role_id' => $request->role_id,
