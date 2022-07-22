@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('helpdesk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('no_hp');
-            $table->foreignId("kategori_helpdesk_id")->constrained("kategori_helpdesk")->onDelete("cascade")->onUpdate("cascade");
-            $table->string('ttd');
+            $table->string('nama')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->foreignId("kategori_helpdesk_id")->constrained("kategori_helpdesk")->onUpdate("cascade")->nullable();
+            $table->text('keterangan')->nullable();
+            $table->text('ttd')->nullable();
             $table->timestamps();
         });
     }

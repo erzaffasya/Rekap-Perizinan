@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HelpdeskController;
+use App\Http\Controllers\KategoriHelpdeskController;
 use App\Http\Controllers\PerizinanController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RoleController;
@@ -37,9 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Terbit', TerbitController::class);
     Route::resource('Seksi', RoleController::class);
     Route::resource('Role', RoleController::class);
+    Route::resource('KategoriHelpdesk', KategoriHelpdeskController::class);
 });
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
+Route::resource('Helpdesk', HelpdeskController::class);
 require __DIR__ . '/auth.php';

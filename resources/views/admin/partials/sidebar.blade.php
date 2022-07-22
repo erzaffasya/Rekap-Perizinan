@@ -13,6 +13,7 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto h-auto h-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
+            @auth           
             {{-- Dashboard --}}
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">
@@ -232,10 +233,7 @@
                     </ul>
                 </div>
             </li>
-
-
-
-
+            @endauth
         </ul>
     </div>
 </aside>

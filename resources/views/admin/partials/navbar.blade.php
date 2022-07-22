@@ -51,7 +51,9 @@
                 <li class="nav-item d-flex align-items-center dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                   <a href="/logout" class="nav-link text-body font-weight-bold px-0" id="userDropdown" role="button">
                     <i class="fa fa-user me-sm-1"></i>
+                    @auth
                     <span class="d-sm-inline d-none">{{Auth::user()->name}}</span>
+                    @endauth
                   </a>
                 </li>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
