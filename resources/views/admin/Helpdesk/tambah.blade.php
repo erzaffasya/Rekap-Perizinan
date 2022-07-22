@@ -7,8 +7,13 @@
         <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
         <style>
             .kbw-signature {
-                width: 100%;
-                height: 200px;
+                width: 250px;
+                height: 250px;
+            }
+
+            #sign canvas {
+                width: 100% !important;
+                height: auto;
             }
         </style>
     @endpush
@@ -44,39 +49,66 @@
                     <label class="form-label">Tanda Tangan</label>
                     <div class="form-group">
                         <br />
-                        <div id="sig"></div>
+                        <div id="sign"></div>
                         <br /><br />
                         <button id="clear" class="btn btn-danger btn-sm">Clear</button>
-                        <textarea id="signature" name="signed" style="display: none"></textarea>
+                        <textarea id="signature" class="touch-enable signed" name="signed" style="display: none"></textarea>
                     </div>
-                    <h5 class="mt-5">Pastikan data sudah benar</h5>
-                    <p class="text-muted mb-2">
-                        Sarat pencarian ada dibawah ini:
-                    </p>
-                    <ul class="text-muted ps-4 mb-0 float-start">
-                        <li>
-                            <span class="text-sm">Input Nama Mahasiswa</span>
-                        </li>
-                        <li>
-                            <span class="text-sm">Input Divisi Mahasiswa</span>
-                        </li>
-                    </ul>
+
                     <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
                 </div>
             </div>
         </form>
     </div>
     @push('scripts')
+        <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
         <script type="text/javascript">
-            var sig = $('#sig').signature({
+            var sign = $('#sign').signature({
                 syncField: '#signature',
                 syncFormat: 'PNG'
             });
+            $('.touch-enable').draggable();
             $('#clear').click(function(e) {
                 e.preventDefault();
-                sig.signature('clear');
-                $("#signature64").val('');
+                sign.signature('clear');
+                $("#signature").val('');
             });
+            const el = document.getElementById('signature');
+            el.addEventListener('touchstart', process_touchstart, false);
+            el.addEventListener('touchmove', process_touchmove, false);
+            el.addEventListener('touchcancel', process_touchcancel, false);
+            el.addEventListener('touchend', process_touchend, false);
+
+            function process_touchstart(ev) {
+                // Use the event's data to call out to the appropriate gesture handlers
+                switch (ev.touches.length) {
+                    case 1:
+                        handle_one_touch(ev);
+                        break;
+                    case 2:
+                        handle_two_touches(ev);
+                        break;
+                    case 3:
+                        handle_three_touches(ev);
+                        break;
+                    default:
+                        gesture_not_supported(ev);
+                        break;
+                }
+            }
+            // Create touchstart handler
+            el.addEventListener('touchstart', function(ev) {
+                // Iterate through the touch points that were activated
+                // for this element and process each event 'target'
+                for (var i = 0; i < ev.targetTouches.length; i++) {
+                    process_target(ev.targetTouches[i].target);
+                }
+            }, false);
+            // touchmove handler
+            function process_touchmove(ev) {
+                // Set call preventDefault()
+                ev.preventDefault();
+            }
         </script>
     @endpush
 </x-app-layout>
