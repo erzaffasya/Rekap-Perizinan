@@ -25,7 +25,6 @@ class HelpdeskController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         // $request->validate([
         //     'nama' => 'required',
         //     'no_hp' => 'required',
@@ -34,13 +33,13 @@ class HelpdeskController extends Controller
         //     'ttd' => 'required',
         // ]);
 
+
+        $data_uri = $request->dataUrl;
+        $encoded_image = explode(",", $data_uri)[1];
+        $decoded_image = base64_decode($encoded_image);
         $folderPath = public_path('storage/ttd/'); // create signatures folder in public directory
-        $image_parts = explode(";base64,", $request->signed);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $file = $folderPath . uniqid() . '.' . $image_type;
-        file_put_contents($file, $image_base64);
+        $file = $folderPath . uniqid() . '.png';
+        file_put_contents($file, $decoded_image);
 
         Helpdesk::create([
             'nama' => $request->nama,
@@ -48,7 +47,7 @@ class HelpdeskController extends Controller
             'kategori_helpdesk_id' => $request->kategori_helpdesk_id,
             'nama' => $request->nama,
             'keterangan' => $request->keterangan,
-            'ttd' => uniqid() . '.' . $image_type,
+            'ttd' => uniqid() . '.png',
         ]);
         return back()->with('success','Data Berhasil Ditambah');
     }

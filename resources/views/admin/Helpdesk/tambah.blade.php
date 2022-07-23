@@ -1,24 +1,27 @@
 <x-app-layout>
     @push('css')
-        {{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> --}}
-
-        <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
-        <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
         <style>
-            .kbw-signature {
-                width: 250px;
-                height: 250px;
+            .wrapper {
+                position: relative;
+                width: 400px;
+                height: 200px;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
             }
 
-            #sign canvas {
-                width: 100% !important;
-                height: auto;
+            .signature-pad {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 400px !important;
+                height: 200px;
             }
         </style>
     @endpush
     <div class="row col-lg-6">
-        <form action="{{ route('Helpdesk.store') }}" method="post">
+        <form action="{{ route('Helpdesk.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card mt-4" id="password">
                 <div class="card-header">
@@ -28,15 +31,15 @@
                 <div class="card-body pt-0">
                     <label class="form-label">Nama Lengkap</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="nama">
+                        <input type="text" class="form-control" id="nama" name="nama">
                     </div>
                     <label class="form-label">Nomor HP</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="no_hp">
+                        <input type="text" class="form-control" id="no_hp" name="no_hp">
                     </div>
                     <label class="form-label">Kategori</label>
                     <div class="form-group">
-                        <select class="form-control" name="kategori_helpdesk_id" id="choices-gender">
+                        <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id">
                             @foreach ($KategoriHelpdesk as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
@@ -44,171 +47,81 @@
                     </div>
                     <label class="form-label">Katerangan</label>
                     <div class="form-group">
-                        <textarea class="form-control" name="keterangan"></textarea>
+                        <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
                     </div>
                     <label class="form-label">Tanda Tangan</label>
                     <div class="form-group">
-                        <br />
-                        <div id="sign"></div>
-                        <br /><br />
-                        <button id="clear" class="btn btn-danger btn-sm">Clear</button>
-                        <textarea id="signature" class="touch-enable signed" name="signed" style="display: none"></textarea>
+                        <div id="signature-pad" class="m-signature-pad">
+                            <div class="m-signature-pad--body">
+                                <canvas style="border: 2px dashed #ccc"></canvas>
+                            </div>
+
+                            <div class="m-signature-pad--footer">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-action="clear">Clear</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
+                    <button type="submit" data-action="save" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
                 </div>
             </div>
         </form>
     </div>
     @push('scripts')
-        <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
-        <script type="text/javascript">
-            var sign = $('#sign').signature({
-                syncField: '#signature',
-                syncFormat: 'PNG'
-            });
-            $('.touch-enable').draggable();
-            $('#clear').click(function(e) {
-                e.preventDefault();
-                sign.signature('clear');
-                $("#signature").val('');
-            });
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+        <script>
+            $(function() {
+                var wrapper = document.getElementById("signature-pad"),
+                    clearButton = wrapper.querySelector("[data-action=clear]"),
+                    saveButton = wrapper.querySelector("[data-action=save]"),
+                    canvas = wrapper.querySelector("canvas"),
+                    signaturePad;
 
+                signaturePad = new SignaturePad(canvas, {
+                    backgroundColor: "rgb(255,255,255)",
+                });
+                // canvas.select = function(){
+                //     window.scrollTo(0, 0);
+                //     document.body.scrollTop = 0;
+                // };
+                canvas.focus({
+                    preventScroll: true
+                });
+                clearButton.addEventListener("click", function(event) {
+                    signaturePad.clear();
+                });
 
-            // function startup() {
-                const el = document.querySelector('canvas');
-                el.addEventListener('touchstart', handleStart);
-                el.addEventListener('touchend', handleEnd);
-                el.addEventListener('touchcancel', handleCancel);
-                el.addEventListener('touchmove', handleMove);
-                log('Initialized.');
-            // }
+                saveButton.addEventListener("click", function(event) {
+                    event.preventDefault();
 
-            // document.addEventListener("DOMContentLoaded", startup);
-
-            const ongoingTouches = [];
-
-            function handleStart(evt) {
-                evt.preventDefault();
-                log('touchstart.');
-                const el = document.getElementById('canvas');
-                const ctx = el.getContext('2d');
-                const touches = evt.changedTouches;
-
-                for (let i = 0; i < touches.length; i++) {
-                    log(`touchstart: ${i}.`);
-                    ongoingTouches.push(copyTouch(touches[i]));
-                    const color = colorForTouch(touches[i]);
-                    log(`color of touch with id ${touches[i].identifier} = ${color}`);
-                    ctx.beginPath();
-                    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false); // a circle at the start
-                    ctx.fillStyle = color;
-                    ctx.fill();
-                }
-            }
-
-            function handleMove(evt) {
-                evt.preventDefault();
-                const el = document.getElementById('canvas');
-                const ctx = el.getContext('2d');
-                const touches = evt.changedTouches;
-
-                for (let i = 0; i < touches.length; i++) {
-                    const color = colorForTouch(touches[i]);
-                    const idx = ongoingTouchIndexById(touches[i].identifier);
-
-                    if (idx >= 0) {
-                        log(`continuing touch ${idx}`);
-                        ctx.beginPath();
-                        log(`ctx.moveTo( ${ongoingTouches[idx].pageX}, ${ongoingTouches[idx].pageY} );`);
-                        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
-                        log(`ctx.lineTo( ${touches[i].pageX}, ${touches[i].pageY} );`);
-                        ctx.lineTo(touches[i].pageX, touches[i].pageY);
-                        ctx.lineWidth = 4;
-                        ctx.strokeStyle = color;
-                        ctx.stroke();
-
-                        ongoingTouches.splice(idx, 1, copyTouch(touches[i])); // swap in the new touch record
+                    if (signaturePad.isEmpty()) {
+                        alert("Please provide a signature first.");
                     } else {
-                        log('can\'t figure out which touch to continue');
+                        var dataUrl = signaturePad.toDataURL();
+                        let nama = $('#nama').val();
+                        let no_hp = $('#no_hp').val();
+                        let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
+                        let keterangan = $('#keterangan').val();
+                        $.ajax({
+                            url: "{{ route('Helpdesk.store') }}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                dataUrl: dataUrl,
+                                nama: nama,
+                                no_hp: no_hp,
+                                kategori_helpdesk_id: kategori_helpdesk_id,
+                                keterangan: keterangan
+                            },
+                        }).done(function() {
+                            //
+                        });
                     }
-                }
-            }
-
-            function handleEnd(evt) {
-                evt.preventDefault();
-                log("touchend");
-                const el = document.getElementById('canvas');
-                const ctx = el.getContext('2d');
-                const touches = evt.changedTouches;
-
-                for (let i = 0; i < touches.length; i++) {
-                    const color = colorForTouch(touches[i]);
-                    let idx = ongoingTouchIndexById(touches[i].identifier);
-
-                    if (idx >= 0) {
-                        ctx.lineWidth = 4;
-                        ctx.fillStyle = color;
-                        ctx.beginPath();
-                        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
-                        ctx.lineTo(touches[i].pageX, touches[i].pageY);
-                        ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8); // and a square at the end
-                        ongoingTouches.splice(idx, 1); // remove it; we're done
-                    } else {
-                        log('can\'t figure out which touch to end');
-                    }
-                }
-            }
-
-            function handleCancel(evt) {
-                evt.preventDefault();
-                log('touchcancel.');
-                const touches = evt.changedTouches;
-
-                for (let i = 0; i < touches.length; i++) {
-                    let idx = ongoingTouchIndexById(touches[i].identifier);
-                    ongoingTouches.splice(idx, 1); // remove it; we're done
-                }
-            }
-
-            function colorForTouch(touch) {
-                let r = touch.identifier % 16;
-                let g = Math.floor(touch.identifier / 3) % 16;
-                let b = Math.floor(touch.identifier / 7) % 16;
-                r = r.toString(16); // make it a hex digit
-                g = g.toString(16); // make it a hex digit
-                b = b.toString(16); // make it a hex digit
-                const color = "#" + r + g + b;
-                return color;
-            }
-
-            function copyTouch({
-                identifier,
-                pageX,
-                pageY
-            }) {
-                return {
-                    identifier,
-                    pageX,
-                    pageY
-                };
-            }
-
-            function ongoingTouchIndexById(idToFind) {
-                for (let i = 0; i < ongoingTouches.length; i++) {
-                    const id = ongoingTouches[i].identifier;
-
-                    if (id == idToFind) {
-                        return i;
-                    }
-                }
-                return -1; // not found
-            }
-
-            function log(msg) {
-                const container = document.getElementById('log');
-                container.textContent = `${msg} \n${container.textContent}`;
-            }
+                });
+            });
         </script>
     @endpush
 </x-app-layout>
