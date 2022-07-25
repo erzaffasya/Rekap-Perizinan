@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     @push('css')
         <style>
             .wrapper {
@@ -137,4 +137,4 @@
             });
         </script>
     @endpush
-</x-app-layout>
+</x-guest-layout>
