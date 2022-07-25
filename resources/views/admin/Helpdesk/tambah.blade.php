@@ -120,8 +120,14 @@
                                 keterangan: keterangan
                             },
                             success: function(res) {
-                                alert('Data Berhasil Ditambahkan');
-                                location.reload();
+                                swal({
+                                    title: "Berhasil!",
+                                    text: "Data Telah Ditambahkan!",
+                                    type: "success",
+                                    icon: 'success',
+                                }).then(function() {
+                                    location.reload();
+                                });
                             }
                         }).done(function() {
                             //
