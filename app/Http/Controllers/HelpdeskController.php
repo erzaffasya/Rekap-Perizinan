@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Helpdesk;
 use App\Models\KategoriHelpdesk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HelpdeskController extends Controller
 {
@@ -12,7 +13,7 @@ class HelpdeskController extends Controller
     {
         $KategoriHelpdesk = KategoriHelpdesk::all();
         $Helpdesk = Helpdesk::all();
-        return view('admin.Helpdesk.index', compact('Helpdesk','KategoriHelpdesk'))
+        return view('admin.Helpdesk.index', compact('Helpdesk', 'KategoriHelpdesk'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -20,12 +21,12 @@ class HelpdeskController extends Controller
     public function create()
     {
         $KategoriHelpdesk = KategoriHelpdesk::all();
-        return view('admin.Helpdesk.tambah',compact('KategoriHelpdesk'));
+        return view('admin.Helpdesk.tambah', compact('KategoriHelpdesk'));
     }
 
     public function store(Request $request)
     {
-        // $request->validate([
+        // $validator = Validator::make($request->all(), [
         //     'nama' => 'required',
         //     'no_hp' => 'required',
         //     'kategori_helpdesk_id' => 'required',
@@ -33,11 +34,14 @@ class HelpdeskController extends Controller
         //     'ttd' => 'required',
         // ]);
 
+        // if ($validator->fails()) {
+        //     return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        // }
 
         $data_uri = $request->dataUrl;
         $encoded_image = explode(",", $data_uri)[1];
         $decoded_image = base64_decode($encoded_image);
-        $folderPath = public_path('storage/ttd/'); // create signatures folder in public directory
+        $folderPath = public_path('storage/ttd/');
         $file = $folderPath . uniqid() . '.png';
         file_put_contents($file, $decoded_image);
 
@@ -49,11 +53,10 @@ class HelpdeskController extends Controller
             'keterangan' => $request->keterangan,
             'ttd' => uniqid() . '.png',
         ]);
-        return back()->with('success','Data Berhasil Ditambah');
+        return response()->json(['success' => true]);
     }
     public function show($Helpdesk)
     {
-      
     }
 
 
@@ -61,18 +64,18 @@ class HelpdeskController extends Controller
     {
         $Helpdesk = Helpdesk::find($id);
         // $kategori = Kategori::all();
-        return view('admin.Helpdesk.edit',compact('Helpdesk'));
+        return view('admin.Helpdesk.edit', compact('Helpdesk'));
     }
 
     public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'nama' => 'required',
-        //     'no_hp' => 'required',
-        //     'kategori_helpdesk_id' => 'required',
-        //     'keterangan' => 'required',
-        //     'ttd' => 'required',
-        // ]);
+        $request->validate([
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'kategori_helpdesk_id' => 'required',
+            'keterangan' => 'required',
+            'ttd' => 'required',
+        ]);
 
         $Helpdesk = Helpdesk::findOrFail($id);
         $Helpdesk->nama = $request->nama;
@@ -84,12 +87,12 @@ class HelpdeskController extends Controller
         $Helpdesk->save();
 
         return redirect()->route('Helpdesk.index')
-        ->with('edit', 'Helpdesk Berhasil Diedit');
+            ->with('edit', 'Helpdesk Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        Helpdesk::where('id',$id)->delete();
+        Helpdesk::where('id', $id)->delete();
         return back()
             ->with('delete', 'Helpdesk Berhasil Dihapus');
     }
