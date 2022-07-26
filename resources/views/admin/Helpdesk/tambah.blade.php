@@ -96,10 +96,7 @@
 
                 saveButton.addEventListener("click", function() {
                     // event.preventDefault();
-                    console.log(signaturePad._isEmpty,'signature')
-                    if (signaturePad.isEmpty()) {
-                        alert("Please provide a signature first.");
-                    } 
+           
                     if (signaturePad._isEmpty != true) {
                         alert("helo")
                     }
