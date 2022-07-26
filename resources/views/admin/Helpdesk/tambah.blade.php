@@ -120,14 +120,7 @@
                                 keterangan: keterangan
                             },
                             success: function(res) {
-                                swal({
-                                    title: "Berhasil!",
-                                    text: "Data Telah Ditambahkan!",
-                                    type: "success",
-                                    icon: 'success',
-                                }).then(function() {
-                                    location.reload();
-                                });
+                            alert('helo')
                             }
                         }).done(function() {
                             //
