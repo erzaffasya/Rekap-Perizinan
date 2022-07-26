@@ -100,31 +100,7 @@
                     if (signaturePad.isEmpty()) {
                         alert("Please provide a signature first.");
                     } else {
-                        var dataUrl = signaturePad.toDataURL();
-                        // var image_data = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-                        let nama = $('#nama').val();
-                        let no_hp = $('#no_hp').val();
-                        let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
-                        let keterangan = $('#keterangan').val();
-                        $.ajax({
-                            url: "send-helpdesk",
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            data: {
-                                dataUrl: dataUrl,
-                                nama: nama,
-                                no_hp: no_hp,
-                                kategori_helpdesk_id: kategori_helpdesk_id,
-                                keterangan: keterangan
-                            },
-                            success: function(res) {
-                            alert('helo')
-                            }
-                        }).done(function() {
-                            //
-                        });
+                        alert("helo")
                     }
                 });
             });
