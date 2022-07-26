@@ -96,9 +96,43 @@
 
                 saveButton.addEventListener("click", function() {
                     // event.preventDefault();
-           
+                    console.log(signaturePad._isEmpty,'signature')
+                    if (signaturePad.isEmpty()) {
+                        alert("Please provide a signature first.");
+                    } 
                     if (signaturePad._isEmpty != true) {
-                        alert("helo")
+                        var dataUrl = signaturePad.toDataURL();
+                        // var image_data = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+                        let nama = $('#nama').val();
+                        let no_hp = $('#no_hp').val();
+                        let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
+                        let keterangan = $('#keterangan').val();
+                        $.ajax({
+                            url: "{{ route('Helpdesk.store') }}",
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                dataUrl: dataUrl,
+                                nama: nama,
+                                no_hp: no_hp,
+                                kategori_helpdesk_id: kategori_helpdesk_id,
+                                keterangan: keterangan
+                            },
+                            success: function(res) {
+                                swal({
+                                    title: "Berhasil!",
+                                    text: "Data Telah Ditambahkan!",
+                                    type: "success",
+                                    icon: 'success',
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            }
+                        }).done(function() {
+                            //
+                        });
                     }
                 });
             });
