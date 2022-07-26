@@ -107,7 +107,7 @@
                         let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
                         let keterangan = $('#keterangan').val();
                         $.ajax({
-                            url: "{{ route('Helpdesk.store') }}",
+                            url: "Helpdesk/store",
                             type: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
