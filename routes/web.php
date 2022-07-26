@@ -41,5 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Role', RoleController::class);
     Route::resource('KategoriHelpdesk', KategoriHelpdeskController::class);
 });
+Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
 Route::resource('Helpdesk', HelpdeskController::class);
 require __DIR__ . '/auth.php';
