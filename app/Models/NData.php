@@ -16,6 +16,6 @@ class NData extends Model
 
     public function seksi()
     {
-        return $this->hasMany(NSeksi::class, 'seksi_id', 'id');
+        return $this->belongsTo(NSeksi::class, 'seksi_id', 'id');
     }
 }

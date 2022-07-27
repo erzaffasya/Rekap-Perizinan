@@ -47,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('NSeksi', NSeksiController::class);
     Route::resource('NSektor', NSektorController::class);
     Route::resource('NData', NDataController::class);
+    Route::post('importNData', [NDataController::class, 'importNData'])->name('importNData');
 });
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
+Route::get('getSeksi/{id}', [NDataController::class, 'getSeksi'])->name('getSeksi');
 Route::resource('Helpdesk', HelpdeskController::class);
 require __DIR__ . '/auth.php';

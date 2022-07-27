@@ -327,7 +327,7 @@
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dashboardsExamples1"
-                        class="nav-link {{ Route::is('Terbit.*') ? 'active' : '' }}" aria-controls="dashboardsExamples1"
+                        class="nav-link {{ Route::is('NData.*') ? 'active' : '' }}" aria-controls="dashboardsExamples1"
                         role="button" aria-expanded="false">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -350,22 +350,22 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Data Terbit</span>
+                        <span class="nav-link-text ms-1">Data NData</span>
                     </a>
-                    <div class="collapse  {{ Route::is('Terbit.*','cariTahunTerbit*') ? 'show' : '' }} " id="dashboardsExamples1">
+                    <div class="collapse  {{ Route::is('NData.*','cariTahunNData*') ? 'show' : '' }} " id="dashboardsExamples1">
                         <ul class="nav ms-4 ps-3">
                             <li class="nav-item active">
-                                <a class="nav-link {{ Route::is('Terbit.create') ? 'active' : '' }}"
-                                    href="{{ route('Terbit.create') }}">
+                                <a class="nav-link {{ Route::is('NData.create') ? 'active' : '' }}"
+                                    href="{{ route('NData.create') }}">
                                     <span class="sidenav-mini-icon"> D </span>
-                                    <span class="sidenav-normal"> Tambah Terbit </span>
+                                    <span class="sidenav-normal"> Tambah Data </span>
                                 </a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link {{ Route::is('Terbit.index','cariTahunTerbit*') ? 'active' : '' }}"
-                                    href="{{ url('cariTahunTerbit?tahun='.\Carbon\Carbon::now()->year) }}">
+                                <a class="nav-link {{ Route::is('NData.index','cariTahunNData*') ? 'active' : '' }}"
+                                    href="{{ route('NData.index') }}">
                                     <span class="sidenav-mini-icon"> D </span>
-                                    <span class="sidenav-normal"> Data Terbit </span>
+                                    <span class="sidenav-normal"> Data Data </span>
                                 </a>
                             </li>
                         </ul>
