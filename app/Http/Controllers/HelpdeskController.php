@@ -42,7 +42,8 @@ class HelpdeskController extends Controller
         $encoded_image = explode(",", $data_uri)[1];
         $decoded_image = base64_decode($encoded_image);
         $folderPath = public_path('storage/ttd/');
-        $file = $folderPath . uniqid() . '.png';
+        $filename = uniqid() . '.png';
+        $file = $folderPath . $filename;
         file_put_contents($file, $decoded_image);
 
         Helpdesk::create([
@@ -51,7 +52,7 @@ class HelpdeskController extends Controller
             'kategori_helpdesk_id' => $request->kategori_helpdesk_id,
             'nama' => $request->nama,
             'keterangan' => $request->keterangan,
-            'ttd' => uniqid() . '.png',
+            'ttd' => $filename,
         ]);
         return response()->json(['success' => true]);
     }
