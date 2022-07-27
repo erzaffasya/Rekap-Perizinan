@@ -84,11 +84,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Nama Kategori</label>
-                                <input type="text" class="form-control" name="nama_kategori">
+                                <input type="text" class="form-control" name="nama_kategori" required>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Deskripsi</label>
-                                <input type="text" class="form-control" name="deskripsi">
+                                <input type="text" class="form-control" name="deskripsi" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn bg-gradient-secondary"

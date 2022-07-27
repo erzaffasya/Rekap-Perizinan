@@ -20,54 +20,55 @@
             }
         </style>
     @endpush
-    <div class="row col-lg-6">
-        {{-- <form action="{{ route('Helpdesk.store') }}" method="post" enctype="multipart/form-data"> --}}
-        @csrf
-        <div class="card mt-4" id="password">
-            <div class="card-header">
-                <h5>Helpdesk</h5>
-                <hr>
-            </div>
-            <div class="card-body pt-0" id="signature-pad">
-                <label class="form-label">Nama Lengkap</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="nama" name="nama">
+    <div class="row col-lg-6 ">
+        <form id="submitForm" action="" enctype="multipart/form-data">
+            @csrf
+            <div class="card mt-4 " id="password">
+                <div class="card-header text-center">
+                    <h5>Helpdesk</h5>
+                    <hr>
                 </div>
-                <label class="form-label">Nomor HP</label>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="no_hp" name="no_hp">
-                </div>
-                <label class="form-label">Kategori</label>
-                <div class="form-group">
-                    <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id">
-                        @foreach ($KategoriHelpdesk as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <label class="form-label">Katerangan</label>
-                <div class="form-group">
-                    <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
-                </div>
-                <label class="form-label">Tanda Tangan</label>
-                <div class="form-group">
-                    <div class="m-signature-pad">
-                        <div class="m-signature-pad--body">
-                            <canvas style="border: 2px dashed #ccc"></canvas>
-                        </div>
+                <div class="card-body pt-0" id="signature-pad">
+                    <label class="form-label">Nama Lengkap</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>
+                    <label class="form-label">Nomor HP</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                    </div>
+                    <label class="form-label">Kategori</label>
+                    <div class="form-group">
+                        <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id" required>
+                            @foreach ($KategoriHelpdesk as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <label class="form-label">Katerangan</label>
+                    <div class="form-group">
+                        <textarea class="form-control" id="keterangan" name="keterangan" required></textarea>
+                    </div>
+                    <label class="form-label">Tanda Tangan</label>
+                    <div class="form-group">
+                        <div class="m-signature-pad">
+                            <div class="m-signature-pad--body">
+                                <canvas style="border: 2px dashed #ccc"></canvas>
+                            </div>
 
-                        <div class="m-signature-pad--footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-action="clear">Clear</button>
-                            {{-- <button type="button" class="btn btn-sm btn-primary" data-action="save">Save</button> --}}
+                            <div class="m-signature-pad--footer">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-action="clear">Clear</button>
+                                {{-- <button type="button" class="btn btn-sm btn-primary" data-action="save">Save</button> --}}
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <button type="button" data-action="save"
-                    class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
+                    <button type="submit" data-action="save"
+                        class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
+                </div>
             </div>
-        </div>
-        {{-- </form> --}}
+            {{-- </form> --}}
     </div>
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
@@ -94,12 +95,12 @@
                     signaturePad.clear();
                 });
 
-                saveButton.addEventListener("click", function() {
-                    // event.preventDefault();
-                    console.log(signaturePad._isEmpty,'signature')
+                $("#submitForm").submit(function(e) {
+                    e.preventDefault();
+                    console.log(signaturePad._isEmpty, 'signature')
                     if (signaturePad.isEmpty()) {
                         alert("Please provide a signature first.");
-                    } 
+                    }
                     if (signaturePad._isEmpty != true) {
                         var dataUrl = signaturePad.toDataURL();
                         // var image_data = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
@@ -133,6 +134,7 @@
                         }).done(function() {
                             //
                         });
+                        // alert('submit');
                     }
                 });
             });
