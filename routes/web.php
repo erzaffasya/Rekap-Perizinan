@@ -3,6 +3,9 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpdeskController;
 use App\Http\Controllers\KategoriHelpdeskController;
+use App\Http\Controllers\NDataController;
+use App\Http\Controllers\NSeksiController;
+use App\Http\Controllers\NSektorController;
 use App\Http\Controllers\PerizinanController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RoleController;
@@ -40,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Seksi', RoleController::class);
     Route::resource('Role', RoleController::class);
     Route::resource('KategoriHelpdesk', KategoriHelpdeskController::class);
+
+    Route::resource('NSeksi', NSeksiController::class);
+    Route::resource('NSektor', NSektorController::class);
+    Route::resource('NData', NDataController::class);
 });
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
 Route::resource('Helpdesk', HelpdeskController::class);

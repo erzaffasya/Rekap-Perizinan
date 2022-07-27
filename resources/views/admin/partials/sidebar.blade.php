@@ -267,10 +267,10 @@
             <li class="nav-item mt-3">
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PAGES</h6>
             </li>
-                {{-- Perizinan --}}
+                {{-- NSektor --}}
                 <li class="nav-item">
-                    <a class="nav-link {{ Route::is('Perizinan.*') ? 'active' : '' }}"
-                        href="{{ route('Perizinan.index') }}">
+                    <a class="nav-link {{ Route::is('NSektor.*') ? 'active' : '' }}"
+                        href="{{ route('NSektor.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
@@ -293,13 +293,13 @@
                                 </g>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Setting Jenis Izin</span>
+                        <span class="nav-link-text ms-1">Setting Sektor</span>
                     </a>
                 </li>
-                 {{-- Seksi --}}
+                 {{-- NSeksi --}}
                  <li class="nav-item">
-                    <a class="nav-link {{ Route::is('Seksi.*') ? 'active' : '' }}"
-                        href="{{ route('Seksi.index') }}">
+                    <a class="nav-link {{ Route::is('NSeksi.*') ? 'active' : '' }}"
+                        href="{{ route('NSeksi.index') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1"
