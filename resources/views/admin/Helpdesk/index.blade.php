@@ -67,11 +67,12 @@
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Keterangan</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    width="100px">Tanggal</th>
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Tanda Tangan</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                width="100px">Tanggal</th>
+
                             </tr>
                         </thead>
 
@@ -89,20 +90,21 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $i->no_hp }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $i->kategori_helpdesk_id }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $i->kategori->nama_kategori }}</p>
                                     </td>
                                     <td class="align-middle text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ $i->keterangan }}</p>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $i->created_at->Format('D, d M Y') }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">
+                                            {{ $i->created_at->Format('D, d M Y') }}</p>
                                     </td>
                                     <td class="align-middle text-center">
                                         <p class="text-xs font-weight-bold mb-0">
                                             <img height="80px" src="{{ asset('storage/ttd/' . $i->ttd) }}">
                                         </p>
                                     </td>
-                                  
+
                                 </tr>
                             @endforeach
                         </tbody>

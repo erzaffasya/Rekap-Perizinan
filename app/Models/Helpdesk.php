@@ -15,4 +15,9 @@ class Helpdesk extends Model
 
    
     protected $primaryKey = 'id';
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriHelpdesk::class, 'kategori_helpdesk_id', 'id');
+    }
 }
