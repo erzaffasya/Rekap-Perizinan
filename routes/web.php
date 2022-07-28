@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('importNData', [NDataController::class, 'importNData'])->name('importNData');
 });
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
+Route::get('filterData', [NDataController::class, 'index'])->name('filterData');
+Route::get('detailData/filterData', [NDataController::class, 'detailData'])->name('detailData');
 Route::get('getSeksi/{id}', [NDataController::class, 'getSeksi'])->name('getSeksi');
 Route::resource('Helpdesk', HelpdeskController::class);
 require __DIR__ . '/auth.php';

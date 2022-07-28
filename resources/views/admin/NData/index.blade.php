@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container-fluid">
         <div class="row col-lg-6 pb-4">
-            <form action="{{ route('cariTahunPermohonan') }}" method="get">
+            <form action="{{ route('filterData') }}" method="get">
                 {{-- @csrf --}}
                 <div class="card mt-4" id="password">
                     <div class="card-header">
@@ -9,38 +9,17 @@
                         <hr>
                     </div>
                     <div class="card-body pt-0">
-                        <label class="form-label">Sektor</label>
+                        <label class="form-label">Tanggal Awal</label>
                         <div class="form-group">
-                            <select class="form-control" name="sektor" id="sektor">
-                                {{-- @foreach ($User as $item) --}}
-                                <option value="" disabled selected>--PILIH--</option>
-                                @foreach ($NSektor as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama_sektor }}</option>
-                                @endforeach
-                                {{-- @endforeach --}}
-                            </select>
+                            <input class="form-control" name="tanggal_awal" type="date"
+                                value="{{ request()->tanggal_awal }}" id="example-datetime-local-input"
+                                onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
-                        <label class="form-label">Seksi</label>
+                        <label class="form-label">Tanggal Akhir</label>
                         <div class="form-group">
-                            <select class="form-control" name="tahun" id="seksi">
-                                {{-- @foreach ($User as $item) --}}
-                                <option value="" disabled selected>--PILIH--</option>
-                                {{-- @foreach ($Tahun as $item)
-                                    <option value="{{ $item->year }}">{{ $item->year }}</option>
-                                @endforeach --}}
-                                {{-- @endforeach --}}
-                            </select>
-                        </div>
-                        <label class="form-label">Tahun</label>
-                        <div class="form-group">
-                            <select class="form-control" name="tahun" id="tahun">
-                                {{-- @foreach ($User as $item) --}}
-                                <option value="" disabled selected>--PILIH--</option>
-                                {{-- @foreach ($Tahun as $item)
-                                    <option value="{{ $item->year }}">{{ $item->year }}</option>
-                                @endforeach --}}
-                                {{-- @endforeach --}}
-                            </select>
+                            <input class="form-control" name="tanggal_akhir" type="date"
+                                value="{{ request()->tanggal_akhir }}" id="example-datetime-local-input"
+                                onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
                         <h5 class="mt-5">Pastikan data sudah benar</h5>
                         <p class="text-muted mb-2">
@@ -48,11 +27,11 @@
                         </p>
                         <ul class="text-muted ps-4 mb-0 float-start">
                             <li>
-                                <span class="text-sm">Input Tahun Laporan</span>
+                                <span class="text-sm">Input Tanggal Awal</span>
                             </li>
-                            {{-- <li>
-                                <span class="text-sm">Input Divisi Mahasiswa</span>
-                            </li> --}}
+                            <li>
+                                <span class="text-sm">Input Tanggal Akhir</span>
+                            </li>
                         </ul>
                         <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Cek
                             Laporan</button>
@@ -68,9 +47,9 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div>
-                                <h5 class="mb-0">Data Permohonan Tahun {{ request()->tahun }} </h5>
+                                <h5 class="mb-0">Tabel Data </h5>
                                 <p class="text-sm mb-0">
-                                    Kumpulan data permohonan.
+                                    Kumpulan Data Seksi.
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
@@ -129,76 +108,125 @@
                             <table class="table table-flush" id="products-list">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">No.</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Nama Pemohon</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Pemohon</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Tempat Kerja</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Nomor STR</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Izin Terbit</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Masa Berlaku</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Praktek Ke</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Praktik</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Seksi</th>
+                                        <th>No</th>
+                                        <th>Nama Izin</th>
+                                        <th>Januari</th>
+                                        <th>Februari</th>
+                                        <th>Maret</th>
+                                        <th>April</th>
+                                        <th>Mei</th>
+                                        <th>Juni</th>
+                                        <th>Juli</th>
+                                        <th>Agustus</th>
+                                        <th>September</th>
+                                        <th>Oktober</th>
+                                        <th>November</th>
+                                        <th>Desember</th>
+                                        <th>Total</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (!empty($NData))
-                                        @foreach ($NData as $item)
+                                    @if (!empty($data))
+                                        @foreach ($data as $item)
                                             <tr>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                                <td class="text-sm">{{ $loop->iteration }}</td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&seksi={{ $item['id'] }}">
+                                                        {{ $item['nama_seksi'] }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nama_pemohon }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=January&seksi={{ $item['id'] }}">
+                                                        {{ $item['January'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_pemohon }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=February&seksi={{ $item['id'] }}">
+                                                        {{ $item['February'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->tempat_kerja }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=March&seksi={{ $item['id'] }}">
+                                                        {{ $item['March'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nomor_str }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=April&seksi={{ $item['id'] }}">
+                                                        {{ $item['April'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->izin_terbit }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=May&seksi={{ $item['id'] }}">
+                                                        {{ $item['May'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->masa_berlaku_akhir }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=June&seksi={{ $item['id'] }}">
+                                                        {{ $item['June'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->praktik_ke }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=July&seksi={{ $item['id'] }}">
+                                                        {{ $item['July'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_praktik }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=August&seksi={{ $item['id'] }}">
+                                                        {{ $item['August'] ?? 0 }}
+                                                    </a>
                                                 </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->seksi->nama_seksi }}</span>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=September&seksi={{ $item['id'] }}">
+                                                        {{ $item['September'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=October&seksi={{ $item['id'] }}">
+                                                        {{ $item['October'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=November&seksi={{ $item['id'] }}">
+                                                        {{ $item['November'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=December&seksi={{ $item['id'] }}">
+                                                        {{ $item['December'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    {{ ($item['January'] ?? 0) +
+                                                        ($item['February'] ?? 0) +
+                                                        ($item['March'] ?? 0) +
+                                                        ($item['April'] ?? 0) +
+                                                        ($item['May'] ?? 0) +
+                                                        ($item['June'] ?? 0) +
+                                                        ($item['July'] ?? 0) +
+                                                        ($item['August'] ?? 0) +
+                                                        ($item['September'] ?? 0) +
+                                                        ($item['October'] ?? 0) +
+                                                        ($item['November'] ?? 0) +
+                                                        ($item['December'] ?? 0) }}
                                                 </td>
                                                 <td class="align-middle text-center ">
-                                                    <a href="" data-bs-toggle="tooltip"
+                                                    <a href="{{ url('detailData') }}{{ request()->getRequestUri() }}&seksi={{ $item['id'] }}"
+                                                        data-bs-toggle="tooltip"
                                                         data-bs-original-title="Preview product">
                                                         <i class="fas fa-eye text-secondary"></i>
                                                     </a>
@@ -249,11 +277,11 @@
                     }
                 })
             });
-           if ('#sektor') {
-            
-           } else {
-            
-           }
+            if ('#sektor') {
+
+            } else {
+
+            }
         </script>
     @endpush
 </x-app-layout>
