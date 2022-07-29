@@ -14,7 +14,7 @@
         <ul class="navbar-nav">
             @auth
                 {{-- Dashboard --}}
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -262,7 +262,7 @@
                         </div>
                         <span class="nav-link-text ms-1">Helpdesk</span>
                     </a>
-                </li>
+                </li> -->
             @endauth
 
             <li class="nav-item mt-3">
