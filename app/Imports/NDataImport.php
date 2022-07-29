@@ -28,6 +28,7 @@ class NDataImport implements ToModel, WithHeadingRow, SkipsEmptyRows
         $dataSeksi = null;
         $dataSeksi = NSeksi::where('nama_seksi', $seksi)->first();
         return $dataSeksi->id;
+        // dd($dataSeksi->id);
     }
 
     public function model(array $row)
