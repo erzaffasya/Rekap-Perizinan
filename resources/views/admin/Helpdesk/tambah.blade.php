@@ -19,6 +19,7 @@
                 height: 200px;
             }
         </style>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     @endpush
     <div class="row col-lg-6 ">
         <form id="submitForm" action="" enctype="multipart/form-data">
@@ -63,12 +64,13 @@
                             </div>
                         </div>
                     </div>
-
+                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                     <button type="submit" data-action="save"
                         class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Submit!</button>
                 </div>
             </div>
             {{-- </form> --}}
+            
     </div>
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
@@ -115,6 +117,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: {
+                                "_token": $('#token').val(),
                                 dataUrl: dataUrl,
                                 nama: nama,
                                 no_hp: no_hp,
