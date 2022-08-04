@@ -7,9 +7,7 @@ use App\Models\NSeksi;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
-use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
 class NDataImport implements ToModel, WithHeadingRow, SkipsEmptyRows
@@ -19,7 +17,7 @@ class NDataImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 
     public function convert($date)
     {
-        $tanggal = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date));
+        $tanggal = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject((int)$date));
         return $tanggal;
     }
 
