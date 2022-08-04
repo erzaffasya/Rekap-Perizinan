@@ -2,15 +2,15 @@
 
 namespace App\Imports;
 
-use App\Models\NData;
 use App\Models\NSeksi;
+use App\Models\SektorKesehatan;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
-class NDataImport implements ToModel, WithHeadingRow, SkipsEmptyRows
+class KesehatanImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 {
 
     use Importable;
@@ -31,7 +31,7 @@ class NDataImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 
     public function model(array $row)
     {
-        return new NData([
+        return new SektorKesehatan([
             'nama_pemohon' => $row['nama_pemohon'],
             'alamat_pemohon' => $row['alamat_pemohon'],
             'tempat_kerja' => $row['tempat_kerja'],

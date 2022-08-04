@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sektor;
 
-use App\Imports\NDataImport;
-use App\Models\NData;
+use App\Http\Controllers\Controller;
+use App\Imports\KesehatanImport;
 use App\Models\NSeksi;
-use App\Models\NSektor;
-use App\Models\seksi;
+use App\Models\SektorKesehatan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
-class NDataController extends Controller
+class SektorKesehatanController extends Controller
 {
     public function index(Request $request)
     {
         // dd($request->all());
         $data = null;
-        $query = NData::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(izin_terbit) as bulan"))
+        $query = SektorKesehatan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(izin_terbit) as bulan"))
             ->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])
             ->groupBy('bulan')->groupBy('seksi_id')
             ->with('seksi')->get();
@@ -63,13 +61,13 @@ class NDataController extends Controller
             }
         }
         // dd($data);
-        return view('admin.NData.index', compact('data'))
+        return view('admin.Sektor.Kesehatan.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function filterData(Request $request)
     {
         $data = null;
-        $query = NData::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(izin_terbit) as bulan"))
+        $query = SektorKesehatan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(izin_terbit) as bulan"))
             ->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])
             ->groupBy('bulan')->groupBy('seksi_id')
             ->with('seksi')->get();
@@ -123,27 +121,27 @@ class NDataController extends Controller
 
 
         if ($date['month'] == true) {
-            $data = NData::where('seksi_id', $request->seksi)->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->whereMonth('izin_terbit', $date['month'])->get();
+            $data = SektorKesehatan::where('seksi_id', $request->seksi)->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->whereMonth('izin_terbit', $date['month'])->get();
         } else {
-            $data = NData::where('seksi_id', $request->seksi)->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->get();
+            $data = SektorKesehatan::where('seksi_id', $request->seksi)->whereBetween('izin_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->get();
         }
 
-        return view('admin.NData.show', compact('data'));
+        return view('admin.Sektor.Kesehatan.show', compact('data'));
     }
     public function getSeksi($id)
     {
         $Seksi = NSeksi::where('sektor_id', $id)->get();
         return $Seksi;
     }
-    public function importNData(Request $request)
+    public function importKesehatan(Request $request)
     {
-        Excel::import(new NDataImport, $request->file('file'));
+        Excel::import(new KesehatanImport, $request->file('file'));
         return back();
     }
 
-    public function showNData($id)
+    public function showKesehatan($id)
     {
-        // $query = NData::select('seksi_id', DB::raw("(SUM(jumlah)) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+        // $query = Kesehatan::select('seksi_id', DB::raw("(SUM(jumlah)) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
         //     ->whereYear('tanggal', date('Y'))
         //     ->groupBy('bulan')->groupBy('seksi_id')
         //     ->with('seksi')->get();
@@ -152,8 +150,8 @@ class NDataController extends Controller
 
         // dd($data);
 
-        $NData = NData::all();
-        return view('admin.NData.index', compact('NData'))
+        $Kesehatan = SektorKesehatan::all();
+        return view('admin.Sektor.Kesehatan.index', compact('Kesehatan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -165,7 +163,7 @@ class NDataController extends Controller
         // } else {
         //     $seksi = seksi::where('role_id', Auth::user()->role_id)->get();
         // }
-        // return view('admin.NData.tambah', compact('seksi'));
+        // return view('admin.Sektor.Kesehatan.tambah', compact('seksi'));
     }
 
     public function store(Request $request)
@@ -177,51 +175,51 @@ class NDataController extends Controller
         //     'jumlah' => 'required',
         // ]);
 
-        // NData::create([
+        // Kesehatan::create([
         //     'seksi_id' => $request->seksi_id,
         //     'tanggal' => $request->tanggal,
         //     'jumlah' => $request->jumlah,
         // ]);
         // $tanggal = explode('-', $request->tanggal);
-        // return redirect('cariTahunNData?tahun=' . $tanggal[0]);
+        // return redirect('cariTahunKesehatan?tahun=' . $tanggal[0]);
     }
     public function show($id)
     {
-        // $NData = NData::where('seksi_id', $id)->whereYear('tanggal', request()->tahun)->get();
-        // // dd($NData);
-        // return view('admin.NData.detail', compact('NData'));
+        // $Kesehatan = Kesehatan::where('seksi_id', $id)->whereYear('tanggal', request()->tahun)->get();
+        // // dd($Kesehatan);
+        // return view('admin.Sektor.Kesehatan.detail', compact('Kesehatan'));
     }
 
 
     public function edit($id)
     {
-        // $NData = NData::find($id);
+        // $Kesehatan = Kesehatan::find($id);
         // if (Auth::user()->role_id == 1) {
         //     $seksi = seksi::all();
         // } else {
         //     $seksi = seksi::where('role_id', Auth::user()->role_id)->get();
         // }
-        // // dd($NData->tanggal->format('d/m/Y'));
-        // return view('admin.NData.edit', compact('NData', 'seksi'));
+        // // dd($Kesehatan->tanggal->format('d/m/Y'));
+        // return view('admin.Sektor.Kesehatan.edit', compact('Kesehatan', 'seksi'));
     }
 
     public function update(Request $request, $id)
     {
-        // $NData = NData::findOrFail($id);
+        // $Kesehatan = Kesehatan::findOrFail($id);
 
-        // $NData->seksi_id = $request->seksi_id;
-        // $NData->tanggal = $request->tanggal;
-        // $NData->jumlah = $request->jumlah;
-        // $NData->save();
+        // $Kesehatan->seksi_id = $request->seksi_id;
+        // $Kesehatan->tanggal = $request->tanggal;
+        // $Kesehatan->jumlah = $request->jumlah;
+        // $Kesehatan->save();
 
-        // return redirect()->route('NData.index')
-        //     ->with('edit', 'NData Berhasil Diedit');
+        // return redirect()->route('Kesehatan.index')
+        //     ->with('edit', 'Kesehatan Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        // NData::where('id', $id)->delete();
+        // Kesehatan::where('id', $id)->delete();
         // return back()
-        //     ->with('delete', 'NData Berhasil Dihapus');
+        //     ->with('delete', 'Kesehatan Berhasil Dihapus');
     }
 }

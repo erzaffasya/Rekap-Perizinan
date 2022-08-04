@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sektor;
+
+use App\Http\Controllers\Controller;
 
 use App\Imports\PertahananImport;
-use App\Models\Pertahanan;
+use App\Models\SektorPertahanan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class PertahananController extends Controller
+class SektorPertahananController extends Controller
 {
     public function index()
     {
-        $Pertahanan = Pertahanan::all();
+        $Pertahanan = SektorPertahanan::all();
         return view('admin.Sektor.Pertahanan.index', compact('Pertahanan'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -32,7 +34,7 @@ class PertahananController extends Controller
         //     'no_surat' => 'required',
         //     'alamat' => 'required',
         // ]);
-        Pertahanan::create([
+        SektorPertahanan::create([
             'no_surat' => $request->no_surat,
             'alamat' => $request->alamat,
             'nama_pemohon' => $request->nama_pemohon,
@@ -50,7 +52,7 @@ class PertahananController extends Controller
 
     public function edit($id)
     {
-        $Pertahanan = Pertahanan::find($id);
+        $Pertahanan = SektorPertahanan::find($id);
         return view('admin.Sektor.Pertahanan.edit', compact('Pertahanan'));
     }
 
@@ -61,7 +63,7 @@ class PertahananController extends Controller
         //     'alamat' => 'required',
         // ]);
 
-        $Pertahanan = Pertahanan::findOrFail($id);
+        $Pertahanan = SektorPertahanan::findOrFail($id);
         $Pertahanan->no_surat = $request->no_surat;
         $Pertahanan->alamat = $request->alamat;
         $Pertahanan->nama_pemohon = $request->nama_pemohon;
@@ -77,7 +79,7 @@ class PertahananController extends Controller
 
     public function destroy($id)
     {
-        Pertahanan::where('id', $id)->delete();
+        SektorPertahanan::where('id', $id)->delete();
         return back()
             ->with('delete', 'Pertahanan Berhasil Dihapus');
     }

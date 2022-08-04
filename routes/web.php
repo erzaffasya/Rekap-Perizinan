@@ -2,16 +2,16 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpdeskController;
-use App\Http\Controllers\PertahananController;
 use App\Http\Controllers\KategoriHelpdeskController;
-use App\Http\Controllers\NDataController;
 use App\Http\Controllers\NSeksiController;
 use App\Http\Controllers\NSektorController;
 use App\Http\Controllers\PerizinanController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Sektor\SektorKesehatanController;
+use App\Http\Controllers\Sektor\SektorPendidikanController;
+use App\Http\Controllers\Sektor\SektorPertahananController;
 use App\Http\Controllers\TerbitController;
-use App\Imports\PertahananImport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,19 +49,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('NSektor', NSektorController::class);
 
     // Pertahanan     
-    Route::resource('Pertahanan', PertahananController::class);
-    Route::post('importPertahanan', [PertahananController::class, 'importData'])->name('importPertahanan');
+    Route::resource('Pertahanan', SektorPertahananController::class);
+    Route::post('importPertahanan', [SektorPertahananController::class, 'importData'])->name('importPertahanan');
 
     //Kesehatan    
-    Route::resource('NData', NDataController::class);
-    Route::post('importNData', [NDataController::class, 'importNData'])->name('importNData');
+
+    Route::get('filterData', [SektorKesehatanController::class, 'index'])->name('filterData');
+    Route::get('detailData/filterData', [SektorKesehatanController::class, 'detailData'])->name('detailData');
+    Route::get('getSeksi/{id}', [SektorKesehatanController::class, 'getSeksi'])->name('getSeksi');
+    Route::resource('Kesehatan', SektorKesehatanController::class);
+    Route::post('importKesehatan', [SektorKesehatanController::class, 'importKesehatan'])->name('importKesehatan');
 
     //Pendidikan
+    Route::resource('Pendidikan', SektorPendidikanController::class);
+    Route::post('importPendidikan', [SektorPendidikanController::class, 'importData'])->name('importPendidikan');
 });
 
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
-Route::get('filterData', [NDataController::class, 'index'])->name('filterData');
-Route::get('detailData/filterData', [NDataController::class, 'detailData'])->name('detailData');
-Route::get('getSeksi/{id}', [NDataController::class, 'getSeksi'])->name('getSeksi');
 Route::resource('Helpdesk', HelpdeskController::class);
 require __DIR__ . '/auth.php';

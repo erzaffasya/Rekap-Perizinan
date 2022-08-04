@@ -13,8 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sektor_pendidikan', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tb_data_pendidikan', function (Blueprint $table) {
+            $table->id();                  
+            $table->date('tanggal')->nullable();
+            $table->string('no_surat')->nullable();      
+            $table->string('pendidikan')->nullable(); 
+            $table->string('NIB')->nullable(); 
+            $table->text('alamat')->nullable();
+            $table->string('tujuan_opd')->nullable();            
+            $table->foreignId("seksi_id")->nullable()->constrained("tb_seksi")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sektor_pendidikan');
+        Schema::dropIfExists('tb_data_pendidikan');
     }
 };

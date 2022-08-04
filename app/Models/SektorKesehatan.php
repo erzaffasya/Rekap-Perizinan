@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NData extends Model
+class SektorKesehatan extends Model
 {
     use HasFactory;
     protected $table = 'tb_data_kesehatan';

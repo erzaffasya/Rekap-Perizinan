@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('kecamatan')->nullable();
             $table->date('tanggal')->nullable();
             $table->string('tujuan_opd')->nullable();
-            $table->text('keterangan')->nullable();
+            $table->text('keterangan')->nullable();            
+            $table->foreignId("seksi_id")->nullable()->constrained("tb_seksi")->onUpdate("cascade");
             $table->timestamps();
         });
     }
