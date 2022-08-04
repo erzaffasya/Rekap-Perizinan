@@ -13,8 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('i_m_t_n_s', function (Blueprint $table) {
+        Schema::create('IMTN', function (Blueprint $table) {
             $table->id();
+            $table->string('no_surat')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('nama_pemohon')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->string('tujuan_opd')->nullable();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_m_t_n_s');
+        Schema::dropIfExists('IMTN');
     }
 };

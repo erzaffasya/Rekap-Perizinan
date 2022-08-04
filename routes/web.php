@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpdeskController;
+use App\Http\Controllers\IMTNController;
 use App\Http\Controllers\KategoriHelpdeskController;
 use App\Http\Controllers\NDataController;
 use App\Http\Controllers\NSeksiController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PerizinanController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TerbitController;
+use App\Imports\IMTNImport;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,11 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Seksi', RoleController::class);
     Route::resource('Role', RoleController::class);
     Route::resource('KategoriHelpdesk', KategoriHelpdeskController::class);
-
     Route::resource('NSeksi', NSeksiController::class);
     Route::resource('NSektor', NSektorController::class);
     Route::resource('NData', NDataController::class);
     Route::post('importNData', [NDataController::class, 'importNData'])->name('importNData');
+
+    // IMTN     
+    Route::resource('IMTN', IMTNController::class);
+    Route::post('importIMTN', [IMTNController::class, 'importData'])->name('importIMTN');
 });
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');
 Route::get('filterData', [NDataController::class, 'index'])->name('filterData');
