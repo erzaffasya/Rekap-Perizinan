@@ -4,7 +4,7 @@
             <div class="card-header pb-0 p-3">
                 <div class="row">
                     <div class="col-4 d-flex align-items-center">
-                        <h6 class="mb-0">IMTN</h6>
+                        <h6 class="mb-0">Pertahanan</h6>
                     </div>
                     <div class="col-4 text-end">
                         <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
@@ -34,7 +34,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($IMTN as $i)
+                        @foreach ($Pertahanan as $i)
                             <tr>
                                 <td class="align-middle text-center">
                                     <span
@@ -67,7 +67,7 @@
                                             data-bs-toggle="modal" data-bs-target="#editSektor-{{ $i->id }}"
                                             style="padding: 10px 24px"><i class="fas fa-Sektor"></i>&nbsp;
                                             Edit</button>
-                                        <form id="form-delete" action="{{ route('IMTN.destroy', $i->id) }}" method="POST"
+                                        <form id="form-delete" action="{{ route('Pertahanan.destroy', $i->id) }}" method="POST"
                                             style="display: inline">
                                             @csrf
                                             @method("DELETE")
@@ -98,7 +98,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{route('IMTN.store')}}">
+                        <form method="POST" action="{{route('Pertahanan.store')}}">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Nama Sektor</label>
@@ -132,7 +132,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{route('importIMTN')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('importPertahanan')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Import</label>
@@ -150,7 +150,7 @@
         </div>
     </div>
 
-    @foreach ($IMTN as $i)
+    @foreach ($Pertahanan as $i)
         <div class="col-md-4">
             <div class="modal fade" id="editSektor-{{ $i->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="tambahSektorTitle" aria-hidden="true">
@@ -163,7 +163,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('IMTN.update', $i->id) }}" method="POST">
+                            <form action="{{ route('Pertahanan.update', $i->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="id" value="{{ $i->id }}">

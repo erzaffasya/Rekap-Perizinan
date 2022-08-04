@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IMTN extends Model
+class Pertahanan extends Model
 {
     use HasFactory;
-    protected $table = 'imtn';
+    protected $table = 'tb_data_pertahanan';
     protected $fillable = [
         'no_surat','alamat','nama_pemohon','kecamatan','tanggal','tujuan_opd','keterangan'
     ];

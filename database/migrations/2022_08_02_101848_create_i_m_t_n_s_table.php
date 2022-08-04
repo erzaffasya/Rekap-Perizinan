@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('IMTN', function (Blueprint $table) {
+        Schema::create('tb_data_pertahanan', function (Blueprint $table) {
             $table->id();
             $table->string('no_surat')->nullable();
             $table->text('alamat')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('IMTN');
+        Schema::dropIfExists('tb_data_pertahanan');
     }
 };

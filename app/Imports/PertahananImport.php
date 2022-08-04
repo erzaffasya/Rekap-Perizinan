@@ -2,14 +2,14 @@
 
 namespace App\Imports;
 
-use App\Models\IMTN;
+use App\Models\Pertahanan;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 
-class IMTNImport implements ToModel, WithHeadingRow, SkipsEmptyRows
+class PertahananImport implements ToModel, WithHeadingRow, SkipsEmptyRows
 {
 
     use Importable;
@@ -23,7 +23,7 @@ class IMTNImport implements ToModel, WithHeadingRow, SkipsEmptyRows
     public function model(array $row)
     {
         // dd($row);
-        return new IMTN([
+        return new Pertahanan([
             'no_surat' => $row['no_surat'],
             'alamat' => $row['alamat'],
             'nama_pemohon' => $row['nama_pemohon'],

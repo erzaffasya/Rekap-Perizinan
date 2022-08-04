@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NData extends Model
 {
     use HasFactory;
-    protected $table = 'tb_data';
+    protected $table = 'tb_data_kesehatan';
     protected $guarded = [];
 
 
