@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Pendidikan
     Route::resource('Pendidikan', SektorPendidikanController::class);
-    Route::post('importPendidikan', [SektorPendidikanController::class, 'importData'])->name('importPendidikan');
+    Route::post('importPendidikan', [SektorPendidikanController::class, 'importPendidikan'])->name('importPendidikan');
 });
 
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');

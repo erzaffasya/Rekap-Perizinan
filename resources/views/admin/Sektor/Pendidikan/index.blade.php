@@ -64,7 +64,7 @@
                                     <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog mt-lg-10">
                                             <div class="modal-content">
-                                                <form action="{{ route('importKesehatan') }}" method="post"
+                                                <form action="{{ route('importPendidikan') }}" method="post"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-header">

@@ -33,13 +33,13 @@ class PendidikanImport implements ToModel, WithHeadingRow, SkipsEmptyRows
     public function model(array $row)
     {
         // dd($row);
-        return new SektorPendidikan([
-            'no_surat' => $row['no_surat'],
+        return new SektorPendidikan([           
+            'tanggal_terbit' => $this->convert($row['tanggal_terbit']),
+            'nomor_izin' => $row['nomor_izin'],
+            'nama_sekolah' => $row['nama_sekolah'],
+            'NIB' => $row['nib'],
             'alamat' => $row['alamat'],
-            'Pendidikan' => $row['Pendidikan'],
-            'NIB' => $row['NIB'],
-            'tanggal' => $this->convert($row['tanggal']),
-            'tujuan_opd' => $row['tujuan_opd'],
+            'nama_yayasan' => $row['nama_yayasan'],
             'seksi_id' => $this->seksi($row['seksi']),            
         ]);
     }
