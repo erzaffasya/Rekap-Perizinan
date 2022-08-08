@@ -98,8 +98,7 @@
                                 <div class="col-12 col-sm-12">
                                     <label>Pilih Sektor </label>
                                     <select name="sektor_id" class="multisteps-form__select form-control">
-                                        <option selected="selected" disabled>-- PILIH --</option>
-                                        @foreach ($NSektor as $item)
+                                        @foreach ($NSektor->where('id',request()->id) as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_sektor }}</option>
                                         @endforeach
                                     </select>
@@ -148,8 +147,7 @@
                                     <div class="col-12 col-sm-12">
                                         <label>Pilih Sektor</label>
                                         <select name="sektor_id" class="multisteps-form__select form-control">
-                                            <option selected="selected" disabled>-- PILIH --</option>
-                                            @foreach ($NSektor as $item)
+                                            @foreach ($NSektor->where('id',request()->id) as $item)
                                                 <option @if ($item->id == $i->sektor_id) selected @endif
                                                     value="{{ $item->id }}">{{ $item->nama_sektor }}</option>
                                             @endforeach
