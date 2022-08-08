@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 
 class NSeksiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $NSeksi = NSeksi::all();
+        // dd($request->id);
+        $NSeksi = NSeksi::where('sektor_id', $request->id)->get();
+        // dd($NSeksi);
         $NSektor = NSektor::all();
-        return view('admin.NSeksi.index', compact('NSeksi','NSektor'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        
+        return view('admin.NSeksi.index', compact('NSeksi', 'NSektor'));
     }
 
 
@@ -38,14 +40,13 @@ class NSeksiController extends Controller
     }
     public function show($NSeksi)
     {
-      
     }
 
 
     public function edit($id)
     {
         $NSeksi = NSeksi::find($id);
-        return view('admin.NSeksi.edit',compact('NSeksi'));
+        return view('admin.NSeksi.edit', compact('NSeksi'));
     }
 
     public function update(Request $request, $id)
@@ -63,12 +64,12 @@ class NSeksiController extends Controller
         $NSeksi->save();
 
         return redirect()->route('NSeksi.index')
-        ->with('edit', 'NSeksi Berhasil Diedit');
+            ->with('edit', 'NSeksi Berhasil Diedit');
     }
 
     public function destroy($id)
     {
-        NSeksi::where('id',$id)->delete();
+        NSeksi::where('id', $id)->delete();
         return back()
             ->with('delete', 'NSeksi Berhasil Dihapus');
     }
