@@ -379,7 +379,7 @@
             </li>
 
             <li class="nav-item mt-3">
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pertahanan</h6>
+                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pertanahan</h6>
             </li>
             {{-- NSeksi --}}
             <li class="nav-item">
