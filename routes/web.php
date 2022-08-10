@@ -10,6 +10,7 @@ use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Sektor\SektorKesehatanController;
 use App\Http\Controllers\Sektor\SektorPendidikanController;
+use App\Http\Controllers\Sektor\SektorPerdaganganController;
 use App\Http\Controllers\Sektor\SektorPertahananController;
 use App\Http\Controllers\TerbitController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
     //Pendidikan
     Route::resource('Pendidikan', SektorPendidikanController::class);
     Route::post('importPendidikan', [SektorPendidikanController::class, 'importPendidikan'])->name('importPendidikan');
+    
+    //Perdagangan
+    Route::resource('Perdagangan', SektorPerdaganganController::class);
+    Route::post('importPerdagangan', [SektorPerdaganganController::class, 'importPerdagangan'])->name('importPerdagangan');
 });
 
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');

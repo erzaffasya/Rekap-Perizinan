@@ -13,8 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sektor_perdagangans', function (Blueprint $table) {
+        Schema::create('tb_data_perdagangan', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->nullable(); 
+            $table->string('alamat_kantor')->nullable(); 
+            $table->string('lokasi_usaha')->nullable(); 
+            $table->string('nib')->nullable(); 
+            $table->string('status_penanaman_modal')->nullable(); 
+            $table->string('kbli')->nullable(); 
+            $table->date('tanggal')->nullable(); 
+            $table->string('tujuan_opd')->nullable(); 
+            $table->foreignId("seksi_id")->nullable()->constrained("tb_seksi")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sektor_perdagangans');
+        Schema::dropIfExists('tb_data_perdagangan');
     }
 };
