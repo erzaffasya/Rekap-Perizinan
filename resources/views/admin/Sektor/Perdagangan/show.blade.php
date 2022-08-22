@@ -65,21 +65,21 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">No.</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Nama Pemohon</th>
+                                            width="100px">Nama</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Pemohon</th>
+                                            width="100px">Alamat Kantor</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Tempat Kerja</th>
+                                            width="100px">Lokasi Usaha</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Nomor STR</th>
+                                            width="100px">NIB</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Izin Terbit</th>
+                                            width="100px">Status Penanaman Modal</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Masa Berlaku</th>
+                                            width="100px">KBLI</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Praktek Ke</th>
+                                            width="100px">Tanggal</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Praktik</th>
+                                            width="100px">Tujuan OPD</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">Seksi</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -96,35 +96,35 @@
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nama_pemohon }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nama }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_pemohon }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_kantor }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->tempat_kerja }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->lokasi_usaha }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nomor_str }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nib }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->izin_terbit }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->status_penanaman_modal }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->masa_berlaku_akhir }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->kbli }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->praktik_ke }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->tanggal }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_praktik }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $item->tujuan_opd }}</span>
                                                 </td>
                                                 <td class="align-middle ">
                                                     <span

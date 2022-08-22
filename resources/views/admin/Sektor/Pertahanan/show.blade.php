@@ -65,21 +65,19 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">No.</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            width="100px">No Surat</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            width="100px">Alamat</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">Nama Pemohon</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Pemohon</th>
+                                            width="100px">Kecamatan</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Tempat Kerja</th>
+                                            width="100px">Tanggal</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Nomor STR</th>
+                                            width="100px">Tujuan OPD</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Izin Terbit</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Masa Berlaku</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Praktek Ke</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            width="100px">Alamat Praktik</th>
+                                            width="100px">Keterangan</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             width="100px">Seksi</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -89,54 +87,50 @@
                                 <tbody>
                                     @if ($data != null)
                                         @foreach ($data as $item)
-                                            <tr>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nama_pemohon }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_pemohon }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->tempat_kerja }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->nomor_str }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->izin_terbit }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->masa_berlaku_akhir }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->praktik_ke }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->alamat_praktik }}</span>
-                                                </td>
-                                                <td class="align-middle ">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $item->seksi->nama_seksi }}</span>
-                                                </td>
-                                                <td class="align-middle text-center ">
-                                                    <a href="" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Preview product">
-                                                        <i class="fas fa-eye text-secondary"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->no_surat }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->alamat }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->nama_pemohon }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->kecamatan }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->tanggal }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->tujuan_opd }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->keterangan }}</span>
+                                            </td>
+                                            <td class="align-middle ">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $item->seksi->nama_seksi }}</span>
+                                            </td>
+                                            <td class="align-middle text-center ">
+                                                <a href="" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Preview product">
+                                                    <i class="fas fa-eye text-secondary"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     @endif
                                 </tbody>
