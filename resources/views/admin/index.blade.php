@@ -145,7 +145,7 @@
                 new Chart(ctx1, {
                     type: "doughnut",
                     data: {
-                        labels: ['Pertanahan', 'Kesehatan', 'Pendidikan'],
+                        labels: ['Pertanahan', 'Kesehatan', 'Pendidikan', 'Perdagangan'],
                         datasets: [{
                             label: "Data Perizinan",
                             weight: 20,
@@ -153,9 +153,9 @@
                             tension: 0.9,
                             pointRadius: 2,
                             borderWidth: 2,
-                            backgroundColor: ['#FF0080', '#A8B8D8', '#FF1E00'],
+                            backgroundColor: ['#FF0080', '#A8B8D8', '#FF1E00', '#34ebde'],
                             data: [{{ $DataPertanahan->count() }}, {{ $DataKesehatan->count() }},
-                                {{ $DataPendidikan->count() }}
+                                {{ $DataPendidikan->count() }},{{ $DataPerdagangan->count() }}
                             ],
                             fill: false
                         }],
