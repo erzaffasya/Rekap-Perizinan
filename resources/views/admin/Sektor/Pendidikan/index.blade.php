@@ -12,8 +12,8 @@
                         <label class="form-label">Tanggal Awal</label>
                         <div class="form-group">
                             <input class="form-control" name="tanggal_awal" type="date"
-                                value="{{ request()->tanggal_awal }}" id="example-datetime-local-input"
-                                onfocus="focused(this)" onfocusout="defocused(this)">
+                                @if (request()->tanggal_awal) value="{{ request()->tanggal_awal }}" @else value="2022-01-01" @endif
+                                id="example-datetime-local-input" onfocus="focused(this)" onfocusout="defocused(this)">
                         </div>
                         <label class="form-label">Tanggal Akhir</label>
                         <div class="form-group">
