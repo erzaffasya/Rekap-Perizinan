@@ -62,7 +62,7 @@ class SektorPertahananController extends Controller
             }
         }
         // dd($data);
-        return view('admin.Sektor.Perdagangan.index', compact('data'))
+        return view('admin.Sektor.Pertahanan.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     
@@ -129,7 +129,7 @@ class SektorPertahananController extends Controller
             $data = SektorPertahanan::where('seksi_id', $request->seksi)->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
         }
 
-        return view('admin.Sektor.Perdagangan.show', compact('data'));
+        return view('admin.Sektor.Pertahanan.show', compact('data'));
     }
     public function getSeksi($id)
     {
