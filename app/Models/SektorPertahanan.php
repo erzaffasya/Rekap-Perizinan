@@ -15,4 +15,8 @@ class SektorPertahanan extends Model
 
    
     protected $primaryKey = 'id';
+    public function seksi()
+    {
+        return $this->belongsTo(NSeksi::class, 'seksi_id', 'id');
+    }
 }
