@@ -410,8 +410,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#dataPertahanan"
-                    class="nav-link {{ Route::is('Pertahanan.*') ? 'active' : '' }}" aria-controls="dataPertahanan"
+                <a data-bs-toggle="collapse" href="#dataPertanahan"
+                    class="nav-link {{ Route::is('Pertanahan.*') ? 'active' : '' }}" aria-controls="dataPertanahan"
                     role="button" aria-expanded="false">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -437,19 +437,19 @@
                     </div>
                     <span class="nav-link-text ms-1">Data</span>
                 </a>
-                <div class="collapse  {{ Route::is('Pertahanan.*', 'cariTahunPertahanan*') ? 'show' : '' }} "
-                    id="dataPertahanan">
+                <div class="collapse  {{ Route::is('Pertanahan.*', 'cariTahunPertanahan*') ? 'show' : '' }} "
+                    id="dataPertanahan">
                     <ul class="nav ms-4 ps-3">
                         <!-- <li class="nav-item active">
-                            <a class="nav-link {{ Route::is('Pertahanan.create') ? 'active' : '' }}"
-                                href="{{ route('Pertahanan.create') }}">
+                            <a class="nav-link {{ Route::is('Pertanahan.create') ? 'active' : '' }}"
+                                href="{{ route('Pertanahan.create') }}">
                                 <span class="sidenav-mini-icon"> D </span>
                                 <span class="sidenav-normal"> Tambah Data </span>
                             </a>
                         </li> -->
                         <li class="nav-item active">
-                            <a class="nav-link {{ Route::is('Pertahanan.index', 'cariTahunPertahanan*') ? 'active' : '' }}"
-                                href="{{ route('Pertahanan.index') }}">
+                            <a class="nav-link {{ Route::is('Pertanahan.index', 'cariTahunPertanahan*') ? 'active' : '' }}"
+                                href="{{ route('Pertanahan.index') }}">
                                 <span class="sidenav-mini-icon"> D </span>
                                 <span class="sidenav-normal"> Lihat Data </span>
                             </a>

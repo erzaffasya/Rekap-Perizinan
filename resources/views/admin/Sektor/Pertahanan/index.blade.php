@@ -1,215 +1,287 @@
 <x-app-layout>
-    <div class="col-md-12 mb-lg-0 mb-4">
-        <div class="card mt-4">
-            <div class="card-header pb-0 p-3">
-                <div class="row">
-                    <div class="col-4 d-flex align-items-center">
-                        <h6 class="mb-0">Pertahanan</h6>
+    <div class="container-fluid">
+        <div class="row col-lg-6 pb-4">
+            <form action="{{ route('filterPertanahan') }}" method="get">
+                {{-- @csrf --}}
+                <div class="card mt-4" id="password">
+                    <div class="card-header">
+                        <h5>FILTER DATA</h5>
+                        <hr>
                     </div>
-                    <div class="col-4 text-end">
-                        <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
-                            data-bs-target="#tambahSektor"><i class="fas fa-plus"></i>&nbsp; Sektor</button>
-                    </div>
-                    <div class="col-4 text-end">
-                        <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
-                            data-bs-target="#tambahImport"><i class="fas fa-plus"></i>&nbsp; Import</button>
+                    <div class="card-body pt-0">
+                        <label class="form-label">Tanggal Awal</label>
+                        <div class="form-group">
+                            <input class="form-control" name="tanggal_awal" type="date"
+                                @if (request()->tanggal_awal) value="{{ request()->tanggal_awal }}" @else value="2022-01-01" @endif
+                                id="example-datetime-local-input" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        <label class="form-label">Tanggal Akhir</label>
+                        <div class="form-group">
+                            <input class="form-control" name="tanggal_akhir" type="date"
+                                value="{{ request()->tanggal_akhir }}" id="example-datetime-local-input"
+                                onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        <h5 class="mt-5">Pastikan data sudah benar</h5>
+                        <p class="text-muted mb-2">
+                            Sarat pencarian ada dibawah ini:
+                        </p>
+                        <ul class="text-muted ps-4 mb-0 float-start">
+                            <li>
+                                <span class="text-sm">Input Tanggal Awal</span>
+                            </li>
+                            <li>
+                                <span class="text-sm">Input Tanggal Akhir</span>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Cek
+                            Laporan</button>
                     </div>
                 </div>
-            </div>
-            <div class="card-body  px-0 pt-0 pb-2 table-responsive">
+            </form>
+        </div>
 
-                <table id="datatable-search" class="table align-items-center mb-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header pb-0">
+                        <div class="d-lg-flex">
+                            <div>
+                                <h5 class="mb-0">Tabel Data </h5>
+                                <p class="text-sm mb-0">
+                                    Kumpulan Data Seksi.
+                                </p>
+                            </div>
+                            <div class="ms-auto my-auto mt-lg-0 mt-4">
+                                <div class="ms-auto my-auto">
+                                    <a href="{{ route('Permohonan.create') }}"
+                                        class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
+                                        Data</a>
+                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                        data-bs-toggle="modal" data-bs-target="#import">
+                                        Import
+                                    </button>
+                                    <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog mt-lg-10">
+                                            <div class="modal-content">
+                                                <form action="{{ route('importPertanahan') }}" method="post"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
+                                                        <i class="fas fa-upload ms-3"></i>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
 
-                    <thead>
-                        <tr>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                width="100px">No.</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                Nama Sektor</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Deskripsi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                width="100px">Aksi</th>
-                        </tr>
-                    </thead>
+                                                    <div class="modal-body">
+                                                        <p>You can browse your computer for a file.</p>
+                                                        <input type="file" name="file" class="form-control">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" id="importCheck" checked="">
+                                                            <label class="custom-control-label" for="importCheck">I
+                                                                accept
+                                                                the terms and conditions</label>
+                                                        </div>
+                                                    </div>
 
-                    <tbody>
-                        @foreach ($Pertahanan as $i)
-                            <tr>
-                                <td class="align-middle text-center">
-                                    <span
-                                        class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->no_surat }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->alamat }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->nama_pemohon }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->kecamatan }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->tanggal }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->tujuan_opd }}</p>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <p class="text-xs font-weight-bold mb-0">{{ $i->keterangan }}</p>
-                                </td>
-                                <td>
-                                    <div class="col-12 text-end">
-                                        <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
-                                            data-bs-toggle="modal" data-bs-target="#editSektor-{{ $i->id }}"
-                                            style="padding: 10px 24px"><i class="fas fa-Sektor"></i>&nbsp;
-                                            Edit</button>
-                                        <form id="form-delete" action="{{ route('Pertahanan.destroy', $i->id) }}" method="POST"
-                                            style="display: inline">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button type="submit"
-                                                class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
-                                                style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
-                                                Hapus</button>
-                                        </form>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn bg-gradient-secondary btn-sm"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit"
+                                                            class="btn bg-gradient-primary btn-sm">Upload</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="modal fade" id="tambahSektor" tabindex="-1" role="dialog" aria-labelledby="tambahSektorTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Izin</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{route('Pertahanan.store')}}">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="exampleFormControlSelect1">Nama Sektor</label>
-                                <input type="text" class="form-control" name="nama_sektor" >
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlSelect1">Deskripsi</label>
-                                <input type="text" class="form-control" name="deskripsi">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn bg-gradient-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn bg-gradient-primary">Submit!</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="modal fade" id="tambahImport" tabindex="-1" role="dialog" aria-labelledby="tambahImportTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Izin</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{route('importPertahanan')}}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="exampleFormControlSelect1">Import</label>
-                                <input type="file" class="form-control" name="file" >
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn bg-gradient-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn bg-gradient-primary">Submit!</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @foreach ($Pertahanan as $i)
-        <div class="col-md-4">
-            <div class="modal fade" id="editSektor-{{ $i->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="tambahSektorTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Sektor</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('Pertahanan.update', $i->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="id" value="{{ $i->id }}">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlSelect1">Nama Sektor</label>
-                                    <input type="text" class="form-control" name="nama_sektor" value="{{ $i->nama_sektor }}">
+                                    {{-- <a href="{{ route('exportPermohonan') }}"
+                                        class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv"
+                                        type="button" name="button">Export</a> --}}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlSelect1">Deskripsi</label>
-                                    <input type="text" class="form-control" name="deskripsi" value="{{ $i->deskripsi }}">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn bg-gradient-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn bg-gradient-primary">Submit!</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive">
+                            <table class="table table-flush" id="products-list">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Izin</th>
+                                        <th>Januari</th>
+                                        <th>Februari</th>
+                                        <th>Maret</th>
+                                        <th>April</th>
+                                        <th>Mei</th>
+                                        <th>Juni</th>
+                                        <th>Juli</th>
+                                        <th>Agustus</th>
+                                        <th>September</th>
+                                        <th>Oktober</th>
+                                        <th>November</th>
+                                        <th>Desember</th>
+                                        <th>Total</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            width="100px">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (!empty($data))
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <td class="text-sm">{{ $loop->iteration }}</td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}">
+                                                        {{ $item['nama_seksi'] }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=January&seksi={{ $item['id'] }}">
+                                                        {{ $item['January'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=February&seksi={{ $item['id'] }}">
+                                                        {{ $item['February'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=March&seksi={{ $item['id'] }}">
+                                                        {{ $item['March'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=April&seksi={{ $item['id'] }}">
+                                                        {{ $item['April'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=May&seksi={{ $item['id'] }}">
+                                                        {{ $item['May'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=June&seksi={{ $item['id'] }}">
+                                                        {{ $item['June'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=July&seksi={{ $item['id'] }}">
+                                                        {{ $item['July'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=August&seksi={{ $item['id'] }}">
+                                                        {{ $item['August'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=September&seksi={{ $item['id'] }}">
+                                                        {{ $item['September'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=October&seksi={{ $item['id'] }}">
+                                                        {{ $item['October'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=November&seksi={{ $item['id'] }}">
+                                                        {{ $item['November'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    <a
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=December&seksi={{ $item['id'] }}">
+                                                        {{ $item['December'] ?? 0 }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-sm">
+                                                    {{ ($item['January'] ?? 0) +
+                                                        ($item['February'] ?? 0) +
+                                                        ($item['March'] ?? 0) +
+                                                        ($item['April'] ?? 0) +
+                                                        ($item['May'] ?? 0) +
+                                                        ($item['June'] ?? 0) +
+                                                        ($item['July'] ?? 0) +
+                                                        ($item['August'] ?? 0) +
+                                                        ($item['September'] ?? 0) +
+                                                        ($item['October'] ?? 0) +
+                                                        ($item['November'] ?? 0) +
+                                                        ($item['December'] ?? 0) }}
+                                                </td>
+                                                <td class="align-middle text-center ">
+                                                    <a href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Preview product">
+                                                        <i class="fas fa-eye text-secondary"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    @endforeach
+
+    </div>
+
     @push('scripts')
         <script>
-            const dataTableSearch = new simpleDatatables.DataTable("#datatable-search", {
-                searchable: true,
-                fixedHeight: true
+            if (document.getElementById('products-list')) {
+                const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+                    searchable: true,
+                    fixedHeight: false,
+                    perPage: 7
+                });
+            };
+            $('#sektor').change(function(e) {
+                e.preventDefault();
+                $('#seksi')
+                    .find('option')
+                    .remove()
+                    .end();
+                let id = $('#sektor').val();
+                console.log(id);
+                $.ajax({
+                    url: 'getSeksi/' + id,
+                    type: 'GET',
+                    success: function(res) {
+                        console.log(res);
+                        // $("#seksi").append("<option>erza</option>");
+                        $.each(res, function(i, item) {
+                            $('#seksi')
+                                .append($('<option>', {
+                                    value: item.id,
+                                    text: item.nama_seksi
+                                }));
+                        });
+                    }
+                })
             });
-            $('.show_confirm').click(function(event) {
-                var form = $(this).closest("form");
-                var name = $(this).data("name");
-                event.preventDefault();
-                swal({
-                        title: `Hapus Data?`,
-                        text: "Jika data terhapus, data akan hilang selamanya!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            form.submit();
-                        }
-                    });
-            });
+            if ('#sektor') {
+
+            } else {
+
+            }
         </script>
     @endpush
 </x-app-layout>

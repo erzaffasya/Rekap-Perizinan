@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container-fluid">
         <div class="row col-lg-6 pb-4">
-            <form action="{{ route('filterData') }}" method="get">
+            <form action="{{ route('filterPerdagangan') }}" method="get">
                 {{-- @csrf --}}
                 <div class="card mt-4" id="password">
                     <div class="card-header">
@@ -134,79 +134,79 @@
                                                 <td class="text-sm">{{ $loop->iteration }}</td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}">
                                                         {{ $item['nama_seksi'] }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=January&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=January&seksi={{ $item['id'] }}">
                                                         {{ $item['January'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=February&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=February&seksi={{ $item['id'] }}">
                                                         {{ $item['February'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=March&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=March&seksi={{ $item['id'] }}">
                                                         {{ $item['March'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=April&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=April&seksi={{ $item['id'] }}">
                                                         {{ $item['April'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=May&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=May&seksi={{ $item['id'] }}">
                                                         {{ $item['May'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=June&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=June&seksi={{ $item['id'] }}">
                                                         {{ $item['June'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=July&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=July&seksi={{ $item['id'] }}">
                                                         {{ $item['July'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=August&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=August&seksi={{ $item['id'] }}">
                                                         {{ $item['August'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=September&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=September&seksi={{ $item['id'] }}">
                                                         {{ $item['September'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=October&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=October&seksi={{ $item['id'] }}">
                                                         {{ $item['October'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=November&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=November&seksi={{ $item['id'] }}">
                                                         {{ $item['November'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}{{ request()->getRequestUri() }}&bulan=December&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=December&seksi={{ $item['id'] }}">
                                                         {{ $item['December'] ?? 0 }}
                                                     </a>
                                                 </td>
@@ -225,7 +225,7 @@
                                                         ($item['December'] ?? 0) }}
                                                 </td>
                                                 <td class="align-middle text-center ">
-                                                    <a href="{{ url('detailData') }}{{ request()->getRequestUri() }}&seksi={{ $item['id'] }}"
+                                                    <a href="{{ url('detailData') }}/filterPerdagangan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}"
                                                         data-bs-toggle="tooltip"
                                                         data-bs-original-title="Preview product">
                                                         <i class="fas fa-eye text-secondary"></i>
