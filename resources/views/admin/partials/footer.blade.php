@@ -6,7 +6,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>,
-                Sistem Rekap Perizinan <B> DPMPT </B>
+                Rekapitulasi Data Perizinan Usaha<B> DPMPTSP </B>
                 </div>
             </div>
             {{-- <div class="col-lg-6">

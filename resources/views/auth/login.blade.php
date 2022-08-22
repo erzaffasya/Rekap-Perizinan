@@ -58,7 +58,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-            <p class="text-lead text-white">Silahkan masuk ke website sistem rekap izin DPMPT</p>
+            <p class="text-lead text-white">Sistem Rekapitulasi Data Perizinan Usaha<B> DPMPTSP</p>
           </div>
         </div>
       </div>
@@ -125,14 +125,14 @@
                 <div class="text-center">
                   <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">Masuk</button>
                 </div>
-                <div class="mb-2 position-relative text-center">
+                {{-- <div class="mb-2 position-relative text-center">
                   <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
                     or
                   </p>
                 </div>
                 <div class="text-center">
                   <a href="{{ url('register') }}" class="btn bg-gradient-dark w-100 mt-2 mb-4">Daftar Akun</a>
-                </div>
+                </div> --}}
               </form>
             </div>
           </div>
