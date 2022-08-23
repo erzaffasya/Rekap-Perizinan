@@ -54,7 +54,7 @@
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
-                                    <a href="{{ route('Permohonan.create') }}"
+                                    <a href="{{ route('Pendidikan.create') }}"
                                         class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
                                         Data</a>
                                     <button type="button" class="btn btn-outline-primary btn-sm mb-0"

@@ -159,30 +159,14 @@ class SektorPerdaganganController extends Controller
 
     public function create()
     {
-        // if (Auth::user()->role_id == 1) {
-        //     $seksi = seksi::all();
-        // } else {
-        //     $seksi = seksi::where('role_id', Auth::user()->role_id)->get();
-        // }
-        // return view('admin.Sektor.Perdagangan.tambah', compact('seksi'));
+       $seksi = NSeksi::where('sektor_id',4)->get();
+        return view('admin.Sektor.Perdagangan.tambah', compact('seksi'));
     }
 
     public function store(Request $request)
     {
-        // dd($request);
-        // $request->validate([
-        //     'seksi_id' => 'required',
-        //     'tanggal' => 'required',
-        //     'jumlah' => 'required',
-        // ]);
-
-        // Perdagangan::create([
-        //     'seksi_id' => $request->seksi_id,
-        //     'tanggal' => $request->tanggal,
-        //     'jumlah' => $request->jumlah,
-        // ]);
-        // $tanggal = explode('-', $request->tanggal);
-        // return redirect('cariTahunPerdagangan?tahun=' . $tanggal[0]);
+       $data = SektorPerdagangan::create($request->all());
+       return redirect()->route('Perdagangan.index')->with('success','Data Berhasil Ditambahkan');
     }
     public function show($id)
     {

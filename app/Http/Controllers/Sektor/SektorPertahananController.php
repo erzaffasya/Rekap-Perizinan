@@ -143,31 +143,17 @@ class SektorPertahananController extends Controller
         return back();
     }
 
-    // public function create()
-    // {
-    //     return view('admin.Sektor.Pertahanan.tambah');
-    // }
+    public function create()
+    {
+       $seksi = NSeksi::where('sektor_id',2)->get();
+        return view('admin.Sektor.Pertahanan.tambah', compact('seksi'));
+    }
 
-    // public function store(Request $request)
-    // {
-        // $request->validate([
-        //     'no_surat' => 'required',
-        //     'alamat' => 'required',
-        // ]);
-    //     SektorPertahanan::create([
-    //         'no_surat' => $request->no_surat,
-    //         'alamat' => $request->alamat,
-    //         'nama_pemohon' => $request->nama_pemohon,
-    //         'kecamatan' => $request->kecamatan,
-    //         'tanggal' => $request->tanggal,
-    //         'tujuan_opd' => $request->tujuan_opd,
-    //         'keterangan' => $request->keterangan,
-    //     ]);
-    //     return back();
-    // }
-    // public function show($Pertahanan)
-    // {
-    // }
+    public function store(Request $request)
+    {
+       $data = SektorPertahanan::create($request->all());
+       return redirect()->route('Pertahanan.index')->with('success','Data Berhasil Ditambahkan');
+    }
 
 
     // public function edit($id)

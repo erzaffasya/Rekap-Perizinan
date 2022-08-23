@@ -158,30 +158,14 @@ class SektorKesehatanController extends Controller
 
     public function create()
     {
-        // if (Auth::user()->role_id == 1) {
-        //     $seksi = seksi::all();
-        // } else {
-        //     $seksi = seksi::where('role_id', Auth::user()->role_id)->get();
-        // }
-        // return view('admin.Sektor.Kesehatan.tambah', compact('seksi'));
+       $seksi = NSeksi::where('sektor_id',1)->get();
+        return view('admin.Sektor.Kesehatan.tambah', compact('seksi'));
     }
 
     public function store(Request $request)
     {
-        // dd($request);
-        // $request->validate([
-        //     'seksi_id' => 'required',
-        //     'tanggal' => 'required',
-        //     'jumlah' => 'required',
-        // ]);
-
-        // Kesehatan::create([
-        //     'seksi_id' => $request->seksi_id,
-        //     'tanggal' => $request->tanggal,
-        //     'jumlah' => $request->jumlah,
-        // ]);
-        // $tanggal = explode('-', $request->tanggal);
-        // return redirect('cariTahunKesehatan?tahun=' . $tanggal[0]);
+       $data = SektorKesehatan::create($request->all());
+       return redirect()->route('Kesehatan.index')->with('success','Data Berhasil Ditambahkan');
     }
     public function show($id)
     {
