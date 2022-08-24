@@ -39,7 +39,7 @@
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
     <div class="container">
       <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../../../pages/dashboards/default.html">
-        Rekap Izin
+        {{-- Rekap Izin --}}
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -58,7 +58,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-            <p class="text-lead text-white">Sistem Rekapitulasi Data Perizinan Usaha<B> DPMPTSP</p>
+            <p class="text-lead text-white"><b>Sistem Pelaporan Rekapitulasi Data Perizinan Usaha</b></p>
           </div>
         </div>
       </div>
