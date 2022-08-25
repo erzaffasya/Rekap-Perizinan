@@ -6,10 +6,12 @@
                     <div class="col-6 d-flex align-items-center">
                         <h6 class="mb-0">Seksi</h6>
                     </div>
-                    <div class="col-6 text-end">
-                        <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
-                            data-bs-target="#tambahSeksi"><i class="fas fa-plus"></i>&nbsp; Seksi</button>
-                    </div>
+                    @if (Auth::user()->role_id == 1)
+                        <div class="col-6 text-end">
+                            <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
+                                data-bs-target="#tambahSeksi"><i class="fas fa-plus"></i>&nbsp; Seksi</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body  px-0 pt-0 pb-2 table-responsive">
@@ -26,8 +28,10 @@
                                 Deskripsi</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                 Sektor</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                width="100px">Aksi</th>
+                            @if (Auth::user()->role_id == 1)
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    width="100px">Aksi</th>
+                            @endif
                         </tr>
                     </thead>
 
@@ -46,23 +50,25 @@
                                 <td class="align-middle text-center">
                                     <p class="text-xs font-weight-bold mb-0">{{ $i->sektor->nama_sektor }}</p>
                                 </td>
-                                <td>
-                                    <div class="col-12 text-end">
-                                        <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
-                                            data-bs-toggle="modal" data-bs-target="#editSeksi-{{ $i->id }}"
-                                            style="padding: 10px 24px"><i class="fas fa-Seksi"></i>&nbsp;
-                                            Edit</button>
-                                        <form id="form-delete" action="{{ route('NSeksi.destroy', $i->id) }}"
-                                            method="POST" style="display: inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
-                                                style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
-                                                Hapus</button>
-                                        </form>
-                                    </div>
-                                </td>
+                                @if (Auth::user()->role_id == 1)
+                                    <td>
+                                        <div class="col-12 text-end">
+                                            <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
+                                                data-bs-toggle="modal" data-bs-target="#editSeksi-{{ $i->id }}"
+                                                style="padding: 10px 24px"><i class="fas fa-Seksi"></i>&nbsp;
+                                                Edit</button>
+                                            <form id="form-delete" action="{{ route('NSeksi.destroy', $i->id) }}"
+                                                method="POST" style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
+                                                    style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
+                                                    Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -98,7 +104,7 @@
                                 <div class="col-12 col-sm-12">
                                     <label>Pilih Sektor </label>
                                     <select name="sektor_id" class="multisteps-form__select form-control">
-                                        @foreach ($NSektor->where('id',request()->id) as $item)
+                                        @foreach ($NSektor->where('id', request()->id) as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_sektor }}</option>
                                         @endforeach
                                     </select>
@@ -147,7 +153,7 @@
                                     <div class="col-12 col-sm-12">
                                         <label>Pilih Sektor</label>
                                         <select name="sektor_id" class="multisteps-form__select form-control">
-                                            @foreach ($NSektor->where('id',request()->id) as $item)
+                                            @foreach ($NSektor->where('id', request()->id) as $item)
                                                 <option @if ($item->id == $i->sektor_id) selected @endif
                                                     value="{{ $item->id }}">{{ $item->nama_sektor }}</option>
                                             @endforeach

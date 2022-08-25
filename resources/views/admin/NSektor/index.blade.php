@@ -6,10 +6,12 @@
                     <div class="col-6 d-flex align-items-center">
                         <h6 class="mb-0">Sektor</h6>
                     </div>
-                    <div class="col-6 text-end">
-                        <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
-                            data-bs-target="#tambahSektor"><i class="fas fa-plus"></i>&nbsp; Sektor</button>
-                    </div>
+                    @if (Auth::user()->role_id == 1)
+                        <div class="col-6 text-end">
+                            <button type="button" class="btn btn-sm bg-gradient-primary mb-0" data-bs-toggle="modal"
+                                data-bs-target="#tambahSektor"><i class="fas fa-plus"></i>&nbsp; Sektor</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body  px-0 pt-0 pb-2 table-responsive">
@@ -22,10 +24,12 @@
                                 width="100px">No.</th>
                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                 Nama Sektor</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Deskripsi</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                width="100px">Aksi</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                Deskripsi</th>
+                            @if (Auth::user()->role_id == 1)
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                    width="100px">Aksi</th>
+                            @endif
                         </tr>
                     </thead>
 
@@ -33,8 +37,7 @@
                         @foreach ($NSektor as $i)
                             <tr>
                                 <td class="align-middle text-center">
-                                    <span
-                                        class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
+                                    <span class="text-secondary text-xs font-weight-bold">{{ $loop->iteration }}</span>
                                 </td>
                                 <td class="align-middle text-center">
                                     <p class="text-xs font-weight-bold mb-0">{{ $i->nama_sektor }}</p>
@@ -42,23 +45,25 @@
                                 <td class="align-middle text-center">
                                     <p class="text-xs font-weight-bold mb-0">{{ $i->deskripsi }}</p>
                                 </td>
-                                <td>
-                                    <div class="col-12 text-end">
-                                        <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
-                                            data-bs-toggle="modal" data-bs-target="#editSektor-{{ $i->id }}"
-                                            style="padding: 10px 24px"><i class="fas fa-Sektor"></i>&nbsp;
-                                            Edit</button>
-                                        <form id="form-delete" action="{{ route('NSektor.destroy', $i->id) }}" method="POST"
-                                            style="display: inline">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button type="submit"
-                                                class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
-                                                style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
-                                                Hapus</button>
-                                        </form>
-                                    </div>
-                                </td>
+                                @if (Auth::user()->role_id == 1)
+                                    <td>
+                                        <div class="col-12 text-end">
+                                            <button type="button" class="btn btn-sm bg-gradient-warning mb-0"
+                                                data-bs-toggle="modal" data-bs-target="#editSektor-{{ $i->id }}"
+                                                style="padding: 10px 24px"><i class="fas fa-Sektor"></i>&nbsp;
+                                                Edit</button>
+                                            <form id="form-delete" action="{{ route('NSektor.destroy', $i->id) }}"
+                                                method="POST" style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
+                                                    style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
+                                                    Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -79,11 +84,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{route('NSektor.store')}}">
+                        <form method="POST" action="{{ route('NSektor.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Nama Sektor</label>
-                                <input type="text" class="form-control" name="nama_sektor" >
+                                <input type="text" class="form-control" name="nama_sektor">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1">Deskripsi</label>
@@ -120,11 +125,13 @@
                                 <input type="hidden" name="id" value="{{ $i->id }}">
                                 <div class="mb-3">
                                     <label for="exampleFormControlSelect1">Nama Sektor</label>
-                                    <input type="text" class="form-control" name="nama_sektor" value="{{ $i->nama_sektor }}">
+                                    <input type="text" class="form-control" name="nama_sektor"
+                                        value="{{ $i->nama_sektor }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleFormControlSelect1">Deskripsi</label>
-                                    <input type="text" class="form-control" name="deskripsi" value="{{ $i->deskripsi }}">
+                                    <input type="text" class="form-control" name="deskripsi"
+                                        value="{{ $i->deskripsi }}">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn bg-gradient-secondary"

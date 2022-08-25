@@ -12,15 +12,15 @@
                                     Kumpulan data Permohonan tahun {{ request()->tahun }}.
                                 </p>
                             </div>
-                            <div class="ms-auto my-auto mt-lg-0 mt-4">
+                            {{-- <div class="ms-auto my-auto mt-lg-0 mt-4">
                                 <div class="ms-auto my-auto">
                                     <a href="{{ route('Permohonan.create') }}"
                                         class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
                                         Data</a>
-                                    {{-- <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0"
                                         data-bs-toggle="modal" data-bs-target="#import">
                                         Import
-                                    </button> --}}
+                                    </button>
                                     <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog mt-lg-10">
                                             <div class="modal-content">
@@ -50,11 +50,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <a href="{{ route('exportPermohonan') }}"
+                                    <a href="{{ route('exportPermohonan') }}"
                                         class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv"
-                                        type="button" name="button">Export</a> --}}
+                                        type="button" name="button">Export</a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="card-body px-0 pb-0">

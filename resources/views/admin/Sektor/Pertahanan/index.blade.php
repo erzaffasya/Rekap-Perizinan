@@ -53,53 +53,56 @@
                                 </p>
                             </div>
                             <div class="ms-auto my-auto mt-lg-0 mt-4">
-                                <div class="ms-auto my-auto">
-                                    <a href="{{ route('Pertanahan.create') }}"
-                                        class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
-                                        Data</a>
-                                    <button type="button" class="btn btn-outline-primary btn-sm mb-0"
-                                        data-bs-toggle="modal" data-bs-target="#import">
-                                        Import
-                                    </button>
-                                    <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog mt-lg-10">
-                                            <div class="modal-content">
-                                                <form action="{{ route('importPertanahan') }}" method="post"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
-                                                        <i class="fas fa-upload ms-3"></i>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <p>You can browse your computer for a file.</p>
-                                                        <input type="file" name="file" class="form-control">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="" id="importCheck" checked="">
-                                                            <label class="custom-control-label" for="importCheck">I
-                                                                accept
-                                                                the terms and conditions</label>
+                                @if (Auth::user()->role_id == 1)
+                                    <div class="ms-auto my-auto">
+                                        <a href="{{ route('Pertanahan.create') }}"
+                                            class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; Tambah
+                                            Data</a>
+                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                            data-bs-toggle="modal" data-bs-target="#import">
+                                            Import
+                                        </button>
+                                        <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog mt-lg-10">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('importPertanahan') }}" method="post"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
+                                                            <i class="fas fa-upload ms-3"></i>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn bg-gradient-secondary btn-sm"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit"
-                                                            class="btn bg-gradient-primary btn-sm">Upload</button>
-                                                    </div>
-                                                </form>
+                                                        <div class="modal-body">
+                                                            <p>You can browse your computer for a file.</p>
+                                                            <input type="file" name="file" class="form-control">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="" id="importCheck" checked="">
+                                                                <label class="custom-control-label" for="importCheck">I
+                                                                    accept
+                                                                    the terms and conditions</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn bg-gradient-secondary btn-sm"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit"
+                                                                class="btn bg-gradient-primary btn-sm">Upload</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {{-- <a href="{{ route('exportPermohonan') }}"
+                                        {{-- <a href="{{ route('exportPermohonan') }}"
                                         class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv"
                                         type="button" name="button">Export</a> --}}
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -134,79 +137,79 @@
                                                 <td class="text-sm">{{ $loop->iteration }}</td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&seksi={{ $item['id'] }}">
                                                         {{ $item['nama_seksi'] }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=January&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=January&seksi={{ $item['id'] }}">
                                                         {{ $item['January'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=February&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=February&seksi={{ $item['id'] }}">
                                                         {{ $item['February'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=March&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=March&seksi={{ $item['id'] }}">
                                                         {{ $item['March'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=April&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=April&seksi={{ $item['id'] }}">
                                                         {{ $item['April'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=May&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=May&seksi={{ $item['id'] }}">
                                                         {{ $item['May'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=June&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=June&seksi={{ $item['id'] }}">
                                                         {{ $item['June'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=July&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=July&seksi={{ $item['id'] }}">
                                                         {{ $item['July'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=August&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=August&seksi={{ $item['id'] }}">
                                                         {{ $item['August'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=September&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=September&seksi={{ $item['id'] }}">
                                                         {{ $item['September'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=October&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=October&seksi={{ $item['id'] }}">
                                                         {{ $item['October'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=November&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=November&seksi={{ $item['id'] }}">
                                                         {{ $item['November'] ?? 0 }}
                                                     </a>
                                                 </td>
                                                 <td class="text-sm">
                                                     <a
-                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&bulan=December&seksi={{ $item['id'] }}">
+                                                        href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&bulan=December&seksi={{ $item['id'] }}">
                                                         {{ $item['December'] ?? 0 }}
                                                     </a>
                                                 </td>
@@ -225,7 +228,7 @@
                                                         ($item['December'] ?? 0) }}
                                                 </td>
                                                 <td class="align-middle text-center ">
-                                                    <a href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{request()->tanggal_awal}}&tanggal_akhir={{request()->tanggal_akhir}}&seksi={{ $item['id'] }}"
+                                                    <a href="{{ url('detailData') }}/filterPertanahan?tanggal_awal={{ request()->tanggal_awal }}&tanggal_akhir={{ request()->tanggal_akhir }}&seksi={{ $item['id'] }}"
                                                         data-bs-toggle="tooltip"
                                                         data-bs-original-title="Preview product">
                                                         <i class="fas fa-eye text-secondary"></i>
