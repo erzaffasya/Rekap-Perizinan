@@ -77,6 +77,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('getSeksiPerdangan/{id}', [SektorPerdaganganController::class, 'getSeksi'])->name('getSeksiPerdangan');
     Route::resource('Perdagangan', SektorPerdaganganController::class);
     Route::post('importPerdagangan', [SektorPerdaganganController::class, 'importPerdagangan'])->name('importPerdagangan');
+
+    
+    Route::get('buku-panduan', [DashboardController::class, 'bukupanduan'])->name('buku-panduan');
 });
 
 Route::post('Helpdesk/send-helpdesk', [HelpdeskController::class, 'store'])->name('sendHelpdesk');

@@ -623,6 +623,18 @@ background-color: #c5dffa;"
                     </ul>
                 </div>
             </li>
+            <div class="sidenav-footer mx-3 mt-3 pt-3">
+                <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
+                <div class="card-body text-start p-3 w-100">
+              
+                <div class="docs-info">
+                <h6 class="text-white up mb-0">Butuh Bantuan?</h6>
+                <p class="text-xs font-weight-bold">Silahkan cek buku panduan</p>
+                <a href="{{url('buku-panduan')}}" target="_blank" class="btn btn-white btn-sm w-100 mb-0">Dokumentasi</a>
+                </div>
+                </div>
+                </div>
+                </div>
         </ul>
     </div>
 </aside>

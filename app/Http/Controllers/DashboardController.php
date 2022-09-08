@@ -30,4 +30,9 @@ class DashboardController extends Controller
         // dd($this->PerBulan($query));
         return view('admin.index', compact('QueryTotal', 'DataPerdagangan', 'DataPertanahan', 'DataKesehatan', 'DataPendidikan', 'DataSektor','DataSeksi'));
     }
+
+    public function bukupanduan()
+    {
+        return view('admin.bukuPanduan');
+    }
 }
