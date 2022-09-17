@@ -23,12 +23,27 @@ class DashboardController extends Controller
         $DataPerdagangan = SektorPerdagangan::all();
         $QueryTotal =  $DataPertanahan->count() + $DataKesehatan->count() + $DataPendidikan->count() + $DataPerdagangan->count();
 
-        $query = SektorPerdagangan::select( DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
-        ->whereYear('tanggal', date("Y"))
-        ->groupBy('bulan')->get();
-        
-        // dd($this->PerBulan($query));
-        return view('admin.index', compact('QueryTotal', 'DataPerdagangan', 'DataPertanahan', 'DataKesehatan', 'DataPendidikan', 'DataSektor','DataSeksi'));
+        // $query = SektorPerdagangan::select( DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+        // ->whereYear('tanggal', date("Y"))
+        // ->groupBy('bulan')->get();
+
+        $LinePertanahan = json_encode($this->dashboardPerBulan(SektorPertahanan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->groupBy('bulan')->get()));
+
+        $LineKesehatan = json_encode($this->dashboardPerBulan(SektorKesehatan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(izin_terbit) as bulan"))
+            ->groupBy('bulan')
+            ->get()));
+
+        $LinePendidikan = json_encode($this->dashboardPerBulan(SektorPendidikan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal_terbit) as bulan"))
+            ->groupBy('bulan')
+            ->get()));
+
+        $LinePerdagangan = json_encode($this->dashboardPerBulan(SektorPerdagangan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->groupBy('bulan')
+            ->get()));
+
+        // return ($LinePerdagangan);
+        return view('admin.index', compact('LinePertanahan','LineKesehatan','LinePendidikan','LinePerdagangan','QueryTotal', 'DataPerdagangan', 'DataPertanahan', 'DataKesehatan', 'DataPendidikan', 'DataSektor', 'DataSeksi'));
     }
 
     public function bukupanduan()

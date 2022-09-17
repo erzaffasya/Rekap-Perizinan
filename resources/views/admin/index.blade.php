@@ -104,32 +104,36 @@
         </div>
         <div class="row mt-4">
             <div class="col-lg-12 col-md-12">
-              <div class="card">
-                <div class="card-header pb-0 p-3">
-                  <h6 class="mb-0">Line Chart Data Perizinan</h6>
-                  <div class="d-flex align-items-center">
-                    <span class="badge badge-md badge-dot me-4">
-                      <i class="bg-primary"></i>
-                      <span class="text-dark text-xs">Organic search</span>
-                    </span>
-                    <span class="badge badge-md badge-dot me-4">
-                      <i class="bg-dark"></i>
-                      <span class="text-dark text-xs">Referral</span>
-                    </span>
-                    <span class="badge badge-md badge-dot me-4">
-                      <i class="bg-info"></i>
-                      <span class="text-dark text-xs">Social media</span>
-                    </span>
-                  </div>
+                <div class="card">
+                    <div class="card-header pb-0 p-3">
+                        <h6 class="mb-0">Line Chart Data Perizinan</h6>
+                        <div class="d-flex align-items-center">
+                            <span class="badge badge-md badge-dot me-4">
+                                <i class="bg-primary"></i>
+                                <span class="text-dark text-xs">Sektor Pertanahan</span>
+                            </span>
+                            <span class="badge badge-md badge-dot me-4">
+                                <i class="bg-dark"></i>
+                                <span class="text-dark text-xs">Sektor Kesehatan</span>
+                            </span>
+                            <span class="badge badge-md badge-dot me-4">
+                                <i class="bg-info"></i>
+                                <span class="text-dark text-xs">Sektor Pendidikan</span>
+                            </span>
+                            <span class="badge badge-md badge-dot me-4">
+                                <i class="bg-success"></i>
+                                <span class="text-dark text-xs">Sektor Perdagangan</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="chart">
+                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body p-3">
-                  <div class="chart">
-                    <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
 
         @push('scripts')
             <script>
@@ -155,7 +159,7 @@
                             borderWidth: 2,
                             backgroundColor: ['#FF0080', '#A8B8D8', '#FF1E00', '#34ebde'],
                             data: [{{ $DataPertanahan->count() }}, {{ $DataKesehatan->count() }},
-                                {{ $DataPendidikan->count() }},{{ $DataPerdagangan->count() }}
+                                {{ $DataPendidikan->count() }}, {{ $DataPerdagangan->count() }}
                             ],
                             fill: false
                         }],
@@ -220,9 +224,9 @@
                 new Chart(ctx1, {
                     type: "line",
                     data: {
-                        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                         datasets: [{
-                                label: "Organic Search",
+                                label: "Sektor Pertanahan",
                                 tension: 0.4,
                                 borderWidth: 0,
                                 pointRadius: 2,
@@ -230,11 +234,11 @@
                                 borderColor: "#cb0c9f",
                                 borderWidth: 3,
                                 backgroundColor: gradientStroke1,
-                                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                                data: {{ $LinePertanahan }},
                                 maxBarThickness: 6
                             },
                             {
-                                label: "Referral",
+                                label: "Sektor Kesehatan",
                                 tension: 0.4,
                                 borderWidth: 0,
                                 pointRadius: 2,
@@ -242,11 +246,11 @@
                                 borderColor: "#3A416F",
                                 borderWidth: 3,
                                 backgroundColor: gradientStroke2,
-                                data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                                data: {{ $LineKesehatan }},
                                 maxBarThickness: 6
                             },
                             {
-                                label: "Direct",
+                                label: "Sektor Pendidikan",
                                 tension: 0.4,
                                 borderWidth: 0,
                                 pointRadius: 2,
@@ -254,7 +258,19 @@
                                 borderColor: "#17c1e8",
                                 borderWidth: 3,
                                 backgroundColor: gradientStroke2,
-                                data: [40, 80, 70, 90, 30, 90, 140, 130, 200],
+                                data: {{ $LinePendidikan }},
+                                maxBarThickness: 6
+                            }, 
+                            {
+                                label: "Sektor Perdagangan",
+                                tension: 0.4,
+                                borderWidth: 0,
+                                pointRadius: 2,
+                                pointBackgroundColor: "#82d616",
+                                borderColor: "#82d616",
+                                borderWidth: 3,
+                                backgroundColor: gradientStroke2,
+                                data: {{ $LinePerdagangan }},
                                 maxBarThickness: 6
                             },
                         ],
@@ -304,6 +320,5 @@
                     },
                 });
             </script>
-        
         @endpush
 </x-app-layout>
