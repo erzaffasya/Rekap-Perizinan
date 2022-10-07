@@ -34,12 +34,14 @@ class PendidikanImport implements ToModel, WithHeadingRow, SkipsEmptyRows
     {
         // dd($row);
         return new SektorPendidikan([           
-            'tanggal_terbit' => $this->convert($row['tanggal_terbit']),
-            'nomor_izin' => $row['nomor_izin'],
             'nama_sekolah' => $row['nama_sekolah'],
-            'NIB' => $row['nib'],
             'alamat' => $row['alamat'],
             'nama_yayasan' => $row['nama_yayasan'],
+            'NIB' => $row['nib'],
+            'nomor_izin' => $row['nomor_izin'],
+            'rumpun_pendidikan' => $row['rumpun_pendidikan'],
+            'tanggal' => $this->convert($row['tanggal']),
+            'jenis_pendidikan' => $row['jenis_pendidikan'],
             'seksi_id' => $this->seksi($row['seksi']),            
         ]);
     }

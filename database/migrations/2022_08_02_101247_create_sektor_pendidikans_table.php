@@ -15,16 +15,19 @@ return new class extends Migration
     {
         Schema::create('tb_data_pendidikan', function (Blueprint $table) {
             $table->id();                  
-            $table->date('tanggal_terbit')->nullable();
-            $table->string('nomor_izin')->nullable();      
-            $table->string('nama_sekolah')->nullable(); 
+            $table->string('nama_sekolah')->nullable();
+            $table->text('alamat')->nullable();      
+            $table->string('nama_yayasan')->nullable(); 
             $table->string('NIB')->nullable(); 
-            $table->text('alamat')->nullable();
-            $table->string('nama_yayasan')->nullable();            
+            $table->string('nomor_izin')->nullable();
+            $table->string('rumpun_pendidikan')->nullable();    
+            $table->date('tanggal')->nullable();
+            $table->string('jenis_pendidikan')->nullable();        
             $table->foreignId("seksi_id")->nullable()->constrained("tb_seksi")->onUpdate("cascade");
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
