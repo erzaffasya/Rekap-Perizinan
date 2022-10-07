@@ -34,7 +34,7 @@ class DashboardController extends Controller
             ->groupBy('bulan')
             ->get()));
 
-        $LinePendidikan = json_encode($this->dashboardPerBulan(SektorPendidikan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal_terbit) as bulan"))
+        $LinePendidikan = json_encode($this->dashboardPerBulan(SektorPendidikan::select(DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
             ->groupBy('bulan')
             ->get()));
 

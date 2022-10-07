@@ -16,8 +16,8 @@ class SektorPendidikanController extends Controller
     {
         // dd($request->all());
         $data = null;
-        $query = SektorPendidikan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal_terbit) as bulan"))
-            ->whereBetween('tanggal_terbit', [$request->tanggal_awal, $request->tanggal_akhir])
+        $query = SektorPendidikan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
             ->groupBy('bulan')->groupBy('seksi_id')
             ->with('seksi')->get();
         foreach ($query as $item) {
@@ -68,8 +68,8 @@ class SektorPendidikanController extends Controller
     public function filterData(Request $request)
     {
         $data = null;
-        $query = SektorPendidikan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal_terbit) as bulan"))
-            ->whereBetween('tanggal_terbit', [$request->tanggal_awal, $request->tanggal_akhir])
+        $query = SektorPendidikan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
             ->groupBy('bulan')->groupBy('seksi_id')
             ->with('seksi')->get();
         foreach ($query as $item) {
@@ -122,9 +122,9 @@ class SektorPendidikanController extends Controller
 
 
         if ($date['month'] == true) {
-            $data = SektorPendidikan::where('seksi_id', $request->seksi)->whereBetween('tanggal_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->whereMonth('tanggal', $date['month'])->get();
+            $data = SektorPendidikan::where('seksi_id', $request->seksi)->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->whereMonth('tanggal', $date['month'])->get();
         } else {
-            $data = SektorPendidikan::where('seksi_id', $request->seksi)->whereBetween('tanggal_terbit', [$request->tanggal_awal, $request->tanggal_akhir])->get();
+            $data = SektorPendidikan::where('seksi_id', $request->seksi)->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])->get();
         }
 
         return view('admin.Sektor.Pendidikan.show', compact('data'));
