@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Imports\KesehatanImport;
 use App\Models\NSeksi;
 use App\Models\SektorKesehatan;
+use App\Models\SektorPendidikan;
+use App\Models\SektorPerdagangan;
+use App\Models\SektorPertahanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -60,7 +63,152 @@ class SektorKesehatanController extends Controller
                 $data[$item->seksi_id]['December'] = $item->jumlah;
             }
         }
-        // dd($data);
+
+        //Pertanahan
+        $data1 = null;
+        $query = SektorPertahanan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+            ->groupBy('bulan')->groupBy('seksi_id')
+            ->with('seksi')->get();
+        foreach ($query as $item) {
+            $data1[$item->seksi_id]['id'] = $item->seksi->id;
+            $data1[$item->seksi_id]['nama_seksi'] = $item->seksi->nama_seksi;
+            if ($item->bulan == 'January') {
+                $data1[$item->seksi_id]['January'] = $item->jumlah;
+            }
+            if ($item->bulan == 'February') {
+                $data1[$item->seksi_id]['February'] = $item->jumlah;
+            }
+            if ($item->bulan == 'March') {
+                $data1[$item->seksi_id]['March'] = $item->jumlah;
+            }
+            if ($item->bulan == 'April') {
+                $data1[$item->seksi_id]['April'] = $item->jumlah;
+            }
+            if ($item->bulan == 'May') {
+                $data1[$item->seksi_id]['May'] = $item->jumlah;
+            }
+            if ($item->bulan == 'June') {
+                $data1[$item->seksi_id]['June'] = $item->jumlah;
+            }
+            if ($item->bulan == 'July') {
+                $data1[$item->seksi_id]['July'] = $item->jumlah;
+            }
+            if ($item->bulan == 'August') {
+                $data1[$item->seksi_id]['August'] = $item->jumlah;
+            }
+            if ($item->bulan == 'September') {
+                $data1[$item->seksi_id]['September'] = $item->jumlah;
+            }
+            if ($item->bulan == 'October') {
+                $data1[$item->seksi_id]['October'] = $item->jumlah;
+            }
+            if ($item->bulan == 'November') {
+                $data1[$item->seksi_id]['November'] = $item->jumlah;
+            }
+            if ($item->bulan == 'December') {
+                $data1[$item->seksi_id]['December'] = $item->jumlah;
+            }
+        }
+
+        //Pendidikan
+        $data2 = null;
+        $query = SektorPendidikan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+            ->groupBy('bulan')->groupBy('seksi_id')
+            ->with('seksi')->get();
+        foreach ($query as $item) {
+            $data2[$item->seksi_id]['id'] = $item->seksi->id;
+            $data2[$item->seksi_id]['nama_seksi'] = $item->seksi->nama_seksi;
+            if ($item->bulan == 'January') {
+                $data2[$item->seksi_id]['January'] = $item->jumlah;
+            }
+            if ($item->bulan == 'February') {
+                $data2[$item->seksi_id]['February'] = $item->jumlah;
+            }
+            if ($item->bulan == 'March') {
+                $data2[$item->seksi_id]['March'] = $item->jumlah;
+            }
+            if ($item->bulan == 'April') {
+                $data2[$item->seksi_id]['April'] = $item->jumlah;
+            }
+            if ($item->bulan == 'May') {
+                $data2[$item->seksi_id]['May'] = $item->jumlah;
+            }
+            if ($item->bulan == 'June') {
+                $data2[$item->seksi_id]['June'] = $item->jumlah;
+            }
+            if ($item->bulan == 'July') {
+                $data2[$item->seksi_id]['July'] = $item->jumlah;
+            }
+            if ($item->bulan == 'August') {
+                $data2[$item->seksi_id]['August'] = $item->jumlah;
+            }
+            if ($item->bulan == 'September') {
+                $data2[$item->seksi_id]['September'] = $item->jumlah;
+            }
+            if ($item->bulan == 'October') {
+                $data2[$item->seksi_id]['October'] = $item->jumlah;
+            }
+            if ($item->bulan == 'November') {
+                $data2[$item->seksi_id]['November'] = $item->jumlah;
+            }
+            if ($item->bulan == 'December') {
+                $data2[$item->seksi_id]['December'] = $item->jumlah;
+            }
+        }
+
+        //Perdagangan
+        $data3 = null;
+        $query = SektorPerdagangan::select('seksi_id', DB::raw("COUNT(*) as jumlah"), DB::raw("MONTHNAME(tanggal) as bulan"))
+            ->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir])
+            ->groupBy('bulan')->groupBy('seksi_id')
+            ->with('seksi')->get();
+        foreach ($query as $item) {
+            $data3[$item->seksi_id]['id'] = $item->seksi->id;
+            $data3[$item->seksi_id]['nama_seksi'] = $item->seksi->nama_seksi;
+            if ($item->bulan == 'January') {
+                $data3[$item->seksi_id]['January'] = $item->jumlah;
+            }
+            if ($item->bulan == 'February') {
+                $data3[$item->seksi_id]['February'] = $item->jumlah;
+            }
+            if ($item->bulan == 'March') {
+                $data3[$item->seksi_id]['March'] = $item->jumlah;
+            }
+            if ($item->bulan == 'April') {
+                $data3[$item->seksi_id]['April'] = $item->jumlah;
+            }
+            if ($item->bulan == 'May') {
+                $data3[$item->seksi_id]['May'] = $item->jumlah;
+            }
+            if ($item->bulan == 'June') {
+                $data3[$item->seksi_id]['June'] = $item->jumlah;
+            }
+            if ($item->bulan == 'July') {
+                $data3[$item->seksi_id]['July'] = $item->jumlah;
+            }
+            if ($item->bulan == 'August') {
+                $data3[$item->seksi_id]['August'] = $item->jumlah;
+            }
+            if ($item->bulan == 'September') {
+                $data3[$item->seksi_id]['September'] = $item->jumlah;
+            }
+            if ($item->bulan == 'October') {
+                $data3[$item->seksi_id]['October'] = $item->jumlah;
+            }
+            if ($item->bulan == 'November') {
+                $data3[$item->seksi_id]['November'] = $item->jumlah;
+            }
+            if ($item->bulan == 'December') {
+                $data3[$item->seksi_id]['December'] = $item->jumlah;
+            }
+        }
+
+        if ($request->tanggal_akhir) {
+            dd(array_merge($data??null,$data2??null,$data3??null));
+        }
+        
         return view('admin.Sektor.Kesehatan.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -158,14 +306,14 @@ class SektorKesehatanController extends Controller
 
     public function create()
     {
-       $seksi = NSeksi::where('sektor_id',1)->get();
+        $seksi = NSeksi::where('sektor_id', 1)->get();
         return view('admin.Sektor.Kesehatan.tambah', compact('seksi'));
     }
 
     public function store(Request $request)
     {
-       $data = SektorKesehatan::create($request->all());
-       return redirect()->route('Kesehatan.index')->with('success','Data Berhasil Ditambahkan');
+        $data = SektorKesehatan::create($request->all());
+        return redirect()->route('Kesehatan.index')->with('success', 'Data Berhasil Ditambahkan');
     }
     public function show($id)
     {
