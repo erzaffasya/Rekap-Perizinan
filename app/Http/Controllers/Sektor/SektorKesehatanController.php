@@ -206,9 +206,9 @@ class SektorKesehatanController extends Controller
         }
 
         if ($request->tanggal_akhir) {
-            dd(array_merge($data??null,$data2??null,$data3??null));
+            $data = array_merge($data??null,$data2??null,$data3??null);
         }
-        
+
         return view('admin.Sektor.Kesehatan.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
