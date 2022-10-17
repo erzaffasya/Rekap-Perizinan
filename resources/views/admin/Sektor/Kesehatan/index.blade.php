@@ -62,6 +62,10 @@
                                             data-bs-toggle="modal" data-bs-target="#import">
                                             Import
                                         </button>
+                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
+                                            data-type="csv" type="button" name="button">
+                                            Export
+                                        </button>
                                         <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog mt-lg-10">
                                                 <div class="modal-content">
@@ -249,13 +253,6 @@
 
     @push('scripts')
         <script>
-            if (document.getElementById('products-list')) {
-                const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
-                    searchable: true,
-                    fixedHeight: false,
-                    perPage: 7
-                });
-            };
             $('#sektor').change(function(e) {
                 e.preventDefault();
                 $('#seksi')
@@ -285,6 +282,32 @@
             } else {
 
             }
+        </script>
+        <script>
+            if (document.getElementById('products-list')) {
+                const dataTableSearch = new simpleDatatables.DataTable("#products-list", {
+                    searchable: true,
+                    fixedHeight: false,
+                    perPage: 7
+                });
+
+                document.querySelectorAll(".export").forEach(function(el) {
+                    el.addEventListener("click", function(e) {
+                        var type = el.dataset.type;
+
+                        var data = {
+                            type: type,
+                            filename: "export-" + type,
+                        };
+
+                        if (type === "csv") {
+                            data.columnDelimiter = "|";
+                        }
+
+                        dataTableSearch.export(data);
+                    });
+                });
+            };
         </script>
     @endpush
 </x-app-layout>
