@@ -48,41 +48,64 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="keterangan" id="keterangan" required>
-                                <option>Pj. Sekretaris Daerah</option>
-                                <option>Asisten Tata Pemerintahan, Setda</option>
-                                <option>Asisten Perekonomian, Pembangunan dan Kesejahteraan Rakyat, Setda</option>
-                                <option>Asisten Administrasi Umum, Setda</option>
-                                <option>Inspektur, Itkot</option>
-                                <option>Kepala Dinas Pertanahan dan Penataan Ruang, DPPR</option>
-                                <option>Kepala Dinas Perhubungan, Dishub</option>
-                                <option>Kepala Dinas Pekerjaan Umum, DPU</option>
-                                <option>Kepala Dinas Ketenagakerjaan, Disnaker</option>
-                                <option>Kepala Dinas Kependudukan dan Pencatatan Sipil , Disdukcapil</option>
-                                <option>Kepala Dinas Lingkungan Hidup, DLH</option>
-                                <option>Kepala Badan Pengelola Pajak Daerah dan Retribusi Daerah, BPPDRD</option>
-                                <option>Kepala Badan Perencanaan Pembangunan Daerah, Penelitian dan Pengembangan, Bappeda Litbang</option>
-                                <option>Kepala Dinas Pendidikan dan Kebudayaan, Disdikbud</option>
-                                <option>Kepala Dinas Kesehatan, Dinkes</option>
-                                <option>Kepala Dinas Perumahan dan permukiman, Disperkim</option>
-                                <option>Kepala Dinas Koperasi, Usaha Mikro, Kecil, Menengah dan Perindustrian, DKUMKMP</option>
-                                <option>Kepala Dinas Pemuda, Olah raga dan Pariwisata, DPOP</option>
-                                <option>Kepala Dinas Pangan, Pertanian dan Perikanan, DP3</option>
-                                <option>Kepala Dinas Komunikasi dan Informatika, Diskominfo</option>
-                                <option>Kepala Dinas Perpustakaan dan Arsip, Dispustakar</option>
-                                <option>Camat Balikpapan Timur, Baltim</option>
-                                <option>Camat Balikpapan Barat, Balbar</option>
-                                <option>Camat Balikpapan Utara, Baltara</option>
-                                <option>Camat Balikpapan Selatan, Balsel</option>
-                                <option>Camat Balikpapan Tengah, Balteng</option>
-                                <option>Camat Balikpapan Kota, Balkot</option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                          
+                            <option>Pj. Sekretaris Daerah</option>
+                            <option>Asisten Tata Pemerintahan, Setda</option>
+                            <option>Asisten Perekonomian, Pembangunan dan Kesejahteraan Rakyat, Setda</option>
+                            <option>Asisten Administrasi Umum, Setda</option>
+                            <option>Inspektur, Itkot</option>
+                            <option>Kepala Dinas Pertanahan dan Penataan Ruang, DPPR</option>
+                            <option>Kepala Dinas Perhubungan, Dishub</option>
+                            <option>Kepala Dinas Pekerjaan Umum, DPU</option>
+                            <option>Kepala Dinas Ketenagakerjaan, Disnaker</option>
+                            <option>Kepala Dinas Kependudukan dan Pencatatan Sipil , Disdukcapil</option>
+                            <option>Kepala Dinas Lingkungan Hidup, DLH</option>
+                            <option>Kepala Badan Pengelola Pajak Daerah dan Retribusi Daerah, BPPDRD</option>
+                            <option>Kepala Badan Perencanaan Pembangunan Daerah, Penelitian dan Pengembangan, Bappeda
+                                Litbang</option>
+                            <option>Kepala Dinas Pendidikan dan Kebudayaan, Disdikbud</option>
+                            <option>Kepala Dinas Kesehatan, Dinkes</option>
+                            <option>Kepala Dinas Perumahan dan permukiman, Disperkim</option>
+                            <option>Kepala Dinas Koperasi, Usaha Mikro, Kecil, Menengah dan Perindustrian, DKUMKMP
+                            </option>
+                            <option>Kepala Dinas Pemuda, Olah raga dan Pariwisata, DPOP</option>
+                            <option>Kepala Dinas Pangan, Pertanian dan Perikanan, DP3</option>
+                            <option>Kepala Dinas Komunikasi dan Informatika, Diskominfo</option>
+                            <option>Kepala Dinas Perpustakaan dan Arsip, Dispustakar</option>
+                            <option>Camat Balikpapan Timur, Baltim</option>
+                            <option>Camat Balikpapan Barat, Balbar</option>
+                            <option>Camat Balikpapan Utara, Baltara</option>
+                            <option>Camat Balikpapan Selatan, Balsel</option>
+                            <option>Camat Balikpapan Tengah, Balteng</option>
+                            <option>Camat Balikpapan Kota, Balkot</option>
+                            <option>Kepala Kantor Wilayah Direktorat Jenderal Pajak (DJP) Kalimantan Timur dan Utara
+                            </option>
+                            <option>Kepala Balai Besar Pengawas Obat dan Makanan</option>
+                            <option>Kepala Kepolisian Resor Kota Balikpapan</option>
+                            <option>Kepala Kantor Imigrasi Kelas I TPI Balikpapan</option>
+                            <option>Kepala Kantor Kementerian Agama Kota Balikpapan</option>
+                            <option>Kepala BPJS Ketenagakerjaan Cabang Balikpapan</option>
+                            <option>Kepala BPJS Kesehatan Cabang Balikpapan</option>
+                            <option>Kepala Badan Narkotika Nasional Kota Balikpapan</option>
+                            <option>Ketua Pengadilan Agama Balikpapan Kelas 1A</option>
+                            <option>Kepala Kantor ATR/BPN Kota Balikpapan</option>
+                            <option>Kepala Kejaksaan Negeri Balikpapan</option>
+                            <option>Branch Manager PT TASPEN (PERSERO) Kantor Cabang Samarinda</option>
+                            <option>Manager PT Perusahaan Listrik Negara (Persero) Unit Pelaksana Pelayanan Pelanggan
+                                Balikpapan</option>
+                            <option>Vice President PT Pegadaian (Persero) Area Balikpapan</option>
+                            <option>Kepala Dinas Penanaman Modal Dan Pelayanan Terpadu Satu Pintu Provinsi
+                                Kalimantan Timur</option>
+                            <option>Kepala Badan Pendapatan Daerah Provinsi Kalimantan Timur</option>
+                            <option>Direktur Utama Perusahaan Umum Daerah Tirta Manuntung</option>
+                            <option>Pimpinan PT Bank Pembangunan Daerah Kaltimtara Cabang Balikpapan</option>
+                            <option>Ketua Kadin Kota Balikpapan</option>
+                            <option>Ketua Hipmi Kota Balikpapan</option>
+                            <option>Ketua APERSI</option>
+                            <option>Ketua REI</option>
+                            <option>Ketua Komunitas Semangat Muda Tuli (SEMUT) Kota Balikpapan</option>
+                            <option>Ketua Gerakan untuk Kesejahteraan Tuna Rungu Indonesia (Gerkatin) DPC Kota
+                                Balikpapan</option>
+                            <option>Lainnya</option>
                         </select>
                     </div>
                     {{-- <label class="form-label">Asal</label>
@@ -109,7 +132,7 @@
                 </div>
             </div>
             {{-- </form> --}}
-            
+
     </div>
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
