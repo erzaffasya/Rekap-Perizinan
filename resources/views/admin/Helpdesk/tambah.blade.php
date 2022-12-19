@@ -74,6 +74,8 @@
                             <option>Dinas Pangan, Pertanian dan Perikanan, DP3</option>
                             <option>Dinas Komunikasi dan Informatika, Diskominfo</option>
                             <option>Dinas Perpustakaan dan Arsip, Dispustakar</option>
+                            <option>Dinas Penanaman Modal Dan Pelayanan Terpadu Satu Pintu Provinsi
+                                Kalimantan Timur</option>
                             <option>Kecamatan Balikpapan Timur, Baltim</option>
                             <option>Kecamatan Balikpapan Barat, Balbar</option>
                             <option>Kecamatan Balikpapan Utara, Baltara</option>
@@ -96,8 +98,6 @@
                             <option>PT Perusahaan Listrik Negara (Persero) Unit Pelaksana Pelayanan Pelanggan
                                 Balikpapan</option>
                             <option>PT Pegadaian (Persero) Area Balikpapan</option>
-                            <option>Dinas Penanaman Modal Dan Pelayanan Terpadu Satu Pintu Provinsi
-                                Kalimantan Timur</option>
                             <option>Badan Pendapatan Daerah Provinsi Kalimantan Timur</option>
                             <option>Perusahaan Umum Daerah Tirta Manuntung</option>
                             <option>PT Bank Pembangunan Daerah Kaltimtara Cabang Balikpapan</option>

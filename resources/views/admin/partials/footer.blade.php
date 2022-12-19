@@ -5,8 +5,8 @@
                 <div class="copyright text-center text-sm text-muted text-lg-start">
                     <script>
                         document.write(new Date().getFullYear())
-                    </script>,
-                Rekapitulasi Data Perizinan Usaha<B> DPMPTSP </B>
+                    </script>
+                    {{-- , Rekapitulasi Data Perizinan Usaha<B> DPMPTSP </B> --}}
                 </div>
             </div>
             {{-- <div class="col-lg-6">
