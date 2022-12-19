@@ -41,7 +41,6 @@
                     <label class="form-label">Kategori</label>
                     <div class="form-group">
                         <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id" required>
-                            <option>--PILIH--</option>
                             @foreach ($KategoriHelpdesk->where('isActive', 1) as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
@@ -114,7 +113,7 @@
                     </div>
                     <label class="form-label">Instansi Lainnya</label>
                     <div class="form-group">
-                        <textarea class="form-control" id="keterangan2" name="keterangan2"></textarea>
+                        <input type="text" class="form-control" id="keterangan2" name="keterangan2">
                     </div>
                     <label class="form-label">Tanda Tangan</label>
                     <div class="form-group">
