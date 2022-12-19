@@ -41,15 +41,54 @@
                     <label class="form-label">Kategori</label>
                     <div class="form-group">
                         <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id" required>
-                            @foreach ($KategoriHelpdesk as $item)
+                            @foreach ($KategoriHelpdesk->where('isActive', 1) as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <label class="form-label">Katerangan</label>
+                    <div class="form-group">
+                        <select class="form-control" name="keterangan" id="keterangan" required>
+                                <option>Pj. Sekretaris Daerah</option>
+                                <option>Asisten Tata Pemerintahan, Setda</option>
+                                <option>Asisten Perekonomian, Pembangunan dan Kesejahteraan Rakyat, Setda</option>
+                                <option>Asisten Administrasi Umum, Setda</option>
+                                <option>Inspektur, Itkot</option>
+                                <option>Kepala Dinas Pertanahan dan Penataan Ruang, DPPR</option>
+                                <option>Kepala Dinas Perhubungan, Dishub</option>
+                                <option>Kepala Dinas Pekerjaan Umum, DPU</option>
+                                <option>Kepala Dinas Ketenagakerjaan, Disnaker</option>
+                                <option>Kepala Dinas Kependudukan dan Pencatatan Sipil , Disdukcapil</option>
+                                <option>Kepala Dinas Lingkungan Hidup, DLH</option>
+                                <option>Kepala Badan Pengelola Pajak Daerah dan Retribusi Daerah, BPPDRD</option>
+                                <option>Kepala Badan Perencanaan Pembangunan Daerah, Penelitian dan Pengembangan, Bappeda Litbang</option>
+                                <option>Kepala Dinas Pendidikan dan Kebudayaan, Disdikbud</option>
+                                <option>Kepala Dinas Kesehatan, Dinkes</option>
+                                <option>Kepala Dinas Perumahan dan permukiman, Disperkim</option>
+                                <option>Kepala Dinas Koperasi, Usaha Mikro, Kecil, Menengah dan Perindustrian, DKUMKMP</option>
+                                <option>Kepala Dinas Pemuda, Olah raga dan Pariwisata, DPOP</option>
+                                <option>Kepala Dinas Pangan, Pertanian dan Perikanan, DP3</option>
+                                <option>Kepala Dinas Komunikasi dan Informatika, Diskominfo</option>
+                                <option>Kepala Dinas Perpustakaan dan Arsip, Dispustakar</option>
+                                <option>Camat Balikpapan Timur, Baltim</option>
+                                <option>Camat Balikpapan Barat, Balbar</option>
+                                <option>Camat Balikpapan Utara, Baltara</option>
+                                <option>Camat Balikpapan Selatan, Balsel</option>
+                                <option>Camat Balikpapan Tengah, Balteng</option>
+                                <option>Camat Balikpapan Kota, Balkot</option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                          
+                        </select>
+                    </div>
+                    {{-- <label class="form-label">Asal</label>
                     <div class="form-group">
                         <textarea class="form-control" id="keterangan" name="keterangan" required></textarea>
-                    </div>
+                    </div> --}}
                     <label class="form-label">Tanda Tangan</label>
                     <div class="form-group">
                         <div class="m-signature-pad">

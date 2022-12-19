@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kategori');
             $table->text('deskripsi');
+            $table->boolean('isActive')->default(1);
             $table->timestamps();
         });
     }

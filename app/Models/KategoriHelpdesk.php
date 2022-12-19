@@ -10,7 +10,7 @@ class KategoriHelpdesk extends Model
     use HasFactory;
     protected $table = 'kategori_helpdesk';
     protected $fillable = [
-        'nama_kategori','deskripsi'
+        'nama_kategori','deskripsi','isActive'
     ];
 
    
