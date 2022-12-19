@@ -26,7 +26,7 @@
             @csrf
             <div class="card mt-4 " id="password">
                 <div class="card-header text-center">
-                    <h5>Rekap Daftar Hadir</h5>
+                    <h5>Daftar Tamu</h5>
                     <hr>
                 </div>
                 <div class="card-body pt-0" id="signature-pad">
