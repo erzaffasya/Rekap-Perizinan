@@ -51,6 +51,7 @@ class HelpdeskController extends Controller
         } else {
             $keterangan = $request->keterangan;
         }
+        
         Helpdesk::create([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,

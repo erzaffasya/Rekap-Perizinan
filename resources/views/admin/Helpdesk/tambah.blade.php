@@ -36,11 +36,12 @@
                     </div>
                     <label class="form-label">Nomor HP</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" required>
+                        <input type="number" class="form-control" id="no_hp" name="no_hp" required>
                     </div>
                     <label class="form-label">Kategori</label>
                     <div class="form-group">
                         <select class="form-control" name="kategori_helpdesk_id" id="kategori_helpdesk_id" required>
+                            <option>--PILIH--</option>
                             @foreach ($KategoriHelpdesk->where('isActive', 1) as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
@@ -175,6 +176,7 @@
                         let no_hp = $('#no_hp').val();
                         let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
                         let keterangan = $('#keterangan').val();
+                        let keterangan2 = $('#keterangan2').val();
                         $.ajax({
                             url: "{{ route('Helpdesk.store') }}",
                             type: 'POST',
@@ -187,7 +189,8 @@
                                 nama: nama,
                                 no_hp: no_hp,
                                 kategori_helpdesk_id: kategori_helpdesk_id,
-                                keterangan: keterangan
+                                keterangan: keterangan,
+                                keterangan2: keterangan2
                             },
                             success: function(res) {
                                 swal({
