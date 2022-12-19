@@ -49,7 +49,7 @@
                     <label class="form-label">Instansi</label>
                     <div class="form-group">
                         <select class="form-control" name="keterangan" id="keterangan" required>
-                            <option disabled>--PILIH INSTANSI--</option>
+                            <option selected disabled>--PILIH INSTANSI--</option>
                             <option>Wali Kota</option>
                             <option>Sekretaris Daerah</option>
                             <option>Tata Pemerintahan, Setda</option>
