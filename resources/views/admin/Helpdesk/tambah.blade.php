@@ -26,7 +26,7 @@
             @csrf
             <div class="card mt-4 " id="password">
                 <div class="card-header text-center">
-                    <h5>Helpdesk</h5>
+                    <h5>Rekap Daftar Hadir</h5>
                     <hr>
                 </div>
                 <div class="card-body pt-0" id="signature-pad">
@@ -50,6 +50,7 @@
                     <div class="form-group">
                         <select class="form-control" name="keterangan" id="keterangan" required>
                             <option disabled>--PILIH INSTANSI--</option>
+                            <option>Wali Kota</option>
                             <option>Sekretaris Daerah</option>
                             <option>Tata Pemerintahan, Setda</option>
                             <option>Perekonomian, Pembangunan dan Kesejahteraan Rakyat, Setda</option>
@@ -110,10 +111,10 @@
                             <option>Lainnya</option>
                         </select>
                     </div>
-                    {{-- <label class="form-label">Asal</label>
+                    <label class="form-label">Instansi Lainnya</label>
                     <div class="form-group">
-                        <textarea class="form-control" id="keterangan" name="keterangan" required></textarea>
-                    </div> --}}
+                        <textarea class="form-control" id="keterangan2" name="keterangan2"></textarea>
+                    </div>
                     <label class="form-label">Tanda Tangan</label>
                     <div class="form-group">
                         <div class="m-signature-pad">

@@ -46,12 +46,17 @@ class HelpdeskController extends Controller
         $file = $folderPath . $filename;
         file_put_contents($file, $decoded_image);
 
+        if ($request->keterangan2) {
+            $keterangan = $request->keterangan .' - '. $request->keterangan2;
+        } else {
+            $keterangan = $request->keterangan;
+        }
         Helpdesk::create([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,
             'kategori_helpdesk_id' => $request->kategori_helpdesk_id,
             'nama' => $request->nama,
-            'keterangan' => $request->keterangan,
+            'keterangan' => $keterangan,
             'ttd' => $filename,
         ]);
         return response()->json(['success' => true]);
