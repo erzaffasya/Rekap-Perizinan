@@ -72,7 +72,9 @@
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Tanda Tangan</th>
-
+                                    <th
+                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    Aksi</th>
                             </tr>
                         </thead>
 
@@ -104,7 +106,20 @@
                                             <img height="80px" src="{{ asset('storage/ttd/' . $i->ttd) }}">
                                         </p>
                                     </td>
-
+                                    <td>
+                                        <div class="col-12 text-end">
+                                            
+                                            <form id="form-delete" action="{{ route('Helpdesk.destroy', $i->id) }}"
+                                                method="POST" style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-sm bg-gradient-danger mb-0 show_confirm"
+                                                    style="padding: 10px 24px"><i class="fas fa-trash"></i>&nbsp;
+                                                    Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -99,7 +99,11 @@ class HelpdeskController extends Controller
 
     public function destroy($id)
     {
-        Helpdesk::where('id', $id)->delete();
+        $data = Helpdesk::find($id);
+        if($data->ttd){
+            unlink(storage_path('app/public/ttd/'.$data->ttd));
+        }
+        $data->delete();
         return back()
             ->with('delete', 'Helpdesk Berhasil Dihapus');
     }
