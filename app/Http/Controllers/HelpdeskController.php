@@ -55,8 +55,8 @@ class HelpdeskController extends Controller
         Helpdesk::create([
             'nama' => $request->nama,
             'no_hp' => $request->no_hp,
+            'email' => $request->email,
             'kategori_helpdesk_id' => $request->kategori_helpdesk_id,
-            'nama' => $request->nama,
             'keterangan' => $keterangan,
             'ttd' => $filename,
         ]);

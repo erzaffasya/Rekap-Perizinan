@@ -34,6 +34,10 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
+                    <label class="form-label">Email</label>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
                     <label class="form-label">Nomor HP</label>
                     <div class="form-group">
                         <input type="number" class="form-control" id="no_hp" name="no_hp" required>
@@ -174,6 +178,7 @@
                         // var image_data = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
                         let nama = $('#nama').val();
                         let no_hp = $('#no_hp').val();
+                        let email = $('#email').val();
                         let kategori_helpdesk_id = $('#kategori_helpdesk_id').val();
                         let keterangan = $('#keterangan').val();
                         let keterangan2 = $('#keterangan2').val();
@@ -190,6 +195,7 @@
                                 no_hp: no_hp,
                                 kategori_helpdesk_id: kategori_helpdesk_id,
                                 keterangan: keterangan,
+                                email: email,
                                 keterangan2: keterangan2
                             },
                             success: function(res) {
