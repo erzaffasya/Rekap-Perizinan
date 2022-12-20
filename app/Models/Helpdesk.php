@@ -10,7 +10,7 @@ class Helpdesk extends Model
     use HasFactory;
     protected $table = 'helpdesk';
     protected $fillable = [
-        'nama','no_hp','ttd','kategori_helpdesk_id','keterangan'
+        'nama','no_hp','ttd','kategori_helpdesk_id','keterangan','email'
     ];
 
    
