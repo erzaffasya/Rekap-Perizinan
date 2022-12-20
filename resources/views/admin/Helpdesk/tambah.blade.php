@@ -52,6 +52,7 @@
                             <option selected disabled>--PILIH INSTANSI--</option>
                             <option>Wali Kota</option>
                             <option>Sekretaris Daerah</option>
+                            <option>DPRD</option>
                             <option>Tata Pemerintahan, Setda</option>
                             <option>Perekonomian, Pembangunan dan Kesejahteraan Rakyat, Setda</option>
                             <option>Administrasi Umum, Setda</option>
